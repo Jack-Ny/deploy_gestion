@@ -1,0 +1,330 @@
+{% extends "base.html" %}{% load static %} {% load custom_tags %}
+{% block title %} Synthèse globale informations générales {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">INFORMATIONS GENERALES : synthèse</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">informations générales</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                           <div class="card-header bg-white">
+                              <!-- Utilisez la classe bg-light pour un fond de carte clair -->
+                              <h5 class="text-center"> <strong>SYNTHÈSE GLOBALE INFORMATIONS GÉNÉRALES</strong> </h5>
+                              <div class="btn-group btn-group-sm" role="group">
+                                 <form action="{% url "generate_pdf_generale" %}" method="POST">
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-light btn-pdf" id="exportPdf">
+                                 <i class="fas fa-file-pdf"></i> PDF
+                                 </button>
+                                 </form>
+                                 <form action="{% url "generate_word_generale" %}" method='POST'>
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-light btn-word" id="exportWord">
+                                 <i class="fas fa-file-word"></i> Word
+                                 </button>
+                                 </form>
+                                 <form action="{% url "generate_excel_generale" %}" method='POST'>
+                                 {% csrf_token %}
+                                 <button type="submit" class="btn btn-light btn-excel" id="exportExcel">
+                                 <i class="fas fa-file-excel"></i> Excel
+                                 </button>
+                                 </form>
+                              </div>
+                              <style>
+                                 .btn-pdf:hover {
+                                 background-color: #dc3545;
+                                 color: #fff;
+                                 }
+                                 .btn-word:hover {
+                                 background-color: #007bff;
+                                 color: #fff;
+                                 }
+                                 .btn-excel:hover {
+                                 background-color: #28a745;
+                                 color: #fff;
+                                 }
+                                 @media print {
+                                 body {
+                                 font-size: 10pt;
+                                 margin: 20px;
+                                 }
+                                 }
+                              </style>
+                           </div>
+                           {% for infos in infos_test %}
+                           <div class="card-body">
+                              <div class="card">
+                                 <div class="card-header bg-white">
+                                    <h5 class="text-center"> <strong> {{ infos.id_projet.nom }} </strong> </h5>
+                                 </div>
+                              </div>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Informations générales</strong></legend>
+                                 <p class="form-control mb-1">Nom de l'organisation : <strong>{{ infos.nom_org }}</strong></p>
+                                 <p class="form-control mb-1">Nature de l'organisation : <strong>{{ infos.nature_org  }}</strong></p>
+                                 <p class="form-control mb-1">Sigle : <strong>{{ infos.sigle }}</strong></p>
+                                 <p class="form-control mb-1">Pays d'origine : <strong>{{ infos.pays_origine  }}</strong></p>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Adresses du siege de l'organisation</strong></legend>
+                                 <p class="form-control mb-1">Région : <strong>{{ infos.region }}</strong></p>
+                                 <p class="form-control mb-1">Province: <strong>{{ infos.province }}</strong></p>
+                                 <p class="form-control mb-1">Commune : <strong>{{ infos.commune }}</strong></p>
+                                 <p class="form-control mb-1">Ville/Secteur : <strong>{{ infos.village }}</strong></p>
+                                 <p class="form-control mb-1">Boite postale : <strong>{{ infos.boite_postale }}</strong></p>
+                                 <p class="form-control mb-1">Numéro de téléphone fixe : <strong>{{ infos.numb_fixe }}</strong></p>
+                                 <p class="form-control mb-1">Numéro de téléphone mobile : <strong>{{ infos.numb_mobile }}</strong></p>
+                                 <p class="form-control mb-1">Adresse mail professionnelle: <strong>{{ infos.adresse_mail }}</strong></p>
+                                 <p class="form-control mb-1">Site web : <strong>{{ infos.site_web }}</strong></p>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Responsable de l'organisation</strong></legend>
+                                 <p class="form-control mb-1">Nom et Prénom(s) : <strong>{{ infos.nom_complet_resp }}</strong></p>
+                                 <p class="form-control mb-1">Nationalité : <strong>{{ infos.nationalite_resp }}</strong></p>
+                                 <p class="form-control mb-1">Fonction(Président,...) : <strong>{{ infos.fonction_resp }}</strong></p>
+                                 <p class="form-control mb-1">Numéro fixe :  <strong>{{ infos.numb_fixe_resp }}</strong></p>
+                                 <p class="form-control mb-1">Numéro mobile :  <strong>{{ infos.numb_mobile_resp }}</strong></p>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Gouvernance interne de l'association : Tenue des rencontres statuaires des instances de l'organisation</></legend>
+                                 <p class="form-control mb-1">Dernier renouvèlement des Instances dirigeantes : <strong>{{ infos.renou_instance }}</strong></p>
+                                 <p class="form-control mb-1">Dernière Assemblée Générale Ordinaire :  <strong>{{ infos.assem_general }}</strong></p>
+                                 <p class="form-control mb-1">Dernière session statutaire du bureau exécutif : <strong>{{ infos.session_statut }}</strong></p>
+                                 <p class="form-control mb-1">Durée du mandat du bureau exécutif : <strong>{{ infos.mandat_bureau }} ans</strong></p>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Objectifs principaux de l'organisation</strong></legend>
+                                 <table class="table text-center">
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">
+                                             <p class="form-control mb-1 text-center text-bold">Objectifs</p>
+                                          </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       {% for objectif in objectifs_dict|get_item:infos.id %}
+                                       <tr>
+                                          <td class="text-muted"> <strong> - {{ objectif.objectifs }} </strong></td>
+                                       </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                 </table>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Groupes cibles specifique</strong></legend>
+                                 <table class="table text-center">
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">
+                                             <p class="form-control mb-1 text-center text-bold">Groupes</p>
+                                          </th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td>{{ infos.groupes_cibles }} , {{ infos.autre_groupe }}</td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Personnel employe</strong></legend>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Nombre total du personnel</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.total_pers_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.total_pers_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Employés nationaux Contrat à Durée Indéterminée (CDI)</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.em_nation_cdi_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.em_nation_cdi_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Employés nationaux Contrat à Durée déterminée (CDD)</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.em_nation_cdd_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.em_nation_cdd_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Employés expatriés Contrat à Durée Indéterminée (CDI)</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.em_expa_cdi_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.em_expa_cdi_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Employés expatriés Contrat à Durée déterminée (CDD)</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.em_expa_cdd_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.em_expa_cdd_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Bénévoles ou volontaires</strong></legend>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Bénévoles ou volontaires Nationaux</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.benevol_nation_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.benevol_nation_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                                 <table class="table text-center">
+                                    <p class="form-control mb-1 text-center text-bold">Bénévoles ou volontaires Expatriés</p>
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.benevol_expa_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.benevol_expa_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Personnel de l'Administration publique en détachement</strong></legend>
+                                 <table class="table text-center">
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Homme</th>
+                                          <th scope="col">Femme</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ infos.personnel_admin_homme }} </td>
+                                          <td class="text-muted text-bold"> {{ infos.personnel_admin_femme }} </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </fieldset>
+                              <br>
+                              <fieldset class="border p-3">
+                                 <legend class="w-auto px-2 text-sm text-center"><strong>Partenariats / collaborations</strong></legend>
+                                 <table class="table text-center">
+                                    {% for partenariat in partenariats_dict|get_item:infos.id %}
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Nom du partenaire</th>
+                                          <th scope="col">N° de convention de partenariat / protocole d'entente</th>
+                                          <th scope="col">Date de début d'effet</th>
+                                          <th scope="col">Date de fin d'effet</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ partenariat.nom }} </td>
+                                          <td class="text-muted text-bold"> {{ partenariat.numero }} </td>
+                                          <td class="text-muted text-bold"> {{ partenariat.date_debut }} </td>
+                                          <td class="text-muted text-bold"> {{ partenariat.date_fin }} </td>
+                                       </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                 </table>
+                              </fieldset>
+                              <br>
+                           </div>
+                           {% endfor %}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

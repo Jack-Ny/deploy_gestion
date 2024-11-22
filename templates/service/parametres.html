@@ -1,0 +1,101 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Paramètres {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">Paramètres</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">paramètres</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+    <div class="container-fluid">
+       <div class="row">
+          <div class="col-md-8 offset-md-2">
+             <div class="card">
+                <div class="card-header">
+                   <h3 class="card-title text-bold text-center"><strong>Choisir les informations a afficher <small class="text-muted text-bold">(Cliquez sur ajouter si vous n'avez pas encore renseignez les informations)</small></strong></h3>
+                </div>
+                <div class="card-body">
+                   <div class="row">
+
+                      <div class="col-md-6 mb-4">
+                         <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                               <h5 class="card-title mb-0 text-muted text-bold">Nombre total des projets</h5>
+                               <div class="custom-control custom-switch ml-auto">
+                                  <input type="checkbox" class="custom-control-input" id="param1" name="param1">
+                                  <label class="custom-control-label" for="param1"></label>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                         <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                               <h5 class="card-title mb-0 text-muted text-bold">Nombre de projets planifier</h5>
+                               <div class="custom-control custom-switch ml-auto">
+                                  <input type="checkbox" class="custom-control-input" id="param2" name="param2">
+                                  <label class="custom-control-label" for="param2"></label>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                         <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                               <h5 class="card-title mb-0 text-muted text-bold">Nombre de projets realiser</h5>
+                               <div class="custom-control custom-switch ml-auto">
+                                  <input type="checkbox" class="custom-control-input" id="param3" name="param3">
+                                  <label class="custom-control-label" for="param3"></label>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+
+                      <div class="col-md-6 mb-4">
+                         <div class="card">
+                            <div class="card-body d-flex justify-content-between align-items-center">
+                               <h5 class="card-title mb-0 text-muted text-bold">Nombre d'utilisateurs</h5>
+                               <div class="custom-control custom-switch ml-auto">
+                                  <input type="checkbox" class="custom-control-input" id="param4" name="param4">
+                                  <label class="custom-control-label" for="param4"></label>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+
+                   </div>
+                </div>
+                
+                <div class="card-footer d-flex justify-content-end">
+                   <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </section>
+ 
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

@@ -1,0 +1,188 @@
+{% extends "base.html" %}{% load static %} {% load custom_tags %}
+{% block title %} Synthèse globale {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4 class="m-0 text-primary text-left font-weight-bold">SYNTHESE GLOBALE</h4>
+                <div class="btn-group mt-2" role="group">
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Exporter
+                    </button>
+                    <div class="dropdown-menu">
+                        <form action="{% url "pdf_generale_invoice" %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </button>
+                        </form>
+                        <form action="{% url "generate_word" %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-word"></i> Word
+                            </button>
+                        </form>
+                        <form action="{% url "generate_excel" %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-excel"></i> Excel
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .dropdown-item:hover {
+                    background-color: #e9ecef; /* Couleur d'arrière-plan au survol */
+                }
+                .btn-outline-primary {
+                    border: 2px solid #007bff;
+                    color: #007bff;
+                }
+                .btn-outline-primary:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+            </style>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">synthèse globale</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            
+            {% comment %} INFORMATIONS GENERALES {% endcomment %}
+            <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>SYNTHESE GLOBALE</strong>
+                     </h5>
+                 </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         <table class="table table-bordered mb-0">
+                            <thead class="thead-light">
+                               <tr>
+                                  <th class="text-center">N° D'ordre</th>
+                                  <th class="text-center">Intitulés des projets</th>
+                                  <th class="text-center">Liste des secteurs d'intervention couvert par projet</th>
+                                  <th class="text-center">Objectif global du projet</th>
+                                  <th class="text-center">Nombre de bénéficiaires directes touchés</th>
+                                  <th class="text-center">Changements concrets constatés</th>
+                                  <th class="text-center">Dépenses du projet</th>
+                                  <th class="text-center">Ressources financières du projet</th>
+                                  <th class="text-center">Partenaires Financiers du Projet</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                {% for projet in synthese %}
+                               <tr>
+                                <td> N° {{ forloop.counter }} </td>
+                                <td> {{ projet.nom_projet }} </td>
+                                <td> {{ projet.secteurs }} </td>
+                                <td> {{ projet.objectif_globale }} </td>
+
+                                  <td>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                           <thead class="thead-light">
+                                              <tr>
+                                                 <th>Hommes</th>
+                                                 <th>Femmes</th>
+                                                 <th>Total</th>
+                                              </tr>
+                                           </thead>
+                                           <tbody>
+                                              <tr>
+                                                <td><strong> {{ projet.benef_homme }} </strong></td>
+                                                <td><strong> {{ projet.benef_femme }} </strong></td>
+                                                <td><strong> {{ projet.total_benef }} </strong></td>
+                                              </tr>
+                                           </tbody>
+                                        </table>
+                                     </div>
+                                  </td>
+
+                                  <td>  </td>
+
+                                  <td>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                           <thead class="thead-light">
+                                              <tr>
+                                                 <th>Montant dépensé pour le Fonctionnement</th>
+                                                 <th>Montant dépensé pour les équipements et matériels de fonctionnement</th>
+                                                 <th>Montant dépensé pour les  interventions au profit des bénéficiaires du projet</th>
+                                                 <th>Montant Total dépensé </th>
+                                              </tr>
+                                           </thead>
+                                           <tbody>
+                                            {% for depense in projet.depenses %}
+                                              <tr>
+                                                <td><strong> {{ depense.charge_fonctionnement }} </strong></td>
+                                                <td><strong> {{ depense.equipement }} </strong></td>
+                                                <td><strong> {{ depense.intervention }} </strong></td>
+                                                <td><strong> {{ depense.intervention }} </strong></td>
+                                              </tr>
+                                              {% endfor %}
+                                           </tbody>
+                                        </table>
+                                     </div>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Contribution des bénéficiaires et du SED</th>
+                                              <th>Apport des partenaires financiers</th>
+                                              <th>Contribution de l'Etat Burkinabe</th>
+                                              <th>Total des ressources financières du projet</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for ressource in projet.ressources_financieres %}
+                                           <tr>
+                                             <td><strong> {{ ressource.contribution_benef }} </strong></td>
+                                             <td><strong> {{ ressource.apport_partenaire }} </strong></td>
+                                             <td><strong> {{ ressource.contribution_etat }} </strong></td>
+                                             <td><strong> {{ ressource.contribution_etat }} </strong></td>
+                                           </tr>
+                                           {% endfor %}
+                                        </tbody>
+                                     </table>
+                                  </div>
+                                  </td>
+
+                                  <td> {{ projet.partenaire }} </td>
+                               </tr>
+                               {% endfor %}
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>   
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

@@ -1,0 +1,172 @@
+{% load static %} {% load custom_tags %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h2 class="text-center mb-0">SYNTHÈSE GLOBALE INFORMATIONS GÉNÉRALES</h2>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for infos in infos_test %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <p class="text-break text-bold">Créateur du projet : <strong class="text-bold">{{ infos.utilisateur }}</strong> </p>
+                           </div>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Informations générales</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nom de l'organisation : {{ infos.nom_org }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nature de l'organisation : {{ infos.nature_org }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Sigle : {{ infos.sigle }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Pays d'origine : {{ infos.pays_origine }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Adresses du siege de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Région : {{ infos.region }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Province : {{ infos.province }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Commune : {{ infos.commune }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Ville/Secteur : {{ infos.village }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Boite Postale : {{ infos.boite_postale }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro de téléphone fixe : {{ infos.numb_fixe }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro de téléphone mobile : {{ infos.numb_mobile }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Adresse mail professionnelle : {{ infos.adresse_mail }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Site Web : {{ infos.site_web }}</p>
+                        </div>
+                        {% comment %} test {% endcomment %}
+                        <p class="text-center"><strong>Responsable de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nom et Prénom(s) : {{ infos.nom_complet_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nationalité : {{ infos.nationalite_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Fonction(Président,...) : {{ infos.fonction_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro fixe : {{ infos.numb_fixe_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro mobile : {{ infos.numb_mobile_resp }} </p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Gouvernance interne de l'association : Tenue des rencontres statuaires des instances de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernier renouvèlement des Instances dirigeantes : {{ infos.renou_instance }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernière Assemblée Générale Ordinaire : {{ infos.assem_general }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernière session statutaire du bureau exécutif : {{ infos.session_statut }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Durée du mandat du bureau exécutif : {{ infos.mandat_bureau }} ans</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Objectifs principaux de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Objectifs</strong>
+                           {% for objectif in objectifs_dict|get_item:infos.id %}
+                           <p class="text-break"> {{ objectif.objectifs }} </p>
+                           {% endfor %}
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Groupes cibles specifique</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Groupes : {{ infos.groupes_cibles }} </p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Personnel employe</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre total du personnel</strong>
+                           <p class="text-break">Homme : {{ infos.total_pers_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.total_pers_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés nationaux Contrat à Durée Indéterminée (CDI)</strong>
+                           <p class="text-break">Homme : {{ infos.em_nation_cdi_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_nation_cdi_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés nationaux Contrat à Durée déterminée (CDD)</strong>
+                           <p class="text-break">Homme : {{ infos.em_nation_cdd_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_nation_cdd_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés expatriés Contrat à Durée Indéterminée (CDI)</strong>
+                           <p class="text-break">Homme : {{ infos.em_expa_cdi_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_expa_cdi_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés expatriés Contrat à Durée déterminée (CDD)</strong>
+                           <p class="text-break">Homme : {{ infos.em_expa_cdd_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_expa_cdd_femme }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Bénévoles ou volontaires</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           Bénévoles ou volontaires Nationaux
+                           <p class="text-break">Homme : {{ infos.benevol_nation_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.benevol_nation_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Bénévoles ou volontaires Expatriés</strong>
+                           <p class="text-break">Homme : {{ infos.benevol_expa_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.benevol_expa_femme }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Personnel de l'Administration publique en détachement</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           Personnel de l'Administration publique en détachement
+                           <p class="text-break">Homme : {{ infos.personnel_admin_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.personnel_admin_femme }}</p>
+                        </div>
+                        <p class="text-center"><strong>Partenariats / collaborations</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           {% for partenariat in partenariats_dict|get_item:infos.id %}
+                           <p class="text-center text-bold"> <strong> {{ partenariat.nom }} </strong> </p>
+                           <p class="text-break text-bold">N° de convention de partenariat / protocole d'entente : {{ partenariat.numero }} </p>
+                           <p class="text-break text-bold">Date de début d'effet : {{ partenariat.date_debut }}</p>
+                           <p class="text-break text-bold">Date de fin d'effet : {{ partenariat.date_fin }}</p>
+                           <span>-------------------------------------------------------------------------------</span>
+                           {% endfor %}
+                        </div>
+                     </div>
+                     <hr>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</div>
+</section>
+</div>

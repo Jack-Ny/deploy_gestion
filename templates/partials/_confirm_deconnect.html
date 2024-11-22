@@ -1,0 +1,63 @@
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h5 class="modal-title" id="confirmDeleteModalLabel">Deconnexion</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                Êtes-vous sûr de vouloir vous déconnecter ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
+                <button type="submit" class="btn btn-danger" id="confirmButton">Oui</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    function getCSRFToken() {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = jQuery.trim(cookies[i]);
+          if (cookie.substring(0, 'csrftoken'.length + 1) === ('csrftoken' + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring('csrftoken'.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    $(document).ready(function() {
+        // Intercepter le clic sur le bouton "OUI" dans le modal
+        $('#confirmButton').on('click', function() {
+            var csrftoken = getCSRFToken();
+          // Effectuer une requête AJAX pour déconnecter l'utilisateur
+          $.ajax({
+            url: '{% url 'logout' %}',
+            type: 'POST',  // Utilisez POST pour la déconnexion
+            data: {},
+            headers: {
+                'X-CSRFToken': csrftoken
+            },
+            success: function(data) {
+              // Rediriger l'utilisateur vers la page de connexion après la déconnexion
+              window.location.href = '{% url 'login' %}';
+            },
+            error: function(xhr, status, error) {
+              // Gérer les erreurs, si nécessaire
+              console.error(xhr.responseText);
+            }
+          });
+        });
+      });
+</script>
+{% endblock js %}

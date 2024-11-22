@@ -1,0 +1,50 @@
+{% load static %} {% load custom_tags %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h2 class="text-center mb-0">SYNTHÈSE GLOBALE DEPENSE DE FONCTIONNEMENT</h2>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for depense in depenses %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <p class="text-break text-bold">Projet : {{ depense.id_projet.nom }} </p>
+                           </div>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>DPENSE DE FONCTIONNEMENT</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Consommables et divers (F CFA) : {{ depense.consommable_divers }} F CFA</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Salaires et avantages du personnel (F CFA) : {{ depense.salaire_avantages }} F CFA</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Équipement et matériel (F CFA) : {{ depense.equipement_materiel }}</p>
+                        </div>
+
+                        <p class="text-center"><strong>Autres depenses</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           {% for depense in depense_dict|get_item:depense.id %}
+                           <p class="text-break text-bold">Nom de la depense : {{ depense.intitule }} </p>
+                           <p class="text-break text-bold">Prix de la depense (F CFA) : {{ depense.prix }} </p>
+                           <span>-------------------------------------------------------------------------------</span>
+                           {% endfor %}
+                        </div>
+                        
+                     </div>
+                     <hr>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</div>
+</section>
+</div>

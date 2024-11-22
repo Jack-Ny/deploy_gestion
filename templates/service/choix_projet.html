@@ -1,0 +1,117 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}  Choisir un formulaire {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">CHOISIR UNE SECTION</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">choix</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row justify-content-center">
+                     <div class="col-lg-8 col-md-10">
+                        <div class="card bg-white shadow">
+                           <div class="card-body text-center">
+                              <i class="fas fa-cogs fa-5x text-primary"></i>
+                              <h3 class="mt-4">CHOIX</h3>
+                              <p>Choisissez un formulaire pour le remplissage des données</p>
+                              
+                              <div class="text-center mt-4">
+                                 <div class="row">
+                                     {% if user.is_responsable or user.is_assistant or user.is_charger_programme or user.is_charger_projet %}
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "infos_specifique" projet.id %}">
+                                             {% csrf_token %}
+                                             <button class="btn btn-primary btn-lg btn-block" type="submit">
+                                                <i class="fa fa-info-circle"></i> INFORMATIONS SPÉCIFIQUES
+                                             </button>
+                                         </form>
+                                     </div>
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "planification" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                <i class="fa fa-calendar"></i> PLANIFICATION OPÉRATIONNELLE
+                                             </button>
+                                         </form>
+                                     </div>
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "realisation" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                <i class="fa fa-cogs"></i> RÉALISATION
+                                             </button>
+                                         </form>
+                                     </div>
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "situation" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                <i class="far fa-chart-bar"></i> SITUATION FISCALE ET SOCIALE
+                                             </button>
+                                         </form>
+                                     </div>
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "depense" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                <i class="fas fa-money-bill"></i> DÉPENSES DE FONCTIONNEMENT
+                                             </button>
+                                         </form>
+                                     </div>
+                                     {% elif user.is_user %}
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "planification" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">PLANIFICATION OPÉRATIONNELLE</button>
+                                         </form>
+                                     </div>
+                                     <div class="col-12 mb-3">
+                                         <form method="POST" action="{% url "realisation" projet.id %}">
+                                             {% csrf_token %}
+                                             <button type="submit" class="btn btn-primary btn-lg btn-block">
+                                                <i class="fa fa-cogs"></i> RÉALISATION
+                                             </button>
+                                         </form>
+                                     </div>
+                                     {% else %}
+                                     <span></span>
+                                     {% endif %}
+                                 </div>
+                             </div>
+                             
+
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

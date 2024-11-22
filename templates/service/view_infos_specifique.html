@@ -1,0 +1,76 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}  Voir les informations specifiques par projet {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">INFORMATIONS SPECIFIQUES PAR PROJET : détails</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">informations specifiques par projet</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                           <div class="card-header bg-light">
+                              <!-- Utilisez la classe bg-light pour un fond de carte clair -->
+                              <h5 class="card-title mb-0 text-center"> <strong>INFORMATIONS SPECIFIQUES PAR PROJET</strong> </h5>
+                              <!-- Centrez le titre et ajoutez une marge inférieure -->
+                           </div>
+                           <div class="card-body">
+                              <input type="hidden" name="specific_id" value="{{ specific_infos.id }}">
+                              <p class="form-control">Nom du projet : <strong>{{ specific_infos.nom }}</strong></p>
+                              <p class="form-control">Secteur : <strong>{{ specific_infos.id_secteur }}</strong></p>
+                              <p class="form-control">Domaine : <strong>{{ specific_infos.id_sous_secteur }}</strong></p>
+                              <p class="form-control">Activite : <strong>{{ specific_infos.id_titre_activites }}</strong></p>
+                              <p class="form-control">Date de debut du projet : <strong>{{ specific_infos.date_debut }}</strong></p>
+                              <p class="form-control">Date de fin du projet : <strong>{{ specific_infos.date_fin }}</strong></p>
+                              <p class="form-control">Budget du projet : <strong>{{ specific_infos.budget }}</strong></p>
+                              <p class="form-control">Depense globale de l'annee : <strong>{{ specific_infos.depense_globale }}</strong></p>
+                              <p class="form-control">Nombre de bénéficiaires directs hommes : <strong>{{ specific_infos.benef_direct_homme }}</strong></p>
+                              <p class="form-control">Nombre de bénéficiaires directs femmes : <strong>{{ specific_infos.benef_direct_femme }}</strong></p>
+                              <p class="form-control text-center">Objectif principal du projet</p>
+                              <p class="text-bold text-center"> - {{ specific_infos.objectifs_principals }} </p>
+                              <p class="form-control text-center">Objectifs secondaires</p>
+                              {% for obj in objectifs_test %}
+                              <p class="text-bold text-center"> - {{ obj.objectifs }} </p>
+                              {% endfor %}
+                              <p class="form-control text-center">Resultat attendus</p>
+                              {% for rez in rez_test %}
+                              <p class="text-bold text-center"> - {{ rez.resultats }} </p>
+                              {% endfor %}
+                              <p class="form-control text-center">Partenaires financiers</p>
+                              <p class="text-center text-bold"> - {{ specific_infos.partenaires }} </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

@@ -1,0 +1,52 @@
+{% load static %} {% load custom_tags %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h2 class="text-center mb-0">SYNTHÈSE GLOBALE SITUATION FISCALE ET SOCIALE</h2>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for situation in situations %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <p class="text-break text-bold">Projet : {{ situation.id_projet.nom }} </p>
+                           </div>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>SITUATIONS FISCALES ET SOCIALES DU SED AU 31 DECEMBRE</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Impôts et taxes versées : {{ situation.impot }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Cotisations Sociales versées : {{ situation.cotisation }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Autres contributions fiscales versées : {{ situation.autre_contribution }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Total : {{ situation.impot }}</p>
+                        </div>
+                        <p class="text-center"><strong>DERNIERS AUDITS COMPTABLES REALISES AU COURS DE L'ANNEE</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           {% for audits in audit|get_item:situation.id %}
+                           <p class="text-break text-bold">Désignation projets et programmes audités : {{ audits.designation }} </p>
+                           <p class="text-break text-bold">Date de réalisation : {{ audits.date_realisation }}</p>
+                           <p class="text-break text-bold">Nom du cabinet ayant conduit l'audit comptable : {{ audits.nom_cabinet }}</p>
+                           <span>-------------------------------------------------------------------------------</span>
+                           {% endfor %}
+                        </div>
+                     </div>
+                     <hr>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</div>
+</section>
+</div>

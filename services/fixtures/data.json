@@ -1,0 +1,2754 @@
+[
+    {
+        "model": "services.Secteur",
+        "pk": 1,
+        "fields": {
+            "titre": "Secteurs sociaux"
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 1,
+        "fields": {
+            "titre": "Alphabétisation",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 1,
+        "fields": {
+            "titre": "Centre d'alpha réhabilité",
+            "unite_physique": "Bâtiment",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 2,
+        "fields": {
+            "titre": "Centre d'alpha construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 3,
+        "fields": {
+            "titre": "Centre d'alpha ouvert (alpha initial et alpha complémentaire)",
+            "unite_physique": "Session alpha",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 4,
+        "fields": {
+            "titre": "Centre d'alpha en formations techniques spécifiques (FTS) ouvert",
+            "unite_physique": "Session FTS",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 5,
+        "fields": {
+            "titre": "Primes d'encouragement octroyées pour l'alpha",
+            "unite_physique": "Personne",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 6,
+        "fields": {
+            "titre": "Dotation spécifique des apprenants alpha en fourniture",
+            "unite_physique": "Kit",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 7,
+        "fields": {
+            "titre": "Equipements et Matériels d'alphabétisation distribués",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 1
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 2,
+        "fields": {
+            "titre": "Education",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 8,
+        "fields": {
+            "titre": "Bâtiments d'écoles réhabilités",
+            "unite_physique": "Bâtiment",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 9,
+        "fields": {
+            "titre": "Bâtiment à trois classes construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 10,
+        "fields": {
+            "titre": "Bâtiment à six classes construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 11,
+        "fields": {
+            "titre": "Logement de maître construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 12,
+        "fields": {
+            "titre": "Latrines scolaires construites",
+            "unite_physique": "Latrine",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 13,
+        "fields": {
+            "titre": "Cantine scolaire construite",
+            "unite_physique": "Bâtiment",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 14,
+        "fields": {
+            "titre": "Rampe d'accès pour personne handicapée construite",
+            "unite_physique": "Rampe",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 15,
+        "fields": {
+            "titre": "Bourses scolaires et parrainage",
+            "unite_physique": "Personne",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 16,
+        "fields": {
+            "titre": "Appui à l'excellence dans les écoles et établissements",
+            "unite_physique": "Ecole",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 17,
+        "fields": {
+            "titre": "Equipements et matériels scolaires distribués",
+            "unite_physique": "Lot de bâtiments",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 18,
+        "fields": {
+            "titre": "Centres LTP (learning through Play) construits",
+            "unite_physique": "Centre",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 19,
+        "fields": {
+            "titre": "Appui aux activités de production et d'apprentissage scolaires (jardin scolaire, élevage scolaire, vitrine écologique)",
+            "unite_physique": "Activité",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 20,
+        "fields": {
+            "titre": "Formations spécifiques au profit des acteurs de l'éducation",
+            "unite_physique": "Personne",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 21,
+        "fields": {
+            "titre": "Forages scolaires réhabilités ou construits",
+            "unite_physique": "Forage scolaire",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 22,
+        "fields": {
+            "titre": "Etablissement secondaire construit",
+            "unite_physique": "Lot de bâtiments",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 23,
+        "fields": {
+            "titre": "Kit scolaire distribué",
+            "unite_physique": "Kit",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 24,
+        "fields": {
+            "titre": "Appui aux cantines scolaires",
+            "unite_physique": "Cantine scolaire",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 25,
+        "fields": {
+            "titre": "Autre infrastructure d'éducation construite",
+            "unite_physique": "Infrastructure",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 26,
+        "fields": {
+            "titre": "Atelier de formation construit",
+            "unite_physique": "Atelier",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 27,
+        "fields": {
+            "titre": "Atelier de formation réhabilité",
+            "unite_physique": "Atelier",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 28,
+        "fields": {
+            "titre": "Dotation en équipements des ateliers de formation",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 29,
+        "fields": {
+            "titre": "Voyage d'étude pour le renforcement des capacités",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 30,
+        "fields": {
+            "titre": "Centre de formation en agriculture et elevage construit, et environnement construit ou réhabilité",
+            "unite_physique": "Centre",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 31,
+        "fields": {
+            "titre": "Centres ou écoles de formation technique (electricité, mecanique, informatique, ménuiserie, …..) construits ou réhabilités",
+            "unite_physique": "Centre",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 32,
+        "fields": {
+            "titre": "Dotation en matériels et  équipements des centres ou écoles de formation professionnelle",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 33,
+        "fields": {
+            "titre": "Dotation en équipement des centres de formation en agriculture et élevage",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 34,
+        "fields": {
+            "titre": "Appui à la formation professionnelle des personnes",
+            "unite_physique": "Personne",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 35,
+        "fields": {
+            "titre": "Chantiers écoles techiniques mis en place",
+            "unite_physique": "Unité",
+            "domaine": 2
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 3,
+        "fields": {
+            "titre": "Santé nutrition",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 36,
+        "fields": {
+            "titre": "CSPS réhabilité",
+            "unite_physique": "Lot de bâtiments",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 37,
+        "fields": {
+            "titre": "Bâtiments de dispensaire construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 38,
+        "fields": {
+            "titre": "Bâtiment de Maternité construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 39,
+        "fields": {
+            "titre": "Logement de santé construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 40,
+        "fields": {
+            "titre": "Incinérateur construit",
+            "unite_physique": "Unité",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 41,
+        "fields": {
+            "titre": "Rampe d'accès pour personne handicapée construite",
+            "unite_physique": "Rampe",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 42,
+        "fields": {
+            "titre": "Equipement et matériel de santé distribués",
+            "unite_physique": "Lot d'équipement",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 43,
+        "fields": {
+            "titre": "Kits de médicaments distribués",
+            "unite_physique": "Kit",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 44,
+        "fields": {
+            "titre": "Kit de produits thérapeutiques pour enfant distribués",
+            "unite_physique": "Kit",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 45,
+        "fields": {
+            "titre": "Dépistage de la malnutrition",
+            "unite_physique": "Personne",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 46,
+        "fields": {
+            "titre": "Consultation en SMI",
+            "unite_physique": "Personne",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 47,
+        "fields": {
+            "titre": "Dépôt pharmaceutique construit",
+            "unite_physique": "Bâtiment",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 48,
+        "fields": {
+            "titre": "Formation spécifiques au profit des acteurs de la santé",
+            "unite_physique": "Personne",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 49,
+        "fields": {
+            "titre": "Formation spécifiques au profit des acteurs de la RBC",
+            "unite_physique": "Personne",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 50,
+        "fields": {
+            "titre": "Etudes",
+            "unite_physique": "Etude",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 51,
+        "fields": {
+            "titre": "Appui à la mise en place des mutuelles communautaires de santé",
+            "unite_physique": "Mutuelle de santé",
+            "domaine": 3
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 4,
+        "fields": {
+            "titre": "Assainissement",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 52,
+        "fields": {
+            "titre": "Douche familiale construite",
+            "unite_physique": "Douche",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 53,
+        "fields": {
+            "titre": "Douches communautaires construites",
+            "unite_physique": "Douche",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 54,
+        "fields": {
+            "titre": "Latrine familiale construite",
+            "unite_physique": "Latrine",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 55,
+        "fields": {
+            "titre": "Latrine communautaire construite",
+            "unite_physique": "Latrine",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 56,
+        "fields": {
+            "titre": "Latrine institutionnelle construite",
+            "unite_physique": "Latrine",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 57,
+        "fields": {
+            "titre": "Latrine adaptée pour personne handicapée construite",
+            "unite_physique": "Latrine",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 58,
+        "fields": {
+            "titre": "Kit d'hygiène distribué",
+            "unite_physique": "Kit",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 59,
+        "fields": {
+            "titre": "Matériels et équipements de collecte et de traitement des ordures et déchets, distribués",
+            "unite_physique": "Lot",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 60,
+        "fields": {
+            "titre": "Bacs à ordure construits ou mis en place",
+            "unite_physique": "Unité",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 61,
+        "fields": {
+            "titre": "Dispositif de collecte et de traitement des ordures et déchets mis en place (poubelles, etc.)",
+            "unite_physique": "Unité",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 62,
+        "fields": {
+            "titre": "Formation sur les thématiques spécifiques en assainissement",
+            "unite_physique": "Personne",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 63,
+        "fields": {
+            "titre": "Autre infrastructure d'assainissement implantée ou construite",
+            "unite_physique": "Unité",
+            "domaine": 4
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 5,
+        "fields": {
+            "titre": "Hydraulique (eau de boisson)",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 64,
+        "fields": {
+            "titre": "AEPS Réhabilité",
+            "unite_physique": "AEPS",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 65,
+        "fields": {
+            "titre": "AEPS Construit",
+            "unite_physique": "AEPS",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 66,
+        "fields": {
+            "titre": "Forage Réhabilité",
+            "unite_physique": "Forage",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 67,
+        "fields": {
+            "titre": "Forage Construit",
+            "unite_physique": "Forage",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 68,
+        "fields": {
+            "titre": "Poste d'eau Autonome (PEA) construit",
+            "unite_physique": "PEA",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 69,
+        "fields": {
+            "titre": "Poste d'eau Autonome (PEA) Réhabilité",
+            "unite_physique": "PEA",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 70,
+        "fields": {
+            "titre": "Puits Réhabilité",
+            "unite_physique": "Puits",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 71,
+        "fields": {
+            "titre": "Puits Construit",
+            "unite_physique": "Puits",
+            "domaine": 5
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 6,
+        "fields": {
+            "titre": "Art, culture, sport",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 72,
+        "fields": {
+            "titre": "Tournois de football organisé",
+            "unite_physique": "Tournoi",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 73,
+        "fields": {
+            "titre": "Tournois de cyclisme organisé",
+            "unite_physique": "Tournoi",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 74,
+        "fields": {
+            "titre": "Autre tournois de sport organisé",
+            "unite_physique": "Tournoi",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 75,
+        "fields": {
+            "titre": "Nuit culturelle organisée",
+            "unite_physique": "Nuit",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 76,
+        "fields": {
+            "titre": "Journée culturelle organisée",
+            "unite_physique": "Journée",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 77,
+        "fields": {
+            "titre": "Journées de cohésion sociales (journées diocésaines, journées transfrontalières, etc.)",
+            "unite_physique": "Journée",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 78,
+        "fields": {
+            "titre": "Marchés communautaires organisés lors des grandes cérémonies",
+            "unite_physique": "Marché",
+            "domaine": 6
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 7,
+        "fields": {
+            "titre": "RBC OCADES",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 79,
+        "fields": {
+            "titre": "Consultations oculaires, ORL, Physio et santé mentale",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 80,
+        "fields": {
+            "titre": "Soins médicaux assurés",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 81,
+        "fields": {
+            "titre": "Soins kyné assurés (rééducation fonctionnelle)",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 82,
+        "fields": {
+            "titre": "Soins chirurgicaux assurés",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 83,
+        "fields": {
+            "titre": "Soins pour les malades psychosociaux",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 84,
+        "fields": {
+            "titre": "Appareillage",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 85,
+        "fields": {
+            "titre": "Identification des enfants handicapés",
+            "unite_physique": "Montant",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 86,
+        "fields": {
+            "titre": "Assistance en fourniture et frais de scolarité",
+            "unite_physique": "Kit scolaire",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 87,
+        "fields": {
+            "titre": "Développement des compétences (formations Orientation Mobilité, professionnelles et en atelier)",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 88,
+        "fields": {
+            "titre": "Accès au crédit par les personnes handicapées (fonds de garantie)",
+            "unite_physique": "Montant",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 89,
+        "fields": {
+            "titre": "Appui financier aux personnes handicapées pour les AGR",
+            "unite_physique": "Montant",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 90,
+        "fields": {
+            "titre": "Formation spécifiques en RBC des acteurs",
+            "unite_physique": "Personne",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 91,
+        "fields": {
+            "titre": "Voyages d'étude ou d'échange",
+            "unite_physique": "Voyage",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 92,
+        "fields": {
+            "titre": "Sensibilisation famille/communauté",
+            "unite_physique": "Montant",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 93,
+        "fields": {
+            "titre": "Appui aux OPH ou groupes d'entraide (organisation JIPH/JISM, Redynamisation)",
+            "unite_physique": "OPH/Groupe d'entraide",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 94,
+        "fields": {
+            "titre": "Plaidoyer pour l'autonomisation, les droits, etc. des personnes handicapées",
+            "unite_physique": "Session",
+            "domaine": 7
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 95,
+        "fields": {
+            "titre": "Appui aux activités récréatives (sport et loisir)",
+            "unite_physique": "Activité recréative",
+            "domaine": 7
+        }
+    },
+    
+    {
+        "model": "services.SousSecteur",
+        "pk": 8,
+        "fields": {
+            "titre": "Action sociale",
+            "secteur": 1
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 96,
+        "fields": {
+            "titre": "Bois distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Tonne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 97,
+        "fields": {
+            "titre": "Charbon distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Sac",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 98,
+        "fields": {
+            "titre": "Vivres distribués aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Tonne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 99,
+        "fields": {
+            "titre": "Kits d'habits distribués aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Kit",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 100,
+        "fields": {
+            "titre": "Kit de Cuisine distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Kit",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 101,
+        "fields": {
+            "titre": "Cash transfert distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Francs",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 102,
+        "fields": {
+            "titre": "Kit de ménage distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Kit",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 103,
+        "fields": {
+            "titre": "Kit de santé distribué aux personnes sinistrées ou vulnérables",
+            "unite_physique": "Kit",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 104,
+        "fields": {
+            "titre": "Cash for Work réalisé au profit des personnes sinistrées ou vulnérables",
+            "unite_physique": "Francs",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 105,
+        "fields": {
+            "titre": "Centre d'éveil pour enfants construit ou mise en place",
+            "unite_physique": "Centre",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 106,
+        "fields": {
+            "titre": "Centre d'écoute pour jeunes et pour adultes construit ou mise en place",
+            "unite_physique": "Centre",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 107,
+        "fields": {
+            "titre": "Centre d'accueil et de réinsertion pour les jeunes filles et les femmes construit ou mise en place",
+            "unite_physique": "Centre",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 108,
+        "fields": {
+            "titre": "Centre d'accueil et de réinsertion des malades mentaux construit ou mise en place",
+            "unite_physique": "Centre",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 109,
+        "fields": {
+            "titre": "Infrastructures construites au profit des personnes sinistrées ou vulnérables",
+            "unite_physique": "Ouvrage",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 110,
+        "fields": {
+            "titre": "Autres infrastructures construites au profit des personnes sinistrées ou vulnérables",
+            "unite_physique": "Ouvrage",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 111,
+        "fields": {
+            "titre": "Réinsertion des personnes sinistrées ou vulnérables",
+            "unite_physique": "Personne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 112,
+        "fields": {
+            "titre": "Reconstitution des moyens d'existence des personnes sinistrées",
+            "unite_physique": "Francs",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 113,
+        "fields": {
+            "titre": "Kit d'intrants de production distribué aux personnes sinistrées",
+            "unite_physique": "Kit",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 114,
+        "fields": {
+            "titre": "Équipement et matériel agro-sylvo-pastoral distribués aux personnes sinistrées",
+            "unite_physique": "Lot",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 115,
+        "fields": {
+            "titre": "Vente de vivres à prix social",
+            "unite_physique": "Tonne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 116,
+        "fields": {
+            "titre": "Organisation de la semaine Caritas",
+            "unite_physique": "Semaine",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 117,
+        "fields": {
+            "titre": "Appui à la constitution des actes d’état civil",
+            "unite_physique": "Personne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 118,
+        "fields": {
+            "titre": "Foire humanitaire organisée",
+            "unite_physique": "Foire",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.Secteur",
+        "pk": 2,
+        "fields": {
+            "titre": "Secteurs de la gouvernance locale"
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 9,
+        "fields": {
+            "titre": "Formation/sensibilisation",
+            "secteur": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 119,
+        "fields": {
+            "titre": "Voyage d’étude sur les thématiques spécifiques de bonne gouvernance",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 120,
+        "fields": {
+            "titre": "Formation sur les thématiques spécifiques liées à la fonctionnalité des OBC",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 121,
+        "fields": {
+            "titre": "Formation sur les thématiques spécifiques liées à la cohésion sociale et à la paix",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 122,
+        "fields": {
+            "titre": "Formation sur les thématiques spécifiques liées à la décentralisation et au développement local",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 123,
+        "fields": {
+            "titre": "Sensibilisation sur les thématiques spécifiques liées à la fonctionnalité des OBC",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 124,
+        "fields": {
+            "titre": "Sensibilisation sur les thématiques spécifiques liées à la cohésion sociale et à la paix",
+            "unite_physique": "Personne",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 125,
+        "fields": {
+            "titre": "Sensibilisation sur les thématiques spécifiques liées à la décentralisation et au développement local",
+            "unite_physique": "Personne",
+            "domaine": 8
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 126,
+        "fields": {
+            "titre": "Mécanisme de gestion des plaintes (numéro vert, boite à idée…) mis en place",
+            "unite_physique": "Nombre",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 127,
+        "fields": {
+            "titre": "Mécanismes de gestion des crises mis en place",
+            "unite_physique": "Nombre",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 128,
+        "fields": {
+            "titre": "Actions de communication sur les activités/actions du SED",
+            "unite_physique": "Nombre",
+            "domaine": 9
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 10,
+        "fields": {
+            "titre": "Organisation",
+            "secteur": 2
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 129,
+        "fields": {
+            "titre": "Appui à l'institutionnalisation des OBC",
+            "unite_physique": "OBC",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 130,
+        "fields": {
+            "titre": "Appui à la mise en conformité des OP avec les dispositions OHADA",
+            "unite_physique": "OP",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 131,
+        "fields": {
+            "titre": "Appui à la mise en réseau des OBC/OP",
+            "unite_physique": "OP/OBC",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 132,
+        "fields": {
+            "titre": "Appui à la mise en place des organes (comité ou commission spécialisés,…) spécifiques de gestion de la décentralisation",
+            "unite_physique": "Comité/commission",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 133,
+        "fields": {
+            "titre": "Appui à la mise en place des comités de cohésion sociale et de paix",
+            "unite_physique": "Comité/commission",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 134,
+        "fields": {
+            "titre": "Appui à la fonctionnalité des OBC/OSC",
+            "unite_physique": "OP/OBC",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 135,
+        "fields": {
+            "titre": "Appui à la fonctionnalité des OP",
+            "unite_physique": "OP",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 136,
+        "fields": {
+            "titre": "Appui à la fonctionnalité des Comités et commissions spécifiques de la décentralisation",
+            "unite_physique": "Comité/commission",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 137,
+        "fields": {
+            "titre": "Appui à la tenue des cadres de concertation technique",
+            "unite_physique": "Cadre de concertation/rencontre",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 138,
+        "fields": {
+            "titre": "Voyage d'étude ou d'échange d'expérience",
+            "unite_physique": "Voyage",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 139,
+        "fields": {
+            "titre": "Études",
+            "unite_physique": "Etude",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 261,
+        "fields": {
+            "titre": "Appui à la constitution des actes d’état civil",
+            "unite_physique": "Acte",
+            "domaine": 10
+        }
+    },
+    {
+        "model": "services.Secteur",
+        "pk": 3,
+        "fields": {
+            "titre": "Secteurs de production"
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 11,
+        "fields": {
+            "titre": "Agriculture",
+            "secteur": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 140,
+        "fields": {
+            "titre": "Étude réalisée",
+            "unite_physique": "Etude",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 141,
+        "fields": {
+            "titre": "Voyage d'étude réalisée",
+            "unite_physique": "Voyage",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 142,
+        "fields": {
+            "titre": "Foire agricole",
+            "unite_physique": "Producteur/trice",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 143,
+        "fields": {
+            "titre": "Système d'information sur les marchés",
+            "unite_physique": "Producteur/trice",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 144,
+        "fields": {
+            "titre": "Formation sur les techniques spécifiques agricoles",
+            "unite_physique": "Producteur/trice",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 145,
+        "fields": {
+            "titre": "Bas-fonds aménagé",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 146,
+        "fields": {
+            "titre": "Bas-fonds réhabilité",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 147,
+        "fields": {
+            "titre": "Banque de céréales construite",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 148,
+        "fields": {
+            "titre": "Banque de céréales réhabilitée",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 149,
+        "fields": {
+            "titre": "Magasin d'intrants",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 150,
+        "fields": {
+            "titre": "Fonds de roulement pour banque de céréales",
+            "unite_physique": "Francs",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 151,
+        "fields": {
+            "titre": "Cordon pierreux/Diguette anti errosive",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 152,
+        "fields": {
+            "titre": "V en pierres",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 153,
+        "fields": {
+            "titre": "Bandes enherbées",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 154,
+        "fields": {
+            "titre": "Impulvium",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 155,
+        "fields": {
+            "titre": "Demi lune réalisée",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 156,
+        "fields": {
+            "titre": "Brise vent",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 157,
+        "fields": {
+            "titre": "Zaï réalisée",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 158,
+        "fields": {
+            "titre": "Fosse fumière construite",
+            "unite_physique": "Fosse fumière",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 159,
+        "fields": {
+            "titre": "Appui au compostage en tas",
+            "unite_physique": "Producteur/trice",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 160,
+        "fields": {
+            "titre": "Champ école/parcelle de démonstration",
+            "unite_physique": "Nombre",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 161,
+        "fields": {
+            "titre": "Equipements et matériel de production  agricole distribués",
+            "unite_physique": "Lot",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 162,
+        "fields": {
+            "titre": "Equipements et matériel de commecialisation de produits agricoles distribués",
+            "unite_physique": "Lot",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 163,
+        "fields": {
+            "titre": "Equipements et matériel de transformation de produits agricoles distribués",
+            "unite_physique": "Lot",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 164,
+        "fields": {
+            "titre": "Infrastructure de commercialisation des produits agricoles",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 165,
+        "fields": {
+            "titre": "Infrastructure de transformation des produits agricoles",
+            "unite_physique": "Unité",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 166,
+        "fields": {
+            "titre": "Intrant agricole distribué",
+            "unite_physique": "Lot d'intrant",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 167,
+        "fields": {
+            "titre": "Périmètre maraîcher aménagé",
+            "unite_physique": "Ha",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 168,
+        "fields": {
+            "titre": "Matériels et équipements d'irrigation",
+            "unite_physique": "Kit",
+            "domaine": 11
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 12,
+        "fields": {
+            "titre": "Elevage",
+            "secteur": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 169,
+        "fields": {
+            "titre": "Etude réalisée",
+            "unite_physique": "Etude",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 170,
+        "fields": {
+            "titre": "Voyage d'étude réalisée",
+            "unite_physique": "Voyage",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 171,
+        "fields": {
+            "titre": "Foire élévage",
+            "unite_physique": "Foire",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 172,
+        "fields": {
+            "titre": "Formation sur les techniques spécifiques d'élévage",
+            "unite_physique": "Eleveur",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 173,
+        "fields": {
+            "titre": "Race améliorée distribuée",
+            "unite_physique": "Tête",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 174,
+        "fields": {
+            "titre": "Race locale distribuée",
+            "unite_physique": "Tête",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 175,
+        "fields": {
+            "titre": "Equipement et matériel d'élevage distribué",
+            "unite_physique": "Lot",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 176,
+        "fields": {
+            "titre": "Equipement et matériel d'apiculture distribué",
+            "unite_physique": "Lot",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 177,
+        "fields": {
+            "titre": "Unité de pisciculture mise en place ou appuyée",
+            "unite_physique": "Unité",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 178,
+        "fields": {
+            "titre": "Unité d'élevage non conventionnel (agoutis, caille, ...) mise en place ou appuyée",
+            "unite_physique": "Unité",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 179,
+        "fields": {
+            "titre": "Unité d'abattage ou de transformation de la viande mise en place ou appuyée",
+            "unite_physique": "Unité",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 180,
+        "fields": {
+            "titre": "Vulgarisateurs volontaires de volaille équipés",
+            "unite_physique": "Personne",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 181,
+        "fields": {
+            "titre": "Equipement et matériel d'élevage distribué",
+            "unite_physique": "Lot",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 182,
+        "fields": {
+            "titre": "Piste à bétail mise en place ou réhabilitée",
+            "unite_physique": "Piste",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 183,
+        "fields": {
+            "titre": "Zone de pâturage mise en place ou réhabilitée",
+            "unite_physique": "Zone",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 184,
+        "fields": {
+            "titre": "Appui en embouche",
+            "unite_physique": "Appui",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 185,
+        "fields": {
+            "titre": "Appui en Elevage naisseur",
+            "unite_physique": "Francs",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 186,
+        "fields": {
+            "titre": "Poulailler amélioré construit ou réhabilité",
+            "unite_physique": "Bâtiment",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 187,
+        "fields": {
+            "titre": "Bergerie et porchérie améliorées construites",
+            "unite_physique": "Bâtiment",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 188,
+        "fields": {
+            "titre": "Aliment SPAI  distribué",
+            "unite_physique": "Tonne",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 189,
+        "fields": {
+            "titre": "Pierre à lecher distribué",
+            "unite_physique": "Unité",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 190,
+        "fields": {
+            "titre": "Prophylaxie du cheptel",
+            "unite_physique": "Tête",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 191,
+        "fields": {
+            "titre": "Prophylaxie de la volaille",
+            "unite_physique": "Tête",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 192,
+        "fields": {
+            "titre": "Infrastructure d'élevage construit ou réhabilité (parc de vaccination, laiterie, marché de bétail, poste vétérinaire, aire d'abattage, etc)",
+            "unite_physique": "Unité",
+            "domaine": 12
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 13,
+        "fields": {
+            "titre": "Environnement",
+            "secteur": 3
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 193,
+        "fields": {
+            "titre": "Etude réalisée",
+            "unite_physique": "Etude",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 194,
+        "fields": {
+            "titre": "Voyage d'étude réalisée",
+            "unite_physique": "Voyage",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 195,
+        "fields": {
+            "titre": "Foire sur les PFNL",
+            "unite_physique": "Foire",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 196,
+        "fields": {
+            "titre": "Formation sur les techniques spécifiques en environnement",
+            "unite_physique": "Personne",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 197,
+        "fields": {
+            "titre": "Plantation d'arbre",
+            "unite_physique": "Pied d'arbre",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 198,
+        "fields": {
+            "titre": "Mise en défens",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 199,
+        "fields": {
+            "titre": "Haie vive",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 200,
+        "fields": {
+            "titre": "Régénaration Naturelle Assistée (RNA)",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 201,
+        "fields": {
+            "titre": "Délimitation des Forêts villageoises",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 202,
+        "fields": {
+            "titre": "Bosquet villageois",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 203,
+        "fields": {
+            "titre": "Pepinière villageoise",
+            "unite_physique": "Unité",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 204,
+        "fields": {
+            "titre": "Protection des berges",
+            "unite_physique": "Ha",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 205,
+        "fields": {
+            "titre": "Unité de collecte et traitement des ordures et déchets",
+            "unite_physique": "Unité",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 206,
+        "fields": {
+            "titre": "Appui à la lutte contre l'utilisation abusive des pesticides chimiques de synthèse",
+            "unite_physique": "Producteur",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 207,
+        "fields": {
+            "titre": "Foyer amélioré biodégradable construit",
+            "unite_physique": "Foyer",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 208,
+        "fields": {
+            "titre": "Foyer amélioré métallique distribué",
+            "unite_physique": "Foyer",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 209,
+        "fields": {
+            "titre": "Cuiseurs solaires distribués",
+            "unite_physique": "Cuiseur",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 210,
+        "fields": {
+            "titre": "Fours solaires",
+            "unite_physique": "Four",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 211,
+        "fields": {
+            "titre": "Cuiseurs solaires",
+            "unite_physique": "Cuiseur",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 212,
+        "fields": {
+            "titre": "Education environnementale",
+            "unite_physique": "Personne",
+            "domaine": 13
+        }
+    },
+    {
+        "model": "services.Secteur",
+        "pk": 4,
+        "fields": {
+            "titre": "Secteurs de soutien à la productionn"
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 14,
+        "fields": {
+            "titre": "Hydraulique: eau de production",
+            "secteur": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 213,
+        "fields": {
+            "titre": "Etude dans le cadre de l'hydraulique de production",
+            "unite_physique": "Etude",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 214,
+        "fields": {
+            "titre": "Voyage d'étude",
+            "unite_physique": "Voyage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 215,
+        "fields": {
+            "titre": "Bouli Réhabilité",
+            "unite_physique": "Bouli",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 216,
+        "fields": {
+            "titre": "Bouli construit",
+            "unite_physique": "Bouli",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 217,
+        "fields": {
+            "titre": "Forage pastoral construit",
+            "unite_physique": "Forage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 218,
+        "fields": {
+            "titre": "Forages pastoral réhabilité",
+            "unite_physique": "Forage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 219,
+        "fields": {
+            "titre": "Forages maraîcher réhabilité",
+            "unite_physique": "Forage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 220,
+        "fields": {
+            "titre": "Forages maraîcher construit",
+            "unite_physique": "Forage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 221,
+        "fields": {
+            "titre": "Puits pastoral construit",
+            "unite_physique": "Puits",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 222,
+        "fields": {
+            "titre": "Puits pastoral réhabilité",
+            "unite_physique": "Puits",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 223,
+        "fields": {
+            "titre": "Micro barrage (ou retenue d'eau) Réhabilité",
+            "unite_physique": "Micro barrage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 224,
+        "fields": {
+            "titre": "Micro barrage (ou retenue d'eau) Construit",
+            "unite_physique": "Micro barrage",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 225,
+        "fields": {
+            "titre": "Autre aménagement hydraulique réalisé",
+            "unite_physique": "Unité",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 226,
+        "fields": {
+            "titre": "Matériel et outillage hydraulique distribué",
+            "unite_physique": "Kit",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 227,
+        "fields": {
+            "titre": "Formation spécifique en hydraulique de production",
+            "unite_physique": "Personne",
+            "domaine": 14
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 15,
+        "fields": {
+            "titre": "Energie : services énergétiques (electrique, mécanique, et renouvellable)",
+            "secteur": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 228,
+        "fields": {
+            "titre": "Mini reseau électrique",
+            "unite_physique": "Unité",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 229,
+        "fields": {
+            "titre": "Biogaz cf biodigesteur",
+            "unite_physique": "Biodigesteur",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 230,
+        "fields": {
+            "titre": "Installation solaire",
+            "unite_physique": "Installation solaire",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 231,
+        "fields": {
+            "titre": "Lampe solaire distribué",
+            "unite_physique": "Lampe solaire",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 232,
+        "fields": {
+            "titre": "Kit solaire distribué",
+            "unite_physique": "Kit solaire",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 233,
+        "fields": {
+            "titre": "Energie Mécanique (Moulin ou PTMF)",
+            "unite_physique": "Unité",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 234,
+        "fields": {
+            "titre": "Formations spécifiques sur l'énergie",
+            "unite_physique": "Personne",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 235,
+        "fields": {
+            "titre": "Etudes",
+            "unite_physique": "Etude",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 236,
+        "fields": {
+            "titre": "Voyage d'étude",
+            "unite_physique": "Voyage",
+            "domaine": 15
+        }
+    },
+    {
+        "model": "services.SousSecteur",
+        "pk": 16,
+        "fields": {
+            "titre": "Commerce/Microfinance/AGR",
+            "secteur": 4
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 237,
+        "fields": {
+            "titre": "Crédit petit commerce octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 238,
+        "fields": {
+            "titre": "Crédit de stockage octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 239,
+        "fields": {
+            "titre": "Crédit maraichage octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 240,
+        "fields": {
+            "titre": "Crédit élevage octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 241,
+        "fields": {
+            "titre": "Crédit agricole octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 242,
+        "fields": {
+            "titre": "Crédit artisanat octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 243,
+        "fields": {
+            "titre": "Autre crédit octroyé",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 244,
+        "fields": {
+            "titre": "Subvention accordée pour les AGR",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 245,
+        "fields": {
+            "titre": "Lignes de crédit mis à disposition des institutions de microfinance pour l'octroi de crédit à des personnes vulnérables",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 246,
+        "fields": {
+            "titre": "Ligne de garantie inscrite dans une institution de microfinance pour faciliter l'octroi de crédit à personnes vulnérables",
+            "unite_physique": "Francs",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 247,
+        "fields": {
+            "titre": "Etudes",
+            "unite_physique": "Etude",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 248,
+        "fields": {
+            "titre": "Voyages d'études réalisés",
+            "unite_physique": "Voyage",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 249,
+        "fields": {
+            "titre": "Formations spécifiques dans le domaine de la micro finance ou des activités génératrices de revenus et du commerce",
+            "unite_physique": "Personne",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 250,
+        "fields": {
+            "titre": "Appui à la mise en relation des OP avec les Institutions de Micro finance",
+            "unite_physique": "OP",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 251,
+        "fields": {
+            "titre": "Matériels et Equipements pour les structures de Microfinance distribué",
+            "unite_physique": "Kit",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 252,
+        "fields": {
+            "titre": "Matériels et Equipements pour AGR distribué",
+            "unite_physique": "Kit",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 253,
+        "fields": {
+            "titre": "Matériels et Equipements pour commerce distribué",
+            "unite_physique": "Kit",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 254,
+        "fields": {
+            "titre": "Infrastructures pour micro finance réalisées ou réhabilitées",
+            "unite_physique": "Infrastructure",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 255,
+        "fields": {
+            "titre": "Infrastructures pour AGR réalisées ou réhabilitées",
+            "unite_physique": "Infrastructure",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 256,
+        "fields": {
+            "titre": "Appui à la mise en place d'unités économiques pour la commercialisation; la transformation des produits locaux",
+            "unite_physique": "Unité economique",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 257,
+        "fields": {
+            "titre": "Infrastructures pour AGR réalisées ou réhabilitées",
+            "unite_physique": "Infrastructure",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 258,
+        "fields": {
+            "titre": "Infrastructures pour commerce réalisées ou réhabilitées",
+            "unite_physique": "Infrastructure",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 259,
+        "fields": {
+            "titre": "Appui à la mise en place des groupes CECI, SILC, VSL, MUSO, …",
+            "unite_physique": "Groupe",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.TitreActivite",
+        "pk": 260,
+        "fields": {
+            "titre": "Appui à mise en place des systèmes d'information des marchés (SIM)",
+            "unite_physique": "SIM",
+            "domaine": 16
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 1,
+        "fields": {
+            "nom": "OMS"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 2,
+        "fields": {
+            "nom": "LIGHT FOR THE WORLD"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 3,
+        "fields": {
+            "nom": "Organisation Dupont pour le Developpement et la Solidarité (ODDS)"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 4,
+        "fields": {
+            "nom": "Caritas Autriche"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 5,
+        "fields": {
+            "nom": "MANOS UNIDAS"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 6,
+        "fields": {
+            "nom": "Association Burkinabè de Fundraising"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 7,
+        "fields": {
+            "nom": "Programme Alimentaire Mondial (PAM)"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 8,
+        "fields": {
+            "nom": "ERIKS DEVELOPMENT Partner"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 9,
+        "fields": {
+            "nom": "USAID"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 10,
+        "fields": {
+            "nom": "SOLIDAR SUISSE"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 11,
+        "fields": {
+            "nom": "Catholic relief service (CRS)"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 12,
+        "fields": {
+            "nom": "ECOLE DE BREMEN"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 13,
+        "fields": {
+            "nom": "FONDATION DOCTEUR ELVIRE ENGEL"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 14,
+        "fields": {
+            "nom": "FRATERNITE FRANCISCAINE"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 15,
+        "fields": {
+            "nom": "Association Kontak"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 16,
+        "fields": {
+            "nom": "Mrg DBERNADI PIER GIORGIO"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 17,
+        "fields": {
+            "nom": "Caritas Insbruck"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 18,
+        "fields": {
+            "nom": "Conférence épiscopale Italie"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 19,
+        "fields": {
+            "nom": "Solid Aid"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 20,
+        "fields": {
+            "nom": "ACDI VOCA"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 21,
+        "fields": {
+            "nom": "Plan International"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 22,
+        "fields": {
+            "nom": "Caritas Espagne"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 23,
+        "fields": {
+            "nom": "CordAid"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 24,
+        "fields": {
+            "nom": "FHRAOC"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 25,
+        "fields": {
+            "nom": "Afrika action"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 26,
+        "fields": {
+            "nom": "Misereor/Ker"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 27,
+        "fields": {
+            "nom": "Expertise France"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 28,
+        "fields": {
+            "nom": "Norvegian Refugee Council"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 29,
+        "fields": {
+            "nom": "Donateur Privé"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 30,
+        "fields": {
+            "nom": "ADA"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 31,
+        "fields": {
+            "nom": "MISSIO MUNCHEN"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 32,
+        "fields": {
+            "nom": "FONAENF"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 33,
+        "fields": {
+            "nom": "MISSIO AUSTRIA"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 34,
+        "fields": {
+            "nom": "Junta CyL"
+        }
+    },
+    {
+        "model": "services.ListPartenaire",
+        "pk": 35,
+        "fields": {
+            "nom": "Autre"
+        }
+    }
+
+]

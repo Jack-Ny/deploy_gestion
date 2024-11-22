@@ -1,0 +1,157 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Synthèse globale suivi des activités {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">RÉALISATION : synthèse</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">synthèse</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <div class="container-fluid">
+      <div class="row justify-content-center">
+         <div class="col-12">
+            <div class="card">
+               <div class="card-header bg-white">
+                  <h5 class="text-center mb-0">
+                     <strong>SYNTHÈSE GLOBALE REALISATION</strong>
+                  </h5>
+                  <div class="btn-group btn-group-sm" role="group">
+                     <form action="{% url "generate_pdf_suivi" %}" method='POST'>
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-light btn-pdf" id="exportPdf">
+                     <i class="fas fa-file-pdf"></i> PDF
+                     </button>
+                     </form>
+                     <form action="{% url "generate_word_suivi" %}" method='POST'>
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-light btn-word" id="exportWord">
+                     <i class="fas fa-file-word"></i> Word
+                     </button>
+                     </form>
+                     <form action="{% url "generate_excel_suivi" %}" method='POST'>
+                     {% csrf_token %}
+                     <button type="submit" class="btn btn-light btn-excel" id="exportExcel">
+                     <i class="fas fa-file-excel"></i> Excel
+                     </button>
+                     </form>
+                  </div>
+                  <style>
+                     .btn-pdf:hover {
+                     background-color: #dc3545;
+                     color: #fff;
+                     }
+                     .btn-word:hover {
+                     background-color: #007bff;
+                     color: #fff;
+                     }
+                     .btn-excel:hover {
+                     background-color: #28a745;
+                     color: #fff;
+                     }
+                  </style>
+               </div>
+               <div class="card-body p-0">
+                  <div class="table-responsive">
+                     <table class="table table-bordered mb-0">
+                        <thead class="thead-light">
+                           <tr>
+                              <th>Titre</th>
+                              <th>Région</th>
+                              <th>Province</th>
+                              <th>Commune</th>                      
+                              <th>Paroisse</th>
+                              <th>Unité physique</th>
+                              <th>Quantité réalisé</th>
+                              <th>Période réalisé</th>
+                              <th>Responsable d'exécution</th>
+                              <th>Coût de realisation (FCFA)</th>
+                              <th>Contribution bénéficiaire (FCFA)</th>
+                              <th>Contribution partenaire (FCFA) </th>
+                              <th>Nombre bénéficiare direct homme</th>
+                              <th>Nombre bénéficiare direct femme</th>
+                              <th>Nombre total de bénéficiaire direct</th>
+
+                              <th>Nombre bénéficiare direct jeune homme</th>
+                              <th>Nombre bénéficiare direct jeune femme</th>
+                              <th>Nombre total de bénéficiaire jeune</th>
+
+                              <th>Partenaires financiers</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           {% for activite in activites_groupees %}
+                           <tr>
+                              <td><strong>{{ activite.titre }}</strong></td>
+                              <td><strong>{{ activite.region }}</strong></td>
+                              <td><strong>{{ activite.province }}</strong></td>
+                              <td><strong>{{ activite.commune }}</strong></td>
+                              <td><strong>{{ activite.paroisse }}</strong></td>
+                              <td><strong>{{ activite.unite_physique }}</strong></td>
+                              <td><strong>{{ activite.quantite_prevue }}</strong></td>
+                              <td><strong>{{ activite.periode_prevue_debut }} - {{ activite.periode_prevue_fin }}<strong></td>
+                              <td><strong>{{ activite.responsable }}</strong></td>
+                              <td><strong>{{ activite.cout_realisation }}</strong></td>
+                              <td><strong>{{ activite.contribution_beneficiaire }}</strong></td>
+                              <td><strong>{{ activite.contribution_partenaire }}</strong></td>
+
+                              <td><strong>{{ activite.nbre_benef_direct_homme }}</strong></td>
+                              <td><strong>{{ activite.nbre_benef_direct_femme }}</strong></td>
+                              <td><strong>{{ activite.total_benef_direct }}</strong></td>
+
+                              <td><strong>{{ activite.nbre_benef_jeune_homme }}</strong></td>
+                              <td><strong>{{ activite.nbre_benef_jeune_femme }}</strong></td>
+                              <td><strong>{{ activite.total_benef_jeune }}</strong></td>
+                              
+                              <td><strong> {{ activite.partenaireP }} </strong></td>
+
+                              {% comment %} <td>
+                                 <div class="table-responsive">
+                                    <table class="table table-bordered mb-0">
+                                       <thead class="thead-light">
+                                          <tr>
+                                             <th>Nom du partenaire</th>
+                                             <th>Part du partenaire (FCFA)</th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          {% for partenaire in activite.partenaires %}
+                                          <tr>
+                                             <td><strong>{{ partenaire.nom }}</strong></td>
+                                             <td><strong>{{ partenaire.part }}</strong></td>
+                                          </tr>
+                                          {% endfor %}
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </td> {% endcomment %}
+                           </tr>
+                           {% endfor %}
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

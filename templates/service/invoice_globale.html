@@ -1,0 +1,553 @@
+{% load static %} {% load custom_tags %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+
+            <div class="container text-center my-5">
+                <h1 class="display-4 font-weight-bold text-center">SYNTHESE GLOBALE</h1>
+                <p class="lead text-muted">Ici vous trouverez toutes les informations sur les differentes activites</p>
+            </div>
+
+            {% comment %} INFORMATIONS GENERALES {% endcomment %}
+            <hr class="my-4 border-top color-red" style="height: 4px;">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h2 class="text-center mb-0">SYNTHÈSE INFORMATIONS GÉNÉRALES</h2>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for infos in infos_generale %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <p class="text-break text-bold">Créateur du projet : <strong class="text-bold">{{ infos.utilisateur }}</strong> </p>
+                           </div>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Informations générales</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nom de l'organisation : {{ infos.nom_org }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nature de l'organisation : {{ infos.nature_org }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Sigle : {{ infos.sigle }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Pays d'origine : {{ infos.pays_origine }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Adresses du siege de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Région : {{ infos.region }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Province : {{ infos.province }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Commune : {{ infos.commune }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Ville/Secteur : {{ infos.village }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Boite Postale : {{ infos.boite_postale }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro de téléphone fixe : {{ infos.numb_fixe }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro de téléphone mobile : {{ infos.numb_mobile }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Adresse mail professionnelle : {{ infos.adresse_mail }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Site Web : {{ infos.site_web }}</p>
+                        </div>
+                        {% comment %} test {% endcomment %}
+                        <p class="text-center"><strong>Responsable de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nom et Prénom(s) : {{ infos.nom_complet_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Nationalité : {{ infos.nationalite_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Fonction(Président,...) : {{ infos.fonction_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro fixe : {{ infos.numb_fixe_resp }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Numéro mobile : {{ infos.numb_mobile_resp }} </p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Gouvernance interne de l'association : Tenue des rencontres statuaires des instances de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernier renouvèlement des Instances dirigeantes : {{ infos.renou_instance }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernière Assemblée Générale Ordinaire : {{ infos.assem_general }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Dernière session statutaire du bureau exécutif : {{ infos.session_statut }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Durée du mandat du bureau exécutif : {{ infos.mandat_bureau }} ans</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Objectifs principaux de l'organisation</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Objectifs</strong>
+                           {% for objectif in objectifs_generale|get_item:infos.id %}
+                           <p class="text-break"> {{ objectif.objectifs }} </p>
+                           {% endfor %}
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Groupes cibles specifique</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <p class="text-break text-bold">Groupes : {{ infos.groupes_cibles }} </p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Personnel employe</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre total du personnel</strong>
+                           <p class="text-break">Homme : {{ infos.total_pers_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.total_pers_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés nationaux Contrat à Durée Indéterminée (CDI)</strong>
+                           <p class="text-break">Homme : {{ infos.em_nation_cdi_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_nation_cdi_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés nationaux Contrat à Durée déterminée (CDD)</strong>
+                           <p class="text-break">Homme : {{ infos.em_nation_cdd_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_nation_cdd_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés expatriés Contrat à Durée Indéterminée (CDI)</strong>
+                           <p class="text-break">Homme : {{ infos.em_expa_cdi_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_expa_cdi_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Employés expatriés Contrat à Durée déterminée (CDD)</strong>
+                           <p class="text-break">Homme : {{ infos.em_expa_cdd_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.em_expa_cdd_femme }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Bénévoles ou volontaires</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           Bénévoles ou volontaires Nationaux
+                           <p class="text-break">Homme : {{ infos.benevol_nation_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.benevol_nation_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Bénévoles ou volontaires Expatriés</strong>
+                           <p class="text-break">Homme : {{ infos.benevol_expa_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.benevol_expa_femme }}</p>
+                        </div>
+                        {% comment %}  {% endcomment %}
+                        <p class="text-center"><strong>Personnel de l'Administration publique en détachement</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           Personnel de l'Administration publique en détachement
+                           <p class="text-break">Homme : {{ infos.personnel_admin_homme }}</p>
+                           <p class="text-break">Femme : {{ infos.personnel_admin_femme }}</p>
+                        </div>
+                        <p class="text-center"><strong>Partenariats / collaborations</strong> </p>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           {% for partenariat in partenariats_generale|get_item:infos.id %}
+                           <p class="text-center text-bold"> <strong>Nom du partenaire : {{ partenariat.nom }} </strong> </p>
+                           <p class="text-break text-bold">N° de convention de partenariat / protocole d'entente : {{ partenariat.numero }} </p>
+                           <p class="text-break text-bold">Date de début d'effet : {{ partenariat.date_debut }}</p>
+                           <p class="text-break text-bold">Date de fin d'effet : {{ partenariat.date_fin }}</p>
+                           <span>-------------------------------------------------------------------------------</span>
+                           {% endfor %}
+                        </div>
+                     </div>
+                     <hr class="my-4 border-top color-red" style="height: 4px;">
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+
+            {% comment %} INFORMATIONS SPECIFIQUES {% endcomment %}
+            <div class="col-12">
+                <div class="card">
+                   <div class="card-header bg-white">
+                      <h5 class="text-center mb-0">
+                         <strong>SYNTHÈSE INFORMATIONS SPECIFIQUES</strong>
+                      </h5>
+                   </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         {% for specific in infos_specific %}
+                         <div class="row mx-0 border-bottom py-3">
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Nom du projet :</strong>
+                               <p class="text-break">{{ specific.nom }}</p>
+                            </div>
+ 
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                             <strong>Objectif principal :</strong>
+                             <p class="text-break">{{ specific.objectifs_principals }}</p>
+                          </div>
+                          <p class="text-center"> <strong>Objectifs secondaires</strong> </p>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                             {% for objectif in objectif_specific|get_item:specific.id %}
+                               <p class="text-break"> - {{ objectif.objectifs }}</p>
+                             {% endfor %}
+                            </div>
+ 
+                            <p class="text-center"> <strong>Résultat attendus </strong> </p>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                             {% for resultat in resultat_specific|get_item:specific.id %}
+                               <p class="text-break"> - {{ resultat.resultats }} </p>
+                               {% endfor %}
+                            </div>
+ 
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Date de debut du projet :</strong>
+                               <p class="text-break">{{ specific.date_debut }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Date de fin du projet :</strong>
+                               <p class="text-break">{{ specific.date_fin }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Cout :</strong>
+                               <p class="text-break">{{ specific.cout }}</p>
+                            </div>
+                            
+ 
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Nombre de bénéficiaires directs hommes :</strong>
+                               <p class="text-break">{{ specific.benef_direct_homme }}</p>
+                            </div>
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Nombre de bénéficiaires directs femmes :</strong>
+                               <p class="text-break">{{ specific.benef_direct_femme }}</p>
+                            </div>
+                            
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Partenaires financiers principaux :  </strong>
+                               <p class="text-break">{{ specific.partenaires }}</p>
+                            </div>
+                         </div>
+                         <hr class="my-4 border-top color-red" style="height: 4px;">
+                         {% endfor %}
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} PLANIFICATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                   <div class="card-header bg-white">
+                      <h5 class="text-center mb-0">
+                         <strong>SYNTHÈSE GLOBALE PLANIFICATION OPÉRATIONNELLE</strong>
+                      </h5>
+                   </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         {% for activite in activites_groupees_planification %}
+                         <div class="row mx-0 border-bottom py-3">
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Projet :</strong>
+                               <p class="text-break">{{ activite.projet }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Activitée :</strong>
+                               <p class="text-break">{{ activite.titre }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Secteur :</strong>
+                               <p class="text-break">{{ activite.secteur }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Domaine :</strong>
+                               <p class="text-break">{{ activite.domaine }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Region :</strong>
+                               <p class="text-break">{{ activite.region }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Province :</strong>
+                               <p class="text-break">{{ activite.province }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Commune :</strong>
+                               <p class="text-break">{{ activite.commune }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Paroisse :</strong>
+                               <p class="text-break">{{ activite.paroisse }}</p>
+                            </div>
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Unité physique :</strong>
+                               <p class="text-break">{{ activite.unite_physique }}</p>
+                            </div>
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Quantité prévue :</strong>
+                               <p class="text-break">{{ activite.quantite_prevue }}</p>
+                            </div>
+                            
+                            <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                               <strong>Cout de réalisation :  </strong>
+                               <p class="text-break">{{ activite.cout_realisation }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                               <strong>Contribution des bénéficiaires :</strong>
+                               <p class="text-break">{{ activite.contribution_beneficiaire }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                               <strong>Contribution des partenaires :</strong>
+                               <p class="text-break">{{ activite.contribution_partenaire }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                               <strong>Nombre des beneficiaires direct hommes :</strong>
+                               <p class="text-break">{{ activite.nbre_benef_direct_homme }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                               <strong>Nombre des beneficiaires direct femmes :</strong>
+                               <p class="text-break">{{ activite.nbre_benef_direct_femme }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                               <strong>Nombre total des beneficiaires direct :</strong>
+                               <p class="text-break">{{ activite.total_benef_direct }}</p>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-2 mb-md-0">
+                               <strong>Partenaire financier principale :</strong>
+                               <ul class="list-unstyled mb-0">
+                                  <li>{{ activite.partenaires }}</li>
+                                  <span>-------------------------------------------------------------------------------</span>
+                               </ul>
+                            </div>
+                         </div>
+                         <hr class="my-4 border-top color-red" style="height: 4px;">
+                         {% endfor %}
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} REALISATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                   <div class="card-header bg-white">
+                      <h2 class="text-center mb-0">SYNTHÈSE REALISATION</h2>
+                   </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         {% for activite in activites_groupees_realisation %}
+                         <div class="row mx-0 border-bottom py-3">
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Projet : </strong>
+                               <p class="text-break">{{ activite.projet }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Activitée :</strong>
+                               <p class="text-break">{{ activite.titre }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Secteur :</strong>
+                               <p class="text-break">{{ activite.secteur }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <strong>Domaine :</strong>
+                               <p class="text-break">{{ activite.domaine }}</p>
+                            </div>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Région : </strong>
+                            <p class="text-break">{{ activite.region }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Province : </strong>
+                            <p class="text-break">{{ activite.province }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Commune : </strong>
+                            <p class="text-break">{{ activite.commune }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Paroisse : </strong>
+                            <p class="text-break">{{ activite.paroisse }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Unité physique : </strong>
+                            <p class="text-break">{{ activite.unite_physique }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Quantité réalisé : </strong>
+                            <p class="text-break">{{ activite.quantite_prevue }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong class="text-center">Période réalisé</strong>
+                            <p class="text-break"><strong>Date de début du contrat (démarrage) :</strong>  {{ activite.periode_prevue_debut }}</p>
+                            <p class="text-break"><strong>Date de fin du contrat :</strong>  {{ activite.periode_prevue_fin }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Responsable : </strong>
+                            <p class="text-break">{{ activite.responsable }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Coût de realisation : </strong>
+                            <p class="text-break">{{ activite.cout_realisation }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Contribution bénéficiaire : </strong>
+                            <p class="text-break">{{ activite.contribution_beneficiaire }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Contribution partenaire : </strong>
+                            <p class="text-break">{{ activite.contribution_partenaire }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Nombre de bénéficiaire direct homme : </strong>
+                            <p class="text-break">{{ activite.nbre_benef_direct_homme }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Nombre de bénéficiaire direct femme : </strong>
+                            <p class="text-break">{{ activite.nbre_benef_direct_femme }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Nombre total de bénéficiaire direct : </strong>
+                            <p class="text-break">{{ activite.total_benef_direct }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <strong>Partenaire financier principale : </strong>
+                            <ul class="list-unstyled mb-0">
+                               <li>{{ activite.partenaireP }}</li>
+                               <span>-------------------------------------------------------------------------------</span>
+                            </ul>
+                         </div>
+                         {% comment %} <div class="col-md-6 col-lg-3 mb-2 mb-md-0">
+                            <strong>Partenaires : </strong>
+                            <ul class="list-unstyled mb-0">
+                               {% for partenaire in activite.partenaires %}
+                               <li>Nom du partenaire : {{ partenaire.nom }}</li>
+                               <li>Part du partenaire : {{ partenaire.part }}</li>
+                               <span>-------------------------------------------------------------------------------</span>
+                               {% endfor %}
+                            </ul>
+                         </div> {% endcomment %}
+                      </div>
+                      <hr class="my-4 border-top color-red" style="height: 4px;">
+                      {% endfor %}
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} SITUATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                   <div class="card-header bg-white">
+                      <h2 class="text-center mb-0">SYNTHÈSE GLOBALE SITUATION FISCALE ET SOCIALE</h2>
+                   </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         {% for situation in situations %}
+                         <div class="row mx-0 border-bottom py-3">
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <p class="text-break text-bold">Projet : {{ situation.id_projet.nom }} </p>
+                            </div>
+                         </div>
+                         {% comment %}  {% endcomment %}
+                         <p class="text-center"><strong>SITUATIONS FISCALES ET SOCIALES DU SED AU 31 DECEMBRE</strong> </p>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Impôts et taxes versées : {{ situation.impot }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Cotisations Sociales versées : {{ situation.cotisation }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Autres contributions fiscales versées : {{ situation.autre_contribution }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Total : {{ situation.impot }}</p>
+                         </div>
+                         <p class="text-center"><strong>DERNIERS AUDITS COMPTABLES REALISES AU COURS DE L'ANNEE</strong> </p>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            {% for audit in audits|get_item:situation.id %}
+                            <p class="text-break text-bold">Désignation projets et programmes audités : {{ audit.designation }} </p>
+                            <p class="text-break text-bold">Date de réalisation : {{ audit.date_realisation }}</p>
+                            <p class="text-break text-bold">Nom du cabinet ayant conduit l'audit comptable : {{ audit.nom_cabinet }}</p>
+                            <span>-------------------------------------------------------------------------------</span>
+                            {% endfor %}
+                         </div>
+                      </div>
+                      <hr class="my-4 border-top color-red" style="height: 4px;">
+                      {% endfor %}
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} DEPENSE {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                   <div class="card-header bg-white">
+                      <h2 class="text-center mb-0">SYNTHÈSE DEPENSE DE FONCTIONNEMENT</h2>
+                   </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         {% for depense in depenses %}
+                         <div class="row mx-0 border-bottom py-3">
+                            <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                               <p class="text-break text-bold">Projet : {{ depense.id_projet.nom }} </p>
+                            </div>
+                         </div>
+                         {% comment %}  {% endcomment %}
+                         <p class="text-center"><strong>DPENSE DE FONCTIONNEMENT</strong> </p>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Salaire et avantage du personnel : {{ depense.salaire }} F CFA</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Carburant et entretien des engins (motos, véhicules) : {{ depense.carburant_entretien }} F CFA</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Frais de communication : {{ depense.frais_communication }}</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                            <p class="text-break text-bold">Acquisition de matériel (moto, ordinateurs,vélicule…) pour le fonctionnement : {{ depense.acquisition_materiel }} F CFA</p>
+                         </div>
+                         <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Rencontres de l'équipe projet (rencontres mensuelles et autres rencontres) : {{ depense.rencontre_equipe }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Contribution électricité et eau : {{ depense.contribution_electrique_eau }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Achat de consommables bureautiques : {{ depense.achat_consommable }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Entretien des locaux : {{ depense.entretien_locaux }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Maintenance des appareil : {{ depense.maintenance_appareil }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Expédition courrier : {{ depense.expedition_courier }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Frais bancaire : {{ depense.frais_bancaire }} F CFA</p>
+                          </div>
+                          <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                             <p class="text-break text-bold">Couts indirects : {{ depense.cout_indirect }} F CFA</p>
+                          </div>
+                      </div>
+                      <hr class="my-4 border-top color-red" style="height: 4px;">
+                      {% endfor %}
+                   </div>
+                </div>
+             </div>
+         </div>
+      </div>
+</div>
+</section>
+</div>

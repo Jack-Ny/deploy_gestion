@@ -1,0 +1,126 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Liste des activitées {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel"></h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body"></div>
+               </div>
+            </div>
+         </div>
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">PLANIFICATION OPERATIONNELLE</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">activitées</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <div class="card-header py-3">
+      <form method="POST" action="{% url "ajouter_planification" projet_id=projet.id %}">
+         {% csrf_token %}
+      {% if user.is_responsable or user.is_charger_projet %}
+      <button type="submit" class="btn btn-primary btn-lg">
+      <i class="fas fa-plus"></i> Ajouter
+      </button>
+
+      <a href="{% url "choix_projet" projet_id=projet.id %}" class="btn btn-outline-secondary btn-lg ml-3">
+         <i class="fas fa-arrow-right"></i> Continuer
+      </a>
+      
+      {% else %}
+      <span></span>
+      {% endif %}
+      </form>
+   </div>
+   <section class="content">
+      <div class="card">
+         <div class="card-header">
+            <h3 class="card-title"><strong>Liste des activités enregistrées</strong></h3>
+         </div>
+         <div class="card-body p-0">
+            <table class="table table-striped projects">
+               <thead>
+                  <tr>
+                     <th style="width: 1%">#</th>
+                     <th style="width: 30%">Titre de l'activité</th>
+                     <th style="width: 40%">Nom du créateur</th>
+                     <th style="width: 18%">Planifier</th>
+                     <th style="width: 8%"></th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for activite in activites %}
+                  {% if activite.id_projet.id == projet.id %}
+                  <tr>
+                     <td class="project-actions"></td>
+                     <td class="project-actions text-break">
+                        <a href="{% url "view_planification" projet.id activite.id %}"> {{ activite.titre }} </a>
+                     </td>
+                     <td>
+                        <ul class="list-inline">
+                           <li class="list-inline-item">
+                              <img alt="Avatar" class="table-avatar" src="{% static "img/icon_test.png" %}">
+                              <p class="list-inline-item"> {{ activite.id_projet.utilisateur }} </p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td class="project-actions"> 
+                        {% if activite.planification == 'Non' %} <span class="text-red">Non</span> 
+                        {% elif activite.planification == 'Oui' %} <span class="text-green">Oui</span>
+                        {% else %} <span class="text-muted">Null</span>
+                        {% endif %}
+                     </td>
+                     <td class="project-actions">
+                        <form method="GET" action="{% url "view_planification" projet.id activite.id %}">
+                           {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-sm">
+                        <i class="fas fa-folder"></i> Voir
+                        </button>
+                        </form>
+                     </td>
+                     <td class="project-actions">
+                        <form method="GET" action="{% url "modifier_planification" projet.id activite.id %}">
+                           {% csrf_token %}
+                        {% if user.is_responsable or user.is_charger_projet %}
+                        <button type="submit" class="btn btn-info btn-sm">
+                        <i class="fas fa-folder"></i> Modifier
+                        </button>
+                        {% else %}
+                        <span></span>
+                        {% endif %}
+                        </form>
+                     </td>
+                  </tr>
+                  {% endif %}
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+      {% endblock mainContent %}
+   </section>
+</div>
+{% block js %}
+{% endblock js %}

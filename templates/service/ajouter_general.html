@@ -1,0 +1,923 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Ajouter informations générales {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">INFORMATIONS GENERALES : renseigner les informations</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">enregistrement</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <h5 id="formHelp" class="form-text text-muted text-center">
+                  Veuillez remplir tout les champs avant de cliquer sur "suivant"
+               </h5>
+               <form id="signUpForm" action="{% url "ajouter_general" %}" method="POST">
+               {% csrf_token %}
+               <!-- start step indicators -->
+               <h4 class="form-text text-muted text-center">INFORMATIONS GÉNÉRALES</h4>
+               <div class="form-header d-flex mb-4">
+                  <span class="stepIndicator">1</span>
+                  <span class="stepIndicator">2</span>
+                  <span class="stepIndicator">3</span>
+                  <span class="stepIndicator">4</span>
+                  <span class="stepIndicator">5</span>
+                  <span class="stepIndicator">6</span>
+                  <span class="stepIndicator">7</span>
+                  <span class="stepIndicator">8</span>
+                  <span class="stepIndicator">9</span>
+                  <span class="stepIndicator">10</span>
+                  <span class="stepIndicator">11</span>
+               </div>
+               <!-- end step indicators -->
+               <!-- Fin de Suivant / Retour -->
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Information sur l'organisation</strong></legend>
+                        <div class="form-group">
+                           <label for="nom_org">Nom de l'organisation</label>
+                           <input type="text" class="form-control" id="nom_org" placeholder="" name="nom_org" oninput="validateInput(this, 'nom_organisation')" required>
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="nature_org">Nature de l'organisation</label>
+                           <select class="form-control" id="nature_org" name="nature_org">
+                              <option value="">---Choisir la nature de votre organisation---</option>
+                              <option value="ONG">ONG</option>
+                              <option value="Association">Association</option>
+                              <option value="Association">Fondation</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="sigle">Sigle</label>
+                           <input type="text" class="form-control" id="sigle" placeholder="" name="sigle" oninput="validateInput(this, 'sigle')" required>
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="pays_ori">Pays d'Origine</label>
+                           <input type="text" class="form-control" id="pays_ori" placeholder="" name="pays_ori" value="Burkina-Faso" readonly oninput="validateInput(this, 'pays_origine')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Adresses du siege de l'organisation</strong></legend>
+                        <div class="form-group">
+                           <label for="region">Région</label>
+                           <select id="region" onchange="updateProvinces()" class="form-control" name="region">
+                              <option value="">---Sélectionnez une région---</option>
+                              <option value="Sahel">Sahel</option>
+                              <option value="Est">Est</option>
+                              <option value="Nord">Nord</option>
+                              <option value="Centre Nord">Centre Nord</option>
+                              <option value="Plateau Central">Plateau Central</option>
+                              <option value="Centre">Centre</option>
+                              <option value="Centre Est">Centre Est</option>
+                              <option value="Centre Sud">Centre Sud</option>
+                              <option value="Centre Ouest">Centre Ouest</option>
+                              <option value="Boucle du Mouhoum">Boucle du Mouhoum</option>
+                              <option value="Sud Ouest">Sud Ouest</option>
+                              <option value="Hauts Bassins">Hauts Bassins</option>
+                              <option value="Cascades">Cascades</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="province">Province</label>
+                           <select id="province" class="form-control" name="province" disabled>
+                              <option value="">----Sélectionnez une région d'abord----  </option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="commune">Commune</label>
+                           <select id="commune" class="form-control" name="commune" disabled>
+                              <option value="">---Sélectionnez une commune---</option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="village">Ville/Secteur</label>
+                           <input type="text" class="form-control" id="village" placeholder="" name="village" value="" oninput="validateInput(this, 'pays_origine')"  required>
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="boite_postale">Boîte Postale</label>
+                           <input type="text" class="form-control" id="boite_postale" placeholder="" name="boite_postale" value="" oninput="validateInput(this, 'boite_postale')" required >
+                           <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="ong_fixe">Numéro de téléphone fixe</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="ong_fixe" placeholder="" name="ong_fixe" value="" oninput="validateInput(this, 'numero_fixe')" required >
+                              <div class="invalid-feedback"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="ong_mobile">Numéro de téléphone mobile</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="ong_mobile" placeholder="" name="ong_mobile" value="" oninput="validateInput(this, 'numero_mobile')" required>
+                           <div class="invalid-feedback"></div>
+                        </div>
+                           
+                        </div>
+                        <div class="form-group">
+                           <label for="ong_email_pro">Adresse mail professionnelle</label>
+                           <input type="text" class="form-control" id="ong_email_pro" placeholder="" name="ong_email_pro" value="" oninput="validateInput(this, 'adresse_mail_pro')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="site_web">Site Web</label>
+                           <input type="text" class="form-control" id="site_web" placeholder="" name="site_web" value="" oninput="validateInput(this, 'site_web')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Responsable de l'organisation</strong></legend>
+                        <div class="form-group">
+                           <label for="resp_nom">Nom et Prénom(s)</label>
+                           <input type="text" class="form-control" id="resp_nom" placeholder="" name="resp_nom" value="" oninput="validateInput(this, 'nom_prenom')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="resp_nationalite">Nationalité</label>
+                           <input type="text" class="form-control" id="resp_nationalite" placeholder="" name="resp_nationalite" value="" oninput="validateInput(this, 'nationalite')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="resp_fonction">Fonction</label>
+                           <input type="text" class="form-control" id="resp_fonction" placeholder="" name="resp_fonction" value="" oninput="validateInput(this, 'fonction')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="resp_fixe">Numéro fixe</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="resp_fixe" placeholder="" name="resp_fixe" value="" oninput="validateInput(this, 'numero_fixe')" >
+                              <div class="invalid-feedback"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="resp_mobile">Numéro mobile</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="resp_mobile" placeholder="" name="resp_mobile" value="" oninput="validateInput(this, 'numero_mobile')" >
+                              <div class="invalid-feedback"></div>
+                           </div> 
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Gouvernance interne de l'association : Tenue des rencontres statuaires des instances de l'organisation</strong></legend>
+                        <div>
+                           <div class="form-group">
+                              <label for="date1">N° 1 - Dernier renouvèlement des Instances dirigeantes</label>
+                              <input type="date" class="form-control" id="date1" name="date1" placeholder="Entrez la date">
+                           </div>
+                           <div>
+                              <label for="date2">N° 2 - Dernière Assemblée Générale Ordinaire</label>
+                              <input type="date" class="form-control" id="date2" name="date2">
+                           </div>
+                           <div>
+                              <label for="date3">N° 3 - Dernière session statutaire du bureau exécutif</label>
+                              <input type="date" class="form-control" id="date3" name="date3">
+                           </div>
+                           <div>
+                              <label for="date4">N° 4 - Durée du mandat du bureau exécutif</label>
+                              <input type="number" class="form-control" id="date4" name="date4" oninput="validateInput(this, 'mandat')">
+                              <div class="invalid-feedback"></div>
+                           </div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Repondant pour le canevas de collecte</strong></legend>
+                        <div class="form-group">
+                           <label for="repondant_nom">Nom et Prénom(s) du répondant</label>
+                           <input type="text" class="form-control" id="repondant_nom" placeholder="" name="repondant_nom" value="" oninput="validateInput(this, 'nom_prenom')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="repondant_fixe">Numéro fixe du répondant</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="repondant_fixe" placeholder="" name="repondant_fixe" value="" oninput="validateInput(this, 'numero_fixe')">
+                              <div class="invalid-feedback"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="repondant_mobile">Numéro mobile du répondant</label>
+                           <div class="input-group">
+                              <div class="input-group-prepend">
+                                 <span class="input-group-text">+226</span>
+                              </div>
+                              <input type="text" class="form-control" id="repondant_mobile" placeholder="" name="repondant_mobile" value="" oninput="validateInput(this, 'numero_mobile')">
+                              <div class="invalid-feedback"></div>
+                           </div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="repondant_adresse">Adresse mail du répondant</label>
+                           <input type="text" class="form-control" id="repondant_adresse" placeholder="" name="repondant_adresse" value="" oninput="validateInput(this, 'adresse_mail_pro')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Objectifs principaux de l'organisation</strong></legend>
+                        <div class="form-group">
+                           <label for="objectifs">Objectifs</label>
+                           <div id="objectifsContainer">
+                              <div class="input-group mb-3">
+                                 <input type="text" id="objectifs" class="form-control" placeholder="" name="objectifs[]" oninput="validateInput(this, 'objectifs')">
+                                 <div class="invalid-feedback"></div>
+                                 <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary add-objectif-btn" type="button">+</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Groupes cibles specifique (Cocher les cases correspondante)</strong></legend>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Femmes" placeholder="" name="groupe_check[]" value="Femmes">
+                           <label for="Femmes" class="form-check-label">Femmes</label><br/>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Enfants/Nourrissons" placeholder="" name="groupe_check[]" value="Enfants/Nourrissons">
+                           <label for="Enfants/Nourrissons" class="form-check-label">Enfants/Nourrissons</label>    
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Elèves/Etudiants/Apprenants" placeholder="" name="groupe_check[]" value="Elèves/Etudiants/Apprenants">
+                           <label for="Elèves/Etudiants/Apprenants" class="form-check-label">Elèves/Etudiants</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="OEV" placeholder="" name="groupe_check[]" value="OEV">
+                           <label for="OEV" class="form-check-label">OEV</label>     
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Personnes en situation de handicap" placeholder="" name="groupe_check[]" value="Personnes en situation de handicap">
+                           <label for="Personnes en situation de handicap" class="form-check-label">Personnes en handicap</label> 
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Réfugiés" placeholder="" name="groupe_check[]" value="Réfugiés">
+                           <label for="Réfugiés" class="form-check-label">Réfugiés</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Veuves/veufs" placeholder="" name="groupe_check[]" value="Veuves/veufs">
+                           <label for="Veuves/veufs" class="form-check-label">Veuves/veufs</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="PV/VIH" placeholder="" name="groupe_check[]" value="PV/VIH">
+                           <label for="PV/VIH" class="form-check-label">PV/VIH</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Producteurs" placeholder="" name="groupe_check[]" value="Producteurs">
+                           <label for="Producteurs" class="form-check-label">Producteurs</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Organisation paysanne" placeholder="" name="groupe_check[]" value="Organisation paysanne">
+                           <label for="Organisation paysanne" class="form-check-label">Organisation paysanne</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="OSC" placeholder="" name="groupe_check[]" value="OSC">
+                           <label for="OSC" class="form-check-label">OSC</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Acteurs communaux" placeholder="" name="groupe_check[]" value="Acteurs communaux">
+                           <label for="Acteurs communaux" class="form-check-label">Acteurs communaux</label>
+                        </div>
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="PDI" placeholder="" name="groupe_check[]" value="PDI">
+                           <label for="PDI" class="form-check-label">PDI</label>
+                        </div>
+
+                        <div class="form-check form-check-block">
+                           <input type="checkbox" class="form-check-input" id="Autre" placeholder="" name="" value="" onchange="addGroupe()">
+                           <label for="Autre" class="form-check-label">Autre</label>
+                        </div>
+                        <br>
+                        <div class="form-group" id="autreGroup" style="display: none;">
+                           <label for="autre_groupe">Autre a preciser</label>
+                           <input type="text" class="form-control" id="autre_groupe" placeholder="" name="autre_groupe" value="" oninput="validateInput(this, 'nationalite')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Personnel employe</strong></legend>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Nombre total du personnel</small></h5>
+                           <label for="total_pers_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="total_pers_homme" placeholder="" name="total_pers_homme" value="" oninput="validateInput(this, 'nbre_personne')" >
+                           <div class="invalid-feedback"></div>
+                           <label for="total_pers_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="total_pers_femme" placeholder="" name="total_pers_femme" value="" oninput="validateInput(this, 'nbre_personne')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Employés nationaux Contrat à Durée Indéterminée (CDI)</small></h5>
+                           <label for="em_nation_cdi_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="em_nation_cdi_homme" placeholder="" name="em_nation_cdi_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="em_nation_cdi_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="em_nation_cdi_femme" placeholder="" name="em_nation_cdi_femme" value="" oninput="validateInput(this, 'nbre_personne')" >
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Employés nationaux Contrat à Durée déterminée (CDD)</small></h5>
+                           <label for="em_nation_cdd_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="em_nation_cdd_homme" placeholder="" name="em_nation_cdd_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="em_nation_cdd_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="em_nation_cdd_femme" placeholder="" name="em_nation_cdd_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Employés expatriés Contrat à Durée Indéterminée (CDI)</small></h5>
+                           <label for="em_expa_cdi_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="em_expa_cdi_homme" placeholder="" name="em_expa_cdi_homme" value="" oninput="validateInput(this, 'nbre_personne')" >
+                           <div class="invalid-feedback"></div>
+                           <label for="em_expa_cdi_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="em_expa_cdi_femme" placeholder="" name="em_expa_cdi_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Employés expatriés Contrat à Durée déterminée (CDD)</small></h5>
+                           <label for="em_expa_cdd_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="em_expa_cdd_homme" placeholder="" name="em_expa_cdd_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="em_expa_cdd_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="em_expa_cdd_femme" placeholder="" name="em_expa_cdd_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Bénévoles ou volontaires</strong></legend>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Bénévoles ou volontaires Nationaux</small></h5>
+                           <label for="benevol_nation_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="benevol_nation_homme" placeholder="" name="benevol_nation_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="benevol_nation_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="benevol_nation_femme" placeholder="" name="benevol_nation_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <h5 class="text-black text-center"><small class="text-bold">Bénévoles ou volontaires Expatriés</small></h5>
+                           <label for="benevol_expa_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="benevol_expa_homme" placeholder="" name="benevol_expa_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="benevol_expa_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="benevol_expa_femme" placeholder="" name="benevol_expa_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Personnel de l'Administration publique en détachement</strong></legend>
+                        <div class="form-group">
+                           <label for="personnel_admin_homme">Homme</label>
+                           <input type="number" min="0" class="form-control" id="personnel_admin_homme" placeholder="" name="personnel_admin_homme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                           <label for="personnel_admin_femme">Femme</label>
+                           <input type="number" min="0" class="form-control" id="personnel_admin_femme" placeholder="" name="personnel_admin_femme" value="" oninput="validateInput(this, 'nbre_personne')">
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center"><strong>Partenariats / collaborations</strong></legend>
+                        <div class="form-group">
+                           <div id="partenariatContainer">
+                              <div class="form-group partenariat">
+                                 <label for="partenariat">Nom du partenaire</label>
+                                 <input type="text" id="partenariat" class="form-control" placeholder="" name="partenariat[]" oninput="validateInput(this, 'nationalite')" />
+                                 <div class="invalid-feedback"></div>
+                                 <label for="number_part">N° de convention de partenaire / protocole d'entente</label>
+                                 <input type="text" id="number_part" class="form-control" placeholder="" name="number_part[]" oninput="validateInput(this, 'numero_protocole')" />
+                                 <div class="invalid-feedback"></div>
+                                 <label for="date_debut_part">Date de début d'effet</label>
+                                 <input type="date" id="date_debut_part" class="form-control" placeholder="" name="date_debut_part[]" />
+                                 <label for="date_fin_part">Date de fin d'effet</label>
+                                 <input type="date" id="date_fin_part" class="form-control" placeholder="" name="date_fin_part[]" />
+                                 <div class="input-group-append">
+                                    <button class="mt-2 btn btn-primary add-partenariat-btn" type="button">Ajouter</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <!-- Suivant / Retour -->
+               <div class="form-footer d-flex">
+                  <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+                  Retour
+                  </button>
+                  <button type="button" id="nextBtn" onclick="nextPrev(1)">
+                  Suivant
+                  </button>
+               </div>
+               <!-- Fin de Suivant / Retour -->
+               </form> 
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script>
+   // Fonction de sauvegarde dans le local localStorage
+   function saveFieldData(inputElements) {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      inputElements.forEach(input=> {
+         formData[input.name] = input.value;
+      });
+      localStorage.setItem('formData', JSON.stringify(formData));
+   }
+
+   // charger les donnees lorsque la page est rechargee
+   function loadFormData() {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      for (const key in formData) {
+         const field = document.querySelector(`[name="${key}"]`);
+         if (field) {
+            field.value = formData[key];
+         }
+      }
+   }
+
+   // Effacer les donnees une fois que le formulaire est soumis
+   function saveStepData() {
+      const currentStep = document.querySelector('.step[style*="block"]');
+      const inputs = currentStep.querySelectorAll('input');
+      saveFieldData(inputs);
+   }
+   // Charger les donnees du localStorage lors du chargement de la page
+   document.addEventListener('DOMContentLoaded', loadFormData);
+   // Sauvegarder les données lorsqu'on clique sur "Suivant"
+   document.getElementById('nextBtn').addEventListener('click', saveStepData);
+   // Sauvegarder les données lorsqu'on quitte un champ
+   document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('blur', () => saveStepData());
+   });
+
+   function scrollToTop() {
+     window.scrollTo({
+         top: 0,
+         behavior: 'smooth' // Permet un défilement fluide
+     });
+   }
+   
+   var currentTab = 0; // Current tab is set to be the first tab (0)
+   showTab(currentTab); // Display the current tab
+
+   function showTab(n) {
+     // This function will display the specified tab of the form...
+     var x = document.getElementsByClassName("step");
+     x[n].style.display = "block";
+     //... and fix the Previous/Next buttons:
+     if (n == 0) {
+       document.getElementById("prevBtn").style.display = "none";
+     } else {
+       document.getElementById("prevBtn").style.display = "inline";
+     }
+     if (n == x.length - 1) {
+       document.getElementById("nextBtn").innerHTML = "Enregistrer";
+     } else {
+       document.getElementById("nextBtn").innerHTML = "Suivant";
+     }
+     //... and run a function that will display the correct step indicator:
+     fixStepIndicator(n);
+   }
+   
+   function nextPrev(n) {
+     // Cette fonction déterminera quelle étape afficher
+     var x = document.getElementsByClassName("step");
+     // Quitte la fonction si un champ du tab actuel est invalide :
+     if (n == 1 && !validateForm()) return false;
+     // Masque l'onglet actuel :
+     x[currentTab].style.display = "none";
+     // Augmente ou diminue l'onglet actuel de 1 :
+     currentTab = currentTab + n;
+     // Si vous avez atteint la fin du formulaire...
+     if (currentTab >= x.length) {
+      localStorage.removeItem('formData');
+         // ... le formulaire est soumis :
+         document.getElementById("signUpForm").submit();
+         return false;
+     }
+     // Sinon, affiche le bon onglet :
+     showTab(currentTab);
+     // Fait défiler la page vers le haut du formulaire :
+     scrollToTop();
+   }
+   
+   function validateForm() {
+      // This function deals with validation of the form fields
+      var x,
+        y,
+        i,
+        valid = true;
+      x = document.getElementsByClassName("step");
+      y = x[currentTab].getElementsByTagName("input");
+      // A loop that checks every input field in the current tab:
+      for (i = 0; i < y.length; i++) {
+          // add an "invalid" class to the field:
+          y[i].classList.remove('invalid');
+          // and set the current valid status to false
+      }
+      // If the valid status is true, mark the step as finished and valid:
+      document.getElementsByClassName("stepIndicator")[currentTab].classList.add("finish");
+      return true; // return the valid status
+    }
+   
+    function fixStepIndicator(n) {
+      // This function removes the "active" class of all steps...
+      var i,
+        x = document.getElementsByClassName("stepIndicator");
+      for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active", "");
+      }
+      //... and adds the "active" class on the current step:
+      x[n].className += " active";
+    }
+   
+   // Ajouter les objectifs
+   function addObjectifs() {
+   var inputGroup = document.createElement('div');
+   inputGroup.className = 'input-group mb-3';
+   inputGroup.innerHTML = `
+       <input type="text" id="objectifs" class="form-control" placeholder="" name="objectifs[]" oninput="validateInput(this, 'objectifs')">
+       <div class="invalid-feedback"></div>
+       <div class="input-group-append">
+           <button class="btn btn-outline-secondary remove-objectif-btn" type="button">-</button>
+       </div>
+   `;
+   document.getElementById("objectifsContainer").appendChild(inputGroup);
+   }
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('add-objectif-btn')) {
+       addObjectifs();
+   }
+   });
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('remove-objectif-btn')) {
+       event.target.parentElement.parentElement.remove();
+   }
+   });
+   
+   
+   // Ajouter des Partenariats
+   function addPartenariats() {
+   var inputGroup = document.createElement('div');
+   inputGroup.className = 'form-group partenariat';
+   inputGroup.innerHTML = `
+   <label for="partenariat">Nom du partenaire / Collaborateur</label>
+   <input type="text" id="partenariat" class="form-control" placeholder="" name="partenariat[]" oninput="validateInput(this, 'nationalite')" />
+   <label for="number_part">Numero de convention / protocole d'entente</label>
+   <input type="text" id="number_part" class="form-control" placeholder="" name="number_part[]" oninput="validateInput(this, 'numero_protocole')"  />
+   <label for="date_debut_part">Date de debut d'effet</label>
+   <input type="date" id="date_debut_part" class="form-control" placeholder="" name="date_debut_part[]" />
+   <label for="date_fin_part">Date de fin d'effet</label>
+   <input type="date" id="date_fin_part" class="form-control" placeholder="" name="date_fin_part[]" />
+       <div class="mt-2 input-group-append">
+           <button class="btn btn-danger remove-partenariat-btn" type="button">Retirer</button>
+       </div>
+   `;
+   document.getElementById("partenariatContainer").appendChild(inputGroup);
+   }
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('add-partenariat-btn')) {
+     addPartenariats();
+   }
+   });
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('remove-partenariat-btn')) {
+       event.target.parentElement.parentElement.remove();
+   }
+   });
+
+   // Ajouter un autre group
+   function addGroupe() {
+      const select = document.getElementById('Autre');
+      const autreGroup = document.getElementById('autreGroup');
+
+      if (select.checked == true) {
+         autreGroup.style.display = 'block';
+      } else if (select.checked == false) {
+         autreGroup.style.display = 'none';
+      }
+   }
+   
+</script>
+<script>
+   // ajouter les regions et provinces
+   const regionsProvinces = {
+     'Sahel': {
+       "Soum": ['Djibo', 'Arbinda', 'Baraboulé', 'Djiguel', 'Koutougou', 'Nasoumbou', 'Pobé-Mangao', 'Tongomayel', 'Kelbo'], 
+       "Oudalan": ['Gorom-Gorom', 'Déou', 'Makoye', 'Oursi', 'Tinakoff'], 
+       "Seno": ['Dori', 'Bani', 'Gorgadji', 'Falagountou', 'Sampelga', 'Seytenga'], 
+       "Yagha": ['Sebba', 'Bonodoré', 'Mansila', 'Solhan', 'Tankougounadié', 'Titabé']
+     },
+     'Est': {
+       "Gnagna": ['Bogandé', 'Coalla', 'Bilanga', 'Liptougou', 'Mani', 'Pièla', 'Thion'], 
+       "Komondjari": ['Gayeri', 'Bartiébougou', 'Foutouri'], 
+       "Gourma": ['Fada N’Gourma', 'Diabo', 'Diapangou', 'Matiacoali', 'Tibga', 'Yamba'], 
+       "Kompienga": ['Pama', 'Kompienga', 'Madjoari'], 
+       "Tapoa": ['Diapaga', 'Bottou', 'Kantchari', 'Logobou', 'Namounou', 'Partiaga', 'Tambaga', 'Tansarga']
+     },
+     'Nord': {
+       "Yatenga": ['Ouahigouya', 'Barga', 'Kaïn', 'Kalsaka', 'Koumbri', 'Kossouka', 'Namissiguima', 'Oula', 'Rambo', 'Séguénéga', 'Tangaye', 'Thiou', 'Zogoré'], 
+       "Loroum": ['Titao', 'Banh', 'Ouinddigui', 'Sollé'], 
+       "Zondoma": ['Gourcy', 'Bassi', 'Boussou', 'Tougo', 'Léba'], 
+       "Passoré": ['Yako', 'Arbollé', 'Bagaré', 'Bokin', 'Gompomssom', 'Lâ-todin', 'Kirsi', 'Pilimpikou', 'Samba']
+     },
+     'Centre Nord': {
+       "Namentenga": ['Boulsa', 'Bouroum', 'Dargo', 'Tougouri', 'Yalgo', 'Zéguédéguin', 'Boala', 'Nagbingou'], 
+       "Sanmatenga": ['Kaya', 'Boussouma', 'Barsalogho', 'Dablo', 'Mané', 'Korsimoro', 'Pibaoré', 'Pissila', 'Pensa', 'Namissiguima', 'Ziga'], 
+       "Bam": ['Kongoussi', 'Bourzanga', 'Guibaré', 'Nasséré', 'Tikaré', 'Sabcé', 'Rollo', 'Rouko']
+     },
+     'Plateau Central': {
+       "Ganzourgou": ['Zorgho', 'Boudry', 'Kogo', 'Méguet', 'Mogtédo', 'Salogo', 'Zam', 'Zoungou'], 
+       "Oubritenga": ['Ziniaré', 'Absouya', 'Dapélogo', 'Ourgou-Manéga', 'Loumbila', 'Nagreongo', 'Zitenga'], 
+       "Kourweogo": ['Boussé', 'Laye', 'Niou', 'Sourgoubila', 'Toeghin']
+     },
+     'Centre': {
+       "Kadiogo": ['Ouagadougou', 'Komki-Ipala', 'Koubri', 'Komsilga', 'Pabré', 'Saaba', 'Tanghin-Dassouri']
+     },
+     'Centre Est': {
+       "Kouritenga": ['Koupèla', 'Andemtenga', 'Baskouré', 'Dialgaye', 'Gounghin', 'Kando', 'Pouytenga', 'Tensobentenga', 'Yargo'], 
+       "Boulgou": ['Tenkodogo', 'Bané', 'Bagré', 'Béguédo', 'Bittou', 'Boussouma', 'Bissiga', 'Garango', 'Komtoéga', 'Niagho', 'Zabré', 'Zoaga', 'Zonsé'], 
+       "Koulpelogo": ['Ouargaye', 'Comin-Yanga', 'Dourtenga', 'Lalgaye', 'Sangha', 'Soudougui', 'Yargatenga', 'Yondé']
+     },
+     'Centre Sud': {
+       "Nahouri": ['Pô', 'Guiaro','Tiébélé', 'Ziou', 'Zecco'], 
+       "Zoundweogo": ['Manga', 'Bindé', 'Béré', 'Gogo', 'Guiba', 'Gombousgou', 'Nobéré'], 
+       "Bazega": ['Kombissiri', 'Doulougou', 'Ipelcé', 'Gaongo', 'Kayao','Toécé', 'Saponé']
+     },
+     'Centre Ouest': {
+       "Sissili": ['Léo', 'Biéha', 'Boura', 'Nabiélianayou', 'Nianbouri', 'Silly', 'Tô'], 
+       "Ziro": ['Sapouy', 'Bougnoumou', 'Cassou', 'Dalo', 'Bakata', 'Gao'], 
+       "Sanguie": ['Réo', 'Dassa', 'Didir', 'Godir', 'Kordié', 'Kyon', 'Pouni', 'Tenado', 'Zamo', 'Zawara'], 
+       "Boulkiemde": []
+     },
+     'Boucle du Mouhoum': {
+       "Sourou": ['Tougan', 'Di', 'Gomboro', 'Kassoum', 'Kiembara', 'Lanfiéra', 'Lankoué', 'Toéni'], 
+       "Kossi": ['Nouna', 'Barani', 'Bomborokuy', 'Bourasso', 'Djibasso', 'Dokuy', 'Doumbala', 'Kombori', 'Madouba', 'Sono'], 
+       "Banwa": ['Solenzo', 'Balavé', 'Kouka', 'Tansila', 'Sami', 'Sanaba'], 
+       "Nayala": ['Toma', 'Gassan', 'Gossina', 'Kougny', 'Yaba', 'Yé'], 
+       "Mouhoun": [], 
+       "Balé": ['Boromo', 'Bagassi', 'Fara', 'Pa', 'Pompoï', 'Poura', 'Siby', 'Oury', 'Yaho']
+     },
+     'Sud Ouest': {
+       "Ioba": ['Dano', 'Dissin', 'Guéguéré', 'Koper', 'Oronkua', 'Ouéssa', 'Niégo', 'Zambo'], 
+       "Bougouriba": ['Diébougou', 'Dolo', 'Tiankoura', 'Bonddigui', 'Nioroniorro',], 
+       "Poni": ['Gaoua', 'Bourou-Bouroum', 'Bousséra', 'Djigoué', 'Gbomblora', 'Kampti', 'Loropéni', 'Malba', 'Nako', 'Périgban'], 
+       "Noumbiel": ['Batié', 'Boussoukoula','Kpéré', 'Legmoin', 'Midebdo']
+     },
+     'Hauts Bassins': {
+       "Kenedougou": ['Orodara', 'Banzon', 'Djigouéra', 'Kayan', 'Kangala', 'Koloko', 'Kourouma', 'Kourinion', 'Morolaba', 'N’Dorola', 'Samogohiri', 'Samorogouan', 'Sindo'], 
+       "Houet": [], 
+       "Tuy": ['Houndé', 'Békuy', 'Béréba', 'Boni', 'Fonzan', 'Koti', 'Koumbia']
+     },
+     'Cascades': {
+       "Leraba": ['Sindou', 'Dakoro', 'Douna', 'Kankalaba', 'Loumana', 'Niankorodougou', 'Ouélini', 'Wolonkoto'], 
+       "Comoé": ['Banfora', 'Bérégadougou', 'Mangodara', 'Moussodougou', 'Niangoloko', 'Ouo', 'Sidéradougou', 'Soubakaniédougou', 'Tiéfora']
+     }
+   };
+   
+   function updateProvinces() {
+     const regionSelect = document.getElementById("region");
+     const provinceSelect = document.getElementById("province");
+     const communeSelect = document.getElementById("commune");
+     const selectedRegion = regionSelect.value;
+     provinceSelect.innerHTML = "";
+     communeSelect.innerHTML = "";
+   
+     if (selectedRegion !== "") {
+       provinceSelect.disabled = false;
+       communeSelect.disabled = true; // Désactiver les communes jusqu'à ce qu'une province soit sélectionnée
+   
+       const defaultOptionProvince = document.createElement("option");
+         defaultOptionProvince.text = "----Veuillez sélectionner une province----";
+         defaultOptionProvince.value = "";
+         provinceSelect.add(defaultOptionProvince);
+   
+       const provinces = Object.keys(regionsProvinces[selectedRegion]);
+       provinces.forEach(province => {
+           const option = document.createElement("option");
+           option.text = province;
+           option.value = province;
+           provinceSelect.add(option);
+       });
+   
+       provinceSelect.addEventListener("change", updateCommunes);
+   } else {
+       provinceSelect.disabled = true;
+       communeSelect.disabled = true; // Désactiver les communes
+       const defaultOptionProvince = document.createElement("option");
+       defaultOptionProvince.text = "----Sélectionnez une région d'abord----";
+       provinceSelect.add(defaultOptionProvince);
+   
+       const defaultOptionCommune = document.createElement("option");
+       defaultOptionCommune.text = "----Sélectionnez une province d'abord----";
+       communeSelect.add(defaultOptionCommune);
+   }
+   }
+   
+   function updateCommunes() {
+   const regionSelect = document.getElementById("region");
+   const provinceSelect = document.getElementById("province");
+   const communeSelect = document.getElementById("commune");
+   const selectedRegion = regionSelect.value;
+   const selectedProvince = provinceSelect.value;
+   communeSelect.innerHTML = "";
+   
+   if (selectedProvince !== "") {
+       communeSelect.disabled = false;
+   
+       const defaultOptionCommune = document.createElement("option");
+         defaultOptionCommune.text = "----Veuillez sélectionner une commune----";
+         defaultOptionCommune.value = "";
+         communeSelect.add(defaultOptionCommune);
+   
+       const communes = regionsProvinces[selectedRegion][selectedProvince];
+       communes.forEach(commune => {
+           const option = document.createElement("option");
+           option.text = commune;
+           option.value = commune;
+           communeSelect.add(option);
+       });
+   } else {
+       communeSelect.disabled = true;
+       const defaultOption = document.createElement("option");
+       defaultOption.text = "----Sélectionnez une province d'abord----";
+       communeSelect.add(defaultOption);
+   }
+   }
+</script>
+<script>
+   var validationRules = {
+      nom_organisation: {
+         regex: /^(?=.*[A-Za-z])[\wÀ-ÖØ-öø-ÿ\s.'&,()-]+$/,
+         errorMessage: "Ce champ ne doit pas etre compose uniquement de chiffre ou de caractere special"
+      },
+
+      sigle: {
+         regex: /\b(?![0-9]+\b)[A-Za-z0-9]{2,}\b/,
+         errorMessage: "Ce champ ne doit pas contenir de caractere numerique"
+      },
+
+      pays_origine: {
+         regex: /^[A-Za-zÀ-ÖØ-öø-ÿ\- '’&]+$/,
+         errorMessage: "Ce champ est incorrecte"
+      },
+      boite_postale: {
+         regex: /^(?!\d+$).+/,
+         errorMessage: "Ce champ ne doit pas comporter uniquement que des chiffres"
+      },
+      numero_fixe: {
+         regex: /^(?:\d{2}(?:\s?\d{2}){3})|(?:\d{8})$/,
+         errorMessage: "Veuillez saisir un numero valide"
+      },
+      numero_mobile: {
+         regex: /^(?:\d{2}(?:\s?\d{2}){3})|(?:\d{8})$/,
+         errorMessage: "Ce champ est invalide. Veuillez renseigner un numero de telephone valide"
+      },
+      adresse_mail_pro: {
+         regex: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+         errorMessage: "Veuillez renseigner une adresse mail valide svp"
+      },
+      site_web: {
+         regex: /^(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z]{2,})+$/,
+         errorMessage: "Site web incorrecte. Veuillez corriger"
+      },
+      nom_prenom: {
+         regex: /^[A-Za-zÀ-ÖØ-öø-ÿ'-]+\s[A-Za-zÀ-ÖØ-öø-ÿ'-]+(?:\s[A-Za-zÀ-ÖØ-öø-ÿ'-]+)*$/,
+         errorMessage: "Ce champ est incorrecte. Veuillez renseigner un nom complet valide"
+      },
+      nationalite: {
+         regex: /^[A-Za-z\s]+$/,
+         errorMessage: "Ce champ est incorrecte. Veuillez renseigner votre nationalite"
+      },
+      fonction: {
+         regex: /^(?:\b[A-Za-z]+\s*)+$/,
+         errorMessage: "Ce champ est incorrecte. Veuillez renseigner votre fonction"
+      },
+      mandat: {
+         regex: /^\d{1,2}$/,
+         errorMessage: "Ce champ est incorrecte. Veuillez renseigner un mandat correct"
+      },
+      objectifs: {
+         regex: /^(?=.*[a-zA-Z])[a-zA-Z0-9 '-]{2,}$/,
+         errorMessage: "Ce champ est incorrecte. Veuillez renseigner un objectif clair"
+      },
+      nbre_personne: {
+         regex: /^\d{1,3}$/,
+         errorMessage: "Trop long. Veuillez renseigner un nombre valide"
+      },
+      numero_protocole: {
+         regex: /^.{1,10}$/,
+         errorMessage: "Votre numero doit commencer par 'N' suivi d'un ou de plusieurs chiffres"
+      },
+      cout: {
+         regex: /^\d+$/,
+         errorMessage: "Champ invalide. Veuillez renseigner un cout valide"
+      }
+   };
+
+   function validateInput(inputElement, type) {
+      
+      // recuperer la valeur de saisie de l'utilisateur
+      var value = inputElement.value.trim();
+      // recuperer les regles de validation specifique
+      var rules = validationRules[type];
+
+      if (rules.regex.test(value)) {
+         // si valide on passe
+         inputElement.classList.remove('is-invalid');
+         inputElement.nextElementSibling.textContent = '';
+         document.getElementById('nextBtn').disabled = false;
+      } else {
+         // si non valide on envoie un message d'erreur
+         inputElement.classList.add('is-invalid');
+         inputElement.nextElementSibling.textContent = rules.errorMessage;
+         document.getElementById('nextBtn').disabled = true;
+      }
+   }
+
+</script>
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock js %}

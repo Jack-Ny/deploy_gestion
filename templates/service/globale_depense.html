@@ -1,0 +1,133 @@
+{% extends "base.html" %}{% load static %} {% load custom_tags %}
+{% block title %} Synthèse globale depense de fonctionnement {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">DEPENSE DE FONCTIONNEMENT : synthèse</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">synthèse</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                        <strong>SYNTHÈSE DEPENSE DE FONCTIONNEMENT</strong>
+                     </h5>
+                     <div class="btn-group btn-group-sm" role="group">
+                        <form action="{% url "generate_pdf_depense" %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light btn-pdf" id="exportPdf">
+                        <i class="fas fa-file-pdf"></i> PDF
+                        </button>
+                        </form>
+                        <form action="{% url "generate_word_depense" %}" method='POST'>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light btn-word" id="exportWord">
+                        <i class="fas fa-file-word"></i> Word
+                        </button>
+                        </form>
+                        <form action="{% url "generate_excel_depense" %}" method='POST'>
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light btn-excel" id="exportExcel">
+                        <i class="fas fa-file-excel"></i> Excel
+                        </button>
+                        </form>
+                     </div>
+                     <style>
+                        .btn-pdf:hover {
+                        background-color: #dc3545;
+                        color: #fff;
+                        }
+                        .btn-word:hover {
+                        background-color: #007bff;
+                        color: #fff;
+                        }
+                        .btn-excel:hover {
+                        background-color: #28a745;
+                        color: #fff;
+                        }
+                        @media print {
+                        body {
+                        font-size: 10pt;
+                        margin: 20px;
+                        }
+                        }
+                     </style>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                           <thead class="thead-light">
+                              <tr>
+                                <th>Utilisateur</th>
+                                 <th>Projet</th>
+                                 <th>Consommables et divers (F CFA)</th>
+                                 <th>Salaires et avantages du personnel (F CFA)</th>
+                                 <th>Équipement et matériel (F CFA)</th>
+                                 <th>Autres depenses</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              {% for depense in depenses %}
+                              <tr>
+                                 <td><strong> {{ depense.utilisateur }} </strong></td>
+                                 <td><strong> {{ depense.id_projet.nom }} </strong></td>
+                                 <td><strong> {{ depense.consommable_divers }} </strong></td>
+                                 <td><strong> {{ depense.salaire_avantages }} <strong></td>
+                                 <td><strong> {{ depense.equipement_materiel }} <strong></td>
+                                 
+                                 <td>
+                                    <div class="table-responsive">
+                                       <table class="table table-bordered mb-0">
+                                          <thead class="thead-light">
+                                             <tr>
+                                                <th>Nom</th>
+                                                <th>Prix (F CFA)</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                {% for depense in depense_dict|get_item:depense.id %}
+                                                <td><strong>{{ depense.intitule }}</strong></td>
+                                                <td><strong>{{ depense.prix }}</strong></td>
+                                             </tr>
+                                             {% endfor %}
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </td>
+                                 
+                              </tr>
+                              {% endfor %}
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

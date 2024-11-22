@@ -1,0 +1,130 @@
+{% load static %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h2 class="text-center mb-0">SYNTHÈSE GLOBALE SUIVI DES ACTIVITÉES</h2>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for activite in activites_groupees %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Projet : </strong>
+                              <p class="text-break">{{ activite.projet }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Activitée :</strong>
+                              <p class="text-break">{{ activite.titre }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Secteur :</strong>
+                              <p class="text-break">{{ activite.secteur }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Domaine :</strong>
+                              <p class="text-break">{{ activite.domaine }}</p>
+                           </div>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Région : </strong>
+                           <p class="text-break">{{ activite.region }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Province : </strong>
+                           <p class="text-break">{{ activite.province }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Commune : </strong>
+                           <p class="text-break">{{ activite.commune }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Paroisse : </strong>
+                           <p class="text-break">{{ activite.paroisse }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Unité physique : </strong>
+                           <p class="text-break">{{ activite.unite_physique }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Quantité réalisé : </strong>
+                           <p class="text-break">{{ activite.quantite_prevue }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong class="text-center">Période réalisé</strong>
+                           <p class="text-break"><strong>Date de début du contrat (démarrage) :</strong>  {{ activite.periode_prevue_debut }}</p>
+                           <p class="text-break"><strong>Date de fin du contrat :</strong>  {{ activite.periode_prevue_fin }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Responsable : </strong>
+                           <p class="text-break">{{ activite.responsable }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Coût de realisation : </strong>
+                           <p class="text-break">{{ activite.cout_realisation }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Contribution bénéficiaire : </strong>
+                           <p class="text-break">{{ activite.contribution_beneficiaire }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Contribution partenaire : </strong>
+                           <p class="text-break">{{ activite.contribution_partenaire }}</p>
+                        </div>
+
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre de bénéficiaire direct homme : </strong>
+                           <p class="text-break">{{ activite.nbre_benef_direct_homme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre de bénéficiaire direct femme : </strong>
+                           <p class="text-break">{{ activite.nbre_benef_direct_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre total de bénéficiaire direct : </strong>
+                           <p class="text-break">{{ activite.total_benef_direct }}</p>
+                        </div>
+
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre de bénéficiaire direct jeune homme : </strong>
+                           <p class="text-break">{{ activite.nbre_benef_jeune_homme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre de bénéficiaire direct jeune femme : </strong>
+                           <p class="text-break">{{ activite.nbre_benef_jeune_femme }}</p>
+                        </div>
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Nombre total de bénéficiaire jeune : </strong>
+                           <p class="text-break">{{ activite.total_benef_jeune }}</p>
+                        </div>
+
+                        <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                           <strong>Partenaire financier principale : </strong>
+                           <ul class="list-unstyled mb-0">
+                              <li>{{ activite.partenaireP }}</li>
+                              <span>-------------------------------------------------------------------------------</span>
+                           </ul>
+                        </div>
+                        {% comment %} <div class="col-md-6 col-lg-3 mb-2 mb-md-0">
+                           <strong>Partenaires : </strong>
+                           <ul class="list-unstyled mb-0">
+                              {% for partenaire in activite.partenaires %}
+                              <li>Nom du partenaire : {{ partenaire.nom }}</li>
+                              <li>Part du partenaire : {{ partenaire.part }}</li>
+                              <span>-------------------------------------------------------------------------------</span>
+                              {% endfor %}
+                           </ul>
+                        </div> {% endcomment %}
+                     </div>
+                     {% endfor %}
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+</div>
+</section>
+</div>

@@ -1,0 +1,648 @@
+{% extends "base.html" %}{% load static %} {% load custom_tags %}
+{% block title %} Synthèse globale {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+                <h4 class="m-0 text-primary text-left font-weight-bold">SYNTHESE GLOBALE</h4>
+                <div class="btn-group mt-2" role="group">
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Exporter
+                    </button>
+                    <div class="dropdown-menu">
+                        <form action="{% url 'generate_pdf_globale' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-pdf"></i> PDF
+                            </button>
+                        </form>
+                        <form action="{% url 'generate_word_globale' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-word"></i> Word
+                            </button>
+                        </form>
+                        <form action="{% url 'generate_excel_globale' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="dropdown-item">
+                                <i class="fas fa-file-excel"></i> Excel
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <style>
+                .dropdown-item:hover {
+                    background-color: #e9ecef; /* Couleur d'arrière-plan au survol */
+                }
+                .btn-outline-primary {
+                    border: 2px solid #007bff;
+                    color: #007bff;
+                }
+                .btn-outline-primary:hover {
+                    background-color: #007bff;
+                    color: white;
+                }
+            </style>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">synthèse</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            
+            {% comment %} INFORMATIONS GENERALES {% endcomment %}
+            <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>INFORMATIONS GENERALES</strong>
+                     </h5>
+                 </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         <table class="table table-bordered mb-0">
+                            <thead class="thead-light">
+                               <tr>
+                                  <th class="text-center">Informations générales</th>
+                                  <th class="text-center">Adresses du siege de l'organisation</th>
+                                  <th class="text-center">Responsable de l'organisation</th>
+                                  <th class="text-center">Gouvernance interne de l'association : Rencontre</th>
+                                  <th class="text-center">Objectifs principaux de l'organisation</th>
+                                  <th class="text-center">Groupes cibles specifique</th>
+                                  <th class="text-center">Personnel employe</th>
+                                  <th class="text-center">Bénévoles ou volontaires</th>
+                                  <th class="text-center">Personnel de l'Administration publique en détachement</th>
+                                  <th class="text-center">Partenariats / Collaborations</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                               <tr>
+                                  <td>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                           <thead class="thead-light">
+                                              <tr>
+                                                 <th>Nom de l'organisation</th>
+                                                 <th>Nature de l'organisation</th>
+                                                 <th>Sigle</th>
+                                                 <th>Pays d'origine</th>
+                                              </tr>
+                                           </thead>
+                                           <tbody>
+                                            {% for infos in infos_generale %}
+                                              <tr>
+                                                <td><strong> {{ infos.nom_org }} </strong></td>
+                                                <td><strong> {{ infos.nature_org }} </strong></td>
+                                                <td><strong> {{ infos.sigle }} </strong></td>
+                                                <td><strong> {{ infos.pays_origine }} </strong></td>
+                                              </tr>
+                                           </tbody>
+                                        </table>
+                                     </div>
+                                  </td>
+
+                                  <td>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered mb-0">
+                                           <thead class="thead-light">
+                                              <tr>
+                                                 <th>Région</th>
+                                                 <th>Province</th>
+                                                 <th>Commune</th>
+                                                 <th>Ville/Secteur</th>
+                                                 <th>Boite postale</th>
+                                                 <th>Numéro de téléphone fixe</th>
+                                                 <th>Numéro de téléphone mobile</th>
+                                                 <th>Adresse mail professionnelle</th>
+                                                 <th>Site web</th>
+                                              </tr>
+                                           </thead>
+                                           <tbody>
+                                              <tr>
+                                                <td><strong> {{ infos.region }} </strong></td>
+                                                <td><strong> {{ infos.province }} </strong></td>
+                                                <td><strong> {{ infos.commune }} </strong></td>
+                                                <td><strong> {{ infos.village }} </strong></td>
+                                                <td><strong> {{ infos.boite_postale }} </strong></td>
+                                                <td><strong> {{ infos.numb_fixe }} </strong></td>
+                                                <td><strong> {{ infos.numb_mobile }} </strong></td>
+                                                <td><strong> {{ infos.adresse_mail }} </strong></td>
+                                                <td><strong> {{ infos.site_web }} </strong></td>
+                                              </tr>
+                                           </tbody>
+                                        </table>
+                                     </div>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Nom et Prénom(s)</th>
+                                              <th>Nationalité</th>
+                                              <th>Fonction(Président,...)</th>
+                                              <th>Numéro fixe</th>
+                                              <th>Numéro mobile</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                             <td><strong> {{ infos.nom_complet_resp }} </strong></td>
+                                             <td><strong> {{ infos.nationalite_resp }} </strong></td>
+                                             <td><strong> {{ infos.fonction_resp }} </strong></td>
+                                             <td><strong> {{ infos.numb_fixe_resp }} </strong></td>
+                                             <td><strong> {{ infos.numb_mobile_resp }} </strong></td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </div>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Dernier renouvèlement des Instances dirigeantes</th>
+                                              <th>Dernière Assemblée Générale Ordinaire</th>
+                                              <th>Dernière session statutaire du bureau exécutif</th>
+                                              <th>Durée du mandat du bureau exécutif</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                             <td><strong> {{ infos.renou_instance }} </strong></td>
+                                             <td><strong> {{ infos.assem_general }} </strong></td>
+                                             <td><strong> {{ infos.session_statut }} </strong></td>
+                                             <td><strong> {{ infos.mandat_bureau }} </strong></td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </td>
+
+
+                                  <td>
+                                    {% for objectif in objectifs_generales|get_item:infos.id %}
+                                        <p class="text-break text-bold"> . {{ objectif.objectifs }} </p>
+                                    {% endfor %}
+                                  </td>
+
+                                  <td>
+                                    <strong> {{ infos.groupes_cibles }} </strong>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Nombre total du personnel</th>
+                                              <th>Employés nationaux Contrat à Durée Indéterminée (CDI)</th>
+                                              <th>Employés nationaux Contrat à Durée déterminée (CDD)</th>
+                                              <th>Employés expatriés Contrat à Durée Indéterminée (CDI)</th>
+                                              <th>Employés expatriés Contrat à Durée déterminée (CDD)</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.total_pers_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.total_pers_femme }} </p>
+                                             </td>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.em_nation_cdi_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.em_nation_cdi_femme }} </p>
+                                             </td>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.em_nation_cdd_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.em_nation_cdd_femme }} </p>
+                                             </td>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.em_expa_cdi_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.em_expa_cdi_femme }} </p>
+                                             </td>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.em_expa_cdd_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.em_expa_cdd_femme }} </p>
+                                             </td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Bénévoles ou volontaires Nationaux</th>
+                                              <th>Bénévoles ou volontaires Expatriés</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                           <tr>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.benevol_nation_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.benevol_nation_femme }} </p>
+                                             </td>
+                                             <td>
+                                                <p class="text-break text-bold">Homme:{{ infos.benevol_expa_homme }} </p>
+                                                <p class="text-break text-bold">Femme:{{ infos.benevol_expa_femme }} </p>
+                                             </td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                  </td>
+
+                                  <td>
+                                    <p class="text-break text-bold">Homme : {{ infos.personnel_admin_homme }}</p>
+                                    <p class="text-break text-bold">Femme : {{ infos.personnel_admin_femme }} </p>
+                                  </td>
+
+                                  <td>
+                                    <table class="table table-bordered mb-0">
+                                        <thead class="thead-light">
+                                           <tr>
+                                              <th>Nom du partenaire</th>
+                                              <th>N° de convention de partenariat / protocole d'entente</th>
+                                              <th>Date de début d'effet</th>
+                                              <th>Date de fin d'effet</th>
+                                           </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for partenariat in partenariat_generales|get_item:infos.id %}
+                                           <tr>
+                                             <td>
+                                                <strong> {{ partenariat.nom }} </strong>
+                                             </td>
+                                             <td>
+                                                <strong> {{ partenariat.numero }} </strong>
+                                             </td>
+                                             <td>
+                                                <strong> {{ partenariat.date_debut }} </strong>
+                                             </td>
+                                             <td>
+                                                <strong> {{ partenariat.date_fin }} </strong>
+                                             </td>
+                                           </tr>
+                                        </tbody>
+                                     </table>
+                                    {% endfor %}
+                                  </td>
+                               </tr>
+                               {% endfor %}
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} INFORMATIONS SPECIFIQUES {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>INFORMATIONS SPECIFIQUES</strong>
+                     </h5>
+                 </div>
+                   <div class="card-body p-0">
+                      <div class="table-responsive">
+                         <table class="table table-bordered mb-0">
+                            <thead class="thead-light">
+                               <tr>
+                                  <th class="text-center">Nom du projet</th>
+                                  <th class="text-center">Objectif principal du projet</th>
+                                  <th class="text-center">Objectifs secondaires</th>
+                                  <th class="text-center">Resultats attendus</th>
+                                  <th class="text-center">Date de debut du projet</th>
+                                  <th class="text-center">Date de fin du projet</th>
+                                  <th class="text-center">Cout (F CFA)</th>
+                                  <th class="text-center">Nombre de bénéficiaires directs hommes</th>
+                                  <th class="text-center">Nombre de bénéficiaires directs femmes</th>
+                                  <th class="text-center">Nombre total de bénéficiaires directs</th>
+                                  <th class="text-center">Partenaire financier principal</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                                {% for specific in infos_specific %}
+                               <tr>
+                                  <td><strong> {{ specific.nom }} </strong></td>
+                                  <td><strong> {{ specific.objectifs_principals }} </strong></td>
+                                  <td>
+                                    {% for objectif in objectifs_specific|get_item:specific.id %}
+                                        <p class="text-break text-bold"> . {{ objectif.objectifs }} </p>
+                                    {% endfor %}
+                                  </td>
+                                  <td>
+                                    {% for resultat in resultats_specific|get_item:specific.id %}
+                                        <p class="text-break text-bold"> . {{ resultat.resultats }} </p>
+                                    {% endfor %}
+                                  </td>
+                                  <td><strong> {{ specific.date_debut }} </strong></td>
+                                  <td><strong> {{ specific.date_fin }} </strong></td>
+                                  <td><strong> {{ specific.cout }} </strong></td>
+                                  <td><strong> {{ specific.benef_direct_homme }} </strong></td>
+                                  <td><strong> {{ specific.benef_direct_femme }} </strong></td>
+                                  <td><strong> {{ specific.total_benef_direct }} </strong></td>
+                                  <td><strong> {{ specific.partenaires }} </strong></td>
+                               </tr>
+                               {% endfor %}
+                            </tbody>
+                         </table>
+                      </div>
+                   </div>
+                </div>
+             </div>
+
+             {% comment %} PLANIFICATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>PLANIFICATION</strong>
+                     </h5>
+                 </div>
+                 <div class="card-body p-0">
+                    <div class="table-responsive">
+                       <table class="table table-bordered mb-0">
+                          <thead class="thead-light">
+                             <tr>
+                                <th>Titre</th>
+                                <th>Commune</th>
+                                <th>Province</th>
+                                <th>Region</th>
+                                <th>Paroisse</th>
+                                <th>Unité physique</th>
+                                <th>Quantité prévue</th>
+                                <th>Cout de realisation</th>
+                                <th>Contribution des beneficiaires (FCFA)</th>
+                                <th>Contribution des partenaires (FCFA)</th>
+                                <th>Nombre des beneficiaires direct homme</th>
+                                <th>Nombre des beneficiaires direct femme</th>
+                                <th>Nombre total des beneficiaires directs</th>
+                                <th>Partenaire financier principale</th>
+                                {% comment %} <th>Partenaires financiers</th> {% endcomment %}
+                             </tr>
+                          </thead>
+                          <tbody>
+                             {% for activite in activites_groupees_planification %}
+                             <tr>
+                                <td><strong> {{ activite.titre }} </strong></td>
+                                <td><strong> {{ activite.commune }} </strong></td>
+                                <td><strong> {{ activite.province }} </strong></td>
+                                <td><strong> {{ activite.region }} </strong></td>
+                                <td><strong> {{ activite.paroisse }} </strong></td>
+                                <td><strong> {{ activite.unite_physique }} </strong></td>
+                                <td><strong> {{ activite.quantite_prevue }} </strong></td>
+                                <td><strong> {{ activite.cout_realisation }} </strong></td>
+                                <td><strong> {{ activite.contribution_beneficiaire }} </strong></td>
+                                <td><strong> {{ activite.contribution_partenaire }} </strong></td>
+                                <td><strong> {{ activite.nbre_benef_direct_homme }} </strong></td>
+                                <td><strong> {{ activite.nbre_benef_direct_femme }} </strong></td>
+                                <td><strong> {{ activite.total_benef_direct }} </strong></td>
+                                <td><strong> {{ activite.partenaireP }} </strong></td>
+                                {% comment %} <td>
+                                   <div class="table-responsive">
+                                      <table class="table table-bordered mb-0">
+                                         <thead class="thead-light">
+                                            <tr>
+                                               <th>Nom du partenaire</th>
+                                               <th>Part du partenaire (FCFA)</th>
+                                            </tr>
+                                         </thead>
+                                         <tbody>
+                                            {% for partenaire in activite.partenaires %}
+                                            <tr>
+                                               <td><strong>{{ partenaire.nom }}</strong></td>
+                                               <td><strong>{{ partenaire.part }}</strong></td>
+                                            </tr>
+                                            {% endfor %}
+                                         </tbody>
+                                      </table>
+                                   </div>
+                                </td> {% endcomment %}
+                             </tr>
+                             {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+                </div>
+             </div>
+
+             {% comment %} REALISATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>REALISATION</strong>
+                     </h5>
+                 </div>
+                 <div class="card-body p-0">
+                    <div class="table-responsive">
+                       <table class="table table-bordered mb-0">
+                          <thead class="thead-light">
+                             <tr>
+                                <th>Titre</th>
+                                <th>Région</th>
+                                <th>Province</th>
+                                <th>Commune</th>                      
+                                <th>Paroisse</th>
+                                <th>Unité physique</th>
+                                <th>Quantité réalisé</th>
+                                <th>Période réalisé</th>
+                                <th>Responsable d'exécution</th>
+                                <th>Coût de realisation (FCFA)</th>
+                                <th>Contribution bénéficiaire (FCFA)</th>
+                                <th>Contribution partenaire (FCFA) </th>
+                                <th>Nombre bénéficiare direct homme</th>
+                                <th>Nombre bénéficiare direct femme</th>
+                                <th>Nombre total de bénéficiaire direct</th>
+                                <th>Partenaires financiers</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             {% for activite in activites_groupees_realisation %}
+                             <tr>
+                                <td><strong>{{ activite.titre }}</strong></td>
+                                <td><strong>{{ activite.region }}</strong></td>
+                                <td><strong>{{ activite.province }}</strong></td>
+                                <td><strong>{{ activite.commune }}</strong></td>
+                                <td><strong>{{ activite.paroisse }}</strong></td>
+                                <td><strong>{{ activite.unite_physique }}</strong></td>
+                                <td><strong>{{ activite.quantite_prevue }}</strong></td>
+                                <td><strong>{{ activite.periode_prevue_debut }} - {{ activite.periode_prevue_fin }}<strong></td>
+                                <td><strong>{{ activite.responsable }}</strong></td>
+                                <td><strong>{{ activite.cout_realisation }}</strong></td>
+                                <td><strong>{{ activite.contribution_beneficiaire }}</strong></td>
+                                <td><strong>{{ activite.contribution_partenaire }}</strong></td>
+                                <td><strong>{{ activite.nbre_benef_direct_homme }}</strong></td>
+                                <td><strong>{{ activite.nbre_benef_direct_femme }}</strong></td>
+                                <td><strong>{{ activite.total_benef_direct }}</strong></td>
+                                <td><strong> {{ activite.partenaireP }} </strong></td>
+  
+                                {% comment %} <td>
+                                   <div class="table-responsive">
+                                      <table class="table table-bordered mb-0">
+                                         <thead class="thead-light">
+                                            <tr>
+                                               <th>Nom du partenaire</th>
+                                               <th>Part du partenaire (FCFA)</th>
+                                            </tr>
+                                         </thead>
+                                         <tbody>
+                                            {% for partenaire in activite.partenaires %}
+                                            <tr>
+                                               <td><strong>{{ partenaire.nom }}</strong></td>
+                                               <td><strong>{{ partenaire.part }}</strong></td>
+                                            </tr>
+                                            {% endfor %}
+                                         </tbody>
+                                      </table>
+                                   </div>
+                                </td> {% endcomment %}
+                             </tr>
+                             {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+                </div>
+             </div>
+
+             {% comment %} SITUATION {% endcomment %}
+             <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>SITUATION FISCALE ET SOCIALE</strong>
+                     </h5>
+                 </div>
+                 <div class="card-body p-0">
+                    <div class="table-responsive">
+                       <table class="table table-bordered mb-0">
+                          <thead class="thead-light">
+                             <tr>
+                                <th>Projet</th>
+                                <th>Impôts et taxes versées</th>
+                                <th>Cotisations Sociales versées</th>
+                                <th>Autres contributions fiscales versées</th>
+                                <th>Total</th>
+                                <th>Derniers Audits comptables réalisés au cours de l'année</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             {% for situation in situations %}
+                             <tr>
+                                <td><strong>{{ situation.id_projet.nom }}</strong></td>
+                                <td><strong>{{ situation.impot }}</strong></td>
+                                <td><strong>{{ situation.cotisation }}</strong></td>
+                                <td><strong>{{ situation.autre_contribution }}<strong></td>
+                                <td><strong>{{ situation.total }}<strong></td>
+                                <td>
+                                   <div class="table-responsive">
+                                      <table class="table table-bordered mb-0">
+                                         <thead class="thead-light">
+                                            <tr>
+                                               <th>Désignation projets et programmes audités</th>
+                                               <th>Date de réalisation</th>
+                                               <th>Nom du cabinet ayant conduit l'audit comptable</th>
+                                            </tr>
+                                         </thead>
+                                         <tbody>
+                                            <tr>
+                                               {% for test in audits|get_item:situation.id %}
+                                               <td><strong>{{ test.designation }}</strong></td>
+                                               <td><strong>{{ test.date_realisation }}</strong></td>
+                                               <td><strong>{{ test.nom_cabinet }}</strong></td>
+                                            </tr>
+                                            {% endfor %}
+                                         </tbody>
+                                      </table>
+                                   </div>
+                                </td>
+                             </tr>
+                             {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+                </div>
+             </div>
+
+              {% comment %} DEPENSE {% endcomment %}
+              <div class="col-12">
+                <div class="card">
+                 <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                         <strong>DEPENSE DE FONCTIONNEMENT</strong>
+                     </h5>
+                 </div>
+                 <div class="card-body p-0">
+                    <div class="table-responsive">
+                       <table class="table table-bordered mb-0">
+                          <thead class="thead-light">
+                             <tr>
+                               <th>Utilisateur</th>
+                                <th>Projet</th>
+                                <th>Salaire et avantage du personnel</th>
+                                <th>Carburant et entretien des engins (motos, véhicules)</th>
+                                <th>Frais de communication</th>
+                                <th>Acquisition de matériel (moto, ordinateurs,vélicule…) pour le fonctionnement</th>
+                                <th>Rencontres de l'équipe projet (rencontres mensuelles et autres rencontres)</th>
+                                <th>Contribution électricité et eau</th>
+                                <th>Achat de consommables bureautiques</th>
+                                <th>Entretien des locaux</th>
+                                <th>Maintenance des appareils</th>
+                                <th>Expédition courrier</th>
+                                <th>Frais bancaire</th>
+                                <th>Couts indirects</th>
+                             </tr>
+                          </thead>
+                          <tbody>
+                             {% for depense in depenses %}
+                             <tr>
+                                <td><strong> {{ depense.utilisateur }} </strong></td>
+                                <td><strong> {{ depense.id_projet.nom }} </strong></td>
+                                <td><strong> {{ depense.salaire }} </strong></td>
+                                <td><strong> {{ depense.carburant_entretien }} <strong></td>
+                                <td><strong> {{ depense.frais_communication }} <strong></td>
+                                <td><strong> {{ depense.acquisition_materiel }} </strong></td>
+                                <td><strong> {{ depense.rencontre_equipe }} </strong></td>
+                                <td><strong> {{ depense.contribution_electrique_eau }} </strong></td>
+                                <td><strong> {{ depense.achat_consommable }} </strong></td>
+                                <td><strong> {{ depense.entretien_locaux }} </strong></td>
+                                <td><strong> {{ depense.maintenance_appareil }} </strong></td>
+                                <td><strong> {{ depense.expedition_courier }} </strong></td>
+                                <td><strong> {{ depense.frais_bancaire }} </strong></td>
+                                <td><strong> {{ depense.cout_indirect }} </strong></td>
+                             </tr>
+                             {% endfor %}
+                          </tbody>
+                       </table>
+                    </div>
+                 </div>
+                </div>
+             </div>
+             
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

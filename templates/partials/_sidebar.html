@@ -1,0 +1,180 @@
+{% load static %}
+<!-- Sidebar -->
+<div class="sidebar">
+   <!-- Sidebar user panel (optional) -->
+   <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+         <img src="{% static "img/icon_test.png" %}" class="img-circle elevation-2" alt="User Image">
+      </div>
+      <div class="info">
+         <a href="{% url "profils" %}" class="d-block">{{user.username}}</a>
+      </div>
+   </div>
+   <!-- Sidebar Menu -->
+   <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+         <!-- Add icons to the links using the .nav-icon class
+            with font-awesome or any other icon font library -->
+         <li class="nav-item has-treeview">
+            <a href="{% url "dashboard" %}" class="nav-link">
+            <i class="nav-icon fas fa-tachometer-alt"></i>
+            <p>
+               Tableau de bord
+            </p>
+            </a>
+         </li>
+         {% if user.is_responsable or user.is_charger_projet or user.is_charger_programme or user.is_assistant %}
+         <li class="nav-header">STRUCTURES</li>
+         <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+               <i class="nav-icon fa fa-building"></i>
+               <p>
+                  Structures
+                  <i class="right fas fa-angle-left"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="{% url "generales" %}" class="nav-link">
+                  <i class="fa fa-info-circle"></i>
+                  <p>Informations générales</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "documentation" %}" class="nav-link">
+                  <i class="fa fa-book"></i>
+                  <p>Documentation</p>
+                  </a>
+               </li>
+            </ul>
+         </li>
+         {% elif user.is_user or user.is_gestion %}
+         <span></span>
+         {% else %}
+         <span><span>
+         {% endif %}
+         <li class="nav-header">PROJETS</li>
+         <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+               <i class="nav-icon fa fa-tasks"></i>
+               <p>
+                  Projets
+                  <i class="right fas fa-angle-left"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="{% url "create_projet" %}" class="nav-link">
+                  <i class="far fa-circle fa fa-plus-circle"></i>
+                  <p>Créer un projet</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "projet" %}" class="nav-link">
+                  <i class="far fa-circle fa fa-list"></i>
+                  <p>Liste des projets</p>
+                  </a>
+               </li>
+            </ul>
+         </li>
+         {% comment %} {% if user.is_responsable or user.is_charger_projet or user.is_assistant or user.is_charger_programme %}
+         <li class="nav-header">SYNTHÈSE</li>
+         <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+               <i class="nav-icon fas fa-newspaper"></i>
+               <p>
+                  Synthèse
+                  <i class="right fas fa-angle-left"></i>
+               </p>
+            </a>
+            <ul class="nav nav-treeview">
+               <li class="nav-item">
+                  <a href="{% url "globale_generale" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Générale</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "globale_specifique" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Spécifique</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "globale_planification" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Planification</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "globale_suivi" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Réalisation</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "globale_situation" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Situation fiscal</p>
+                  </a>
+               </li>
+               <li class="nav-item">
+                  <a href="{% url "globale_depense" %}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Dépense de fonctionnement</p>
+                  </a>
+               </li>
+            </ul>
+         </li>
+         {% elif user.is_user or user.is_gestion %}
+         <span></span>
+         {% else %}
+         <span></span>
+         {% endif %} {% endcomment %}
+          {% if user.is_responsable or user.is_charger_projet or user.is_assistant or user.is_charger_programme %}
+          <li class="nav-item has-treeview">
+            <a class="nav-link" href="{% url "selection" %}">
+            <i class="nav-icon fas fa-newspaper"></i>
+            <p>Synthese par projet</p>
+            </a>
+          </li>
+          {% endif %}
+         <li class="nav-item has-treeview mt-2">
+            <a href="{% url "synthese_globale_requis" %}" class="nav-link">
+               <i class="nav-icon fas fa-globe"></i>
+               <p>
+                  Synthèse globale
+               </p>
+            </a>
+         </li>
+
+         {% if user.is_responsable %}
+         <li class="nav-header">UTILISATEURS</li>
+         <li class="nav-item has-treeview mt-2">
+            <a href="{% url "utilisateur" %}" class="nav-link">
+               <i class="nav-icon fas fa-users"></i>
+               <p>
+                  Utilisateurs
+               </p>
+            </a>
+         </li>
+         <li class="nav-header">PARAMETRES</li>
+         <li class="nav-item has-treeview mt-2">
+            <a href="{% url "parametres" %}" class="nav-link">
+               <i class="nav-icon fas fa-cog"></i>
+               <p>
+                  Paramètres
+               </p>
+            </a>
+         </li>
+         {% elif user.is_charger_projet or user.is_charger_programme or user.is_assistant %}
+         <span></span>
+         {% endif %}
+         
+      </ul>
+   </nav>
+   <!-- /.sidebar-menu -->
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

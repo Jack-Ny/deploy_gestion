@@ -1,0 +1,75 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}  Voir dépenses de fonctionnement {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">DEPENSES DE FONCTIONNEMENT : détails</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">depenses de fonctionnement</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                           <input type="hidden" name="depense_id" value="{{ depenses.id }}">
+                           <div class="card-header bg-light">
+                              <!-- Utilisez la classe bg-light pour un fond de carte clair -->
+                              <h5 class="card-title text-center mb-0"><strong>{{ depenses.name }}</strong> </h5>
+                              <!-- Centrez le titre et ajoutez une marge inférieure -->
+                           </div>
+                           <div class="card-body">
+                              
+                              <p class="form-control">Consommables et divers (F CFA) : <strong>{{ depenses.consommable_divers }}</strong></p>
+                              <p class="form-control">Salaires et avantages du personnel (F CFA) : <strong>{{ depenses.salaire_avantages }}</strong></p>
+                              <p class="form-control">Équipement et matériel (F CFA) : <strong>{{ depenses.equipement_materiel }}</strong></p>
+                              <p class="form-control text-center">Autres depenses</p>
+                                 <table class="table text-center">
+                                    <thead>
+                                       <tr>
+                                          <th scope="col">Nom de la depense</th>
+                                          <th scope="col">Prix de la depense (F CFA)</th>
+                                       </tr>
+                                    </thead>
+                                    {% for depense in autre_depense %}
+                                    <tbody>
+                                       <tr>
+                                          <td class="text-muted text-bold"> {{ depense.intitule }} </td>
+                                          <td class="text-muted text-bold"> {{ depense.prix }} </td>
+                                       </tr>
+                                    </tbody>
+                                    {% endfor %}
+                                 </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

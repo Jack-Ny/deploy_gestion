@@ -1,0 +1,72 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}  Voir planification opérationnelle {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">PLANIFICATION OPERATIONNELLE : détails</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">activitées</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                           <input type="hidden" name="activite_id" value="{{ activite.id }}">
+                           <div class="card-header bg-light">
+                              <!-- Utilisez la classe bg-light pour un fond de carte clair -->
+                              <h5 class="card-title text-center mb-0"> Activitée : <strong>{{ activite.titre }}</strong> </h5>
+                              <!-- Centrez le titre et ajoutez une marge inférieure -->
+                           </div>
+                           <div class="card-body">
+                              <p class="form-control">Secteur : <strong> {{ activite.id_secteur }} </strong> <p>
+                                 <hr />
+                              <p class="form-control">Domaine : <strong> {{ activite.id_sous_secteur }} </strong> <p>
+                                 <hr />
+                              <p class="form-control">Région : <strong>{{ activite.region }}</strong></p>
+                              <p class="form-control">Province : <strong>{{ activite.province }}</strong></p>
+                              <p class="form-control">Commune : <strong>{{ activite.commune }}</strong></p>
+                              <p class="form-control">Paroisse : <strong>{{ activite.paroisse }}</strong></p>
+                              <p class="form-control">Unité physique: <strong>{{ activite.unite_physique }}</strong></p>
+                              <p class="form-control">Quantité réalisée : <strong>{{ activite.quantite_prevue }}</strong> </p>
+                              <p class="form-control">Cout total de réalisation : <strong>{{ activite.cout_realisation }}</strong> </p>
+                              <p class="form-control">Contribution des bénéficiaires : <strong>{{ activite.contribution_beneficiaire }}</strong> </p>
+                              <p class="form-control">Contribution des partenaires : <strong>{{ activite.contribution_partenaire }}</strong> </p>
+                              <p class="form-control">Bénéfiaires directs hommes : <strong>{{ activite.nbre_benef_direct_homme }}</strong></p>
+                              <p class="form-control">Bénéfiaires directs femmes : <strong>{{ activite.nbre_benef_direct_femme }}</strong></p>
+                              <p class="form-control">Total des bénéfiaires directs : <strong> {{ activite.total_benef_direct }} </strong> </p>
+                              <p class="form-control text-center">Partenaire financier principale</p>
+                              <p class="text-center text-bold"> - {{ activite.partenaires }} </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

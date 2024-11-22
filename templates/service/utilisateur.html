@@ -1,0 +1,133 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Liste des utilisateurs {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <!-- Modal -->
+
+         <!-- Modal -->
+<div class="modal fade" id="changeUserTypeModal" tabindex="-1" role="dialog" aria-labelledby="changeUserTypeModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="changeUserTypeModalLabel">Changer le type d'utilisateur</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <form id="changeUserTypeForm" method="POST" action="{% url "modifier_utilisateur" %}">
+         {% csrf_token %}
+         <div class="modal-body">
+           <input type="hidden" name="user_id" id="user_id">
+           <div class="form-group">
+             <label for="user_type">Type d'utilisateur</label>
+             <select class="form-control" id="user_type" name="user_type">
+               <option value="" selected>---Selectionner le type---</option>
+               <option value="user">Utilisateur</option>
+               <option value="gestion">Gestion</option>
+               <option value="responsable">Responsable de suivi évaluation</option>
+               <option value="assistant">Assistant</option>
+               <option value="programme">Chargé de programme</option>
+               <option value="projet">Chargé de projet</option>
+             </select>
+           </div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+           <button type="submit" class="btn btn-primary">Enregistrer</button>
+         </div>
+       </form>
+     </div>
+   </div>
+ </div>
+         
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">LISTE DES UTILISATEURS</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Accueil</li>
+                  <li class="breadcrumb-item"><a href="#">utilisateur</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="card">
+         <div class="card-header">
+            <h3 class="card-title"><strong>Utilisateur de la plateforme</strong></h3>
+         </div>
+         <div class="col-md-6 text-right">
+            <a href="{% url 'register' %}" class="btn btn-success btn-sm">
+                <i class="fas fa-user-plus"></i> Ajouter un utilisateur
+            </a>
+        </div>
+         <div class="card-body p-0">
+            <table class="table table-striped projects">
+               <thead>
+                  <tr>
+                     <th style="width: 12%">Identité</th>
+                     <th style="width: 20%">Nom d'utilisateur</th>
+                     <th style="width: 30%">Type d'utilisateur</th>
+                     <th style="width: 8%">Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for user in users %}
+                  <tr>
+                     <td class="project-actions">
+                        <img alt="Avatar" class="table-avatar" src="{% static "img/icon_test.png" %}">
+                     </td>
+                     <td>
+                        <a href="#" class="project-actions text-break"> {{ user.username }} </a>
+                     </td>
+                     <td>
+                        <ul class="list-inline">
+                           <li class="list-inline-item">
+                                <p class="list-inline-item"> 
+                                    {% if user.is_charger_projet %} Chargé de projet 
+                                    {% elif user.is_charger_programme %} Chargé de programme 
+                                    {% elif user.is_responsable %} Responsable de suivi evaluation
+                                    {% elif user.is_assistant %} Assistant
+                                    {% elif user.is_user %} Utilisateur
+                                    {% elif user.is_gestion %} Gestionnaire
+                                    {% else %} <span class="text-red text-bold">Non renseigné</span> <small class="form-text text-muted text-bold"> <i class="fas fa-info"></i> Les utilisateurs qui n'ont pas de type defini ne pourront pas se connecter a la plateforme</small>
+                                    {% endif %}
+                                </p>
+                           </li>
+                        </ul>
+                     </td>
+                     <td class="project-actions">
+                        <button type="submit" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#changeUserTypeModal" data-user-id="{{ user.id }}">
+                           <i class="fas fa-folder"></i> Changer
+                        </button>
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+      {% endblock mainContent %}
+   </section>
+</div>
+{% block js %}
+<script>
+   $('#changeUserTypeModal').on('show.bs.modal', function (event) {
+     var button = $(event.relatedTarget);
+     var userId = button.data('user-id');
+ 
+     var modal = $(this);
+     modal.find('#user_id').val(userId);
+   });
+ </script>
+{% endblock js %}

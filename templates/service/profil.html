@@ -1,0 +1,87 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Mon profils {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">Mon profils</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">profils</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="card card-primary card-outline">
+                  <div class="card-body box-profile">
+                     <div class="text-center">
+                        <img class="profile-user-img img-fluid img-circle"
+                        src="{% static "img/icon_test.png" %}"
+                        alt="Photo d'utilisateur" />
+                     </div>
+                     <h3 class="profile-username text-center">{{user.username}}</h3>
+                     <p class="text-primary text-bold text-center">
+                        {% if user.is_user %}
+                        Utilisateur
+                        {% else %}
+                        {% if user.is_gestion %}
+                        Gestionnaire
+                        {% endif %}
+                        {% endif %}
+                     </p>
+                     <div class="text-center">
+                        <a href="#" class="btn btn-primary btn-block"><b>Changer le mot de passe</b></a>
+                     </div>
+                     <br/>
+                     <form class="form-horizontal" method="POST" action="{% url 'change_password' %}">
+                        {% csrf_token %}
+                        <div class="form-group row">
+                           <label for="ancienMdp" class="col-sm-2 col-form-label">Ancien mot de passe</label>
+                           <div class="col-sm-10">
+                              <input type="password" class="form-control" id="ancienMdp" name="old_password" placeholder="">
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label for="nouveauMdp" class="col-sm-2 col-form-label">Nouveau mot de passe</label>
+                           <div class="col-sm-10">
+                              <input type="password" class="form-control" id="nouveauMdp" name="new_password1" placeholder="">
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <label for="nouveauMdp1" class="col-sm-2 col-form-label">Confirmer le nouveau mot de passe</label>
+                           <div class="col-sm-10">
+                              <input type="password" class="form-control" id="nouveauMdp1" name="new_password2" placeholder="">
+                           </div>
+                        </div>
+                        <div class="form-group row">
+                           <div class="offset-sm-2 col-sm-10">
+                              <button type="submit" class="btn btn-primary">Enregistrer</button>
+                           </div>
+                        </div>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

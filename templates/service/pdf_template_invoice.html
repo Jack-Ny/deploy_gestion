@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>INFORMATIONS GLOBALES</title>
+    <style>
+        /* Styles CSS pour le PDF */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .info {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="text-center">SYNTHESE GLOBALES</h1>
+    
+    {% for projet in synthese %}
+    <div class="section">
+        <h2 class="section-title">Projet N° {{ forloop.counter }}</h2>
+        
+        <p><strong>Intitulé du projet :</strong> {{ projet.nom_projet }}</p>
+        <p><strong>Secteurs d'intervention :</strong> {{ projet.secteurs }}</p>
+        <p><strong>Objectif global :</strong> {{ projet.objectif_globale }}</p>
+
+        <p><strong>Nombre de bénéficiaires :</strong></p>
+        <div class="info">
+            <p>Hommes : <strong>{{ projet.benef_homme }}</strong></p>
+            <p>Femmes : <strong>{{ projet.benef_femme }}</strong></p>
+            <p>Total : <strong>{{ projet.total_benef }}</strong></p>
+        </div>
+
+        <p><strong>Changements constatés :</strong></p>
+        <div class="info">
+            <p>{{ projet.objectif_globale }}</p>
+        </div>
+
+        <p><strong>Dépenses du projet :</strong></p>
+        <div class="info">
+            {% for depense in projet.depenses %}
+                <p>Montant Fonctionnement : <strong>{{ depense.charge_fonctionnement }}</strong></p>
+                <p>Montant Équipements : <strong>{{ depense.equipement }}</strong></p>
+                <p>Montant Interventions : <strong>{{ depense.intervention }}</strong></p>
+            {% endfor %}
+        </div>
+
+        <p><strong>Ressources financières :</strong></p>
+        <div class="info">
+            {% for ressource in projet.ressources_financieres %}
+                <p>Contribution des bénéficiaires : <strong>{{ ressource.contribution_benef }}</strong></p>
+                <p>Apport des partenaires : <strong>{{ ressource.apport_partenaire }}</strong></p>
+                <p>Contribution de l'État : <strong>{{ ressource.contribution_etat }}</strong></p>
+            {% endfor %}
+        </div>
+
+        <p><strong>Partenaire financier :</strong> {{ projet.partenaire }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>

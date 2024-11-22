@@ -1,0 +1,96 @@
+{% load static %} {% load custom_tags %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                        <strong>SYNTHÈSE GLOBALE INFORMATIONS SPECIFIQUES</strong>
+                     </h5>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for specific in specific_test %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Intitulé du projet :</strong>
+                              <p class="text-break">{{ specific.nom }}</p>
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Secteur :</strong>
+                              <p class="text-break">{{ specific.id_secteur }}</p>
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Domaine :</strong>
+                              <p class="text-break">{{ specific.id_sous_secteur }}</p>
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Activité :</strong>
+                              <p class="text-break">{{ specific.id_titre_activites }}</p>
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                            <strong>Objectif principal :</strong>
+                            <p class="text-break">{{ specific.objectifs_principals }}</p>
+                         </div>
+                         <p class="text-center"> <strong>Objectifs secondaires</strong> </p>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                            {% for objectif in objectif_dict|get_item:specific.id %}
+                              <p class="text-break"> - {{ objectif.objectifs }}</p>
+                            {% endfor %}
+                           </div>
+
+                           <p class="text-center"> <strong>Résultat attendus </strong> </p>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                            {% for resultat in resultat_dict|get_item:specific.id %}
+                              <p class="text-break"> - {{ resultat.resultats }} </p>
+                              {% endfor %}
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Date de debut du projet :</strong>
+                              <p class="text-break">{{ specific.date_debut }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Date de fin du projet :</strong>
+                              <p class="text-break">{{ specific.date_fin }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Budget du projet :</strong>
+                              <p class="text-break">{{ specific.budget }}</p>
+                           </div>
+
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Depense globale de l'annee :</strong>
+                              <p class="text-break">{{ specific.depense_globale }}</p>
+                           </div>
+                           
+
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Nombre de bénéficiaires directs hommes :</strong>
+                              <p class="text-break">{{ specific.benef_direct_homme }}</p>
+                           </div>
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Nombre de bénéficiaires directs femmes :</strong>
+                              <p class="text-break">{{ specific.benef_direct_femme }}</p>
+                           </div>
+                           
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Partenaires financiers principaux :  </strong>
+                              <p class="text-break">{{ specific.partenaires }}</p>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>

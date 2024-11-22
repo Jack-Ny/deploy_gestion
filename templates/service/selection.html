@@ -1,0 +1,255 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Liste des projets {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel"></h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body"></div>
+               </div>
+            </div>
+         </div>
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">PROJET : liste des projets</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">projet</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+    <div class="card">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h3 class="card-title"><strong>Projets</strong></h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <input type="text" id="searchInput" class="form-control" placeholder="Rechercher un projet...">
+                        <select id="filterSelect" class="form-select">
+                            <option value="">Tous les projets</option>
+                            <option value="recent">Plus récents</option>
+                            <option value="ancien">Plus anciens</option>
+                            <option value="mes_projets">Mes projets</option>
+                        </select>
+                        <button class="btn btn-outline-secondary" type="button" id="clearSearch">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped projects">
+                <thead>
+                    <tr>
+                        <th style="width: 15%">#</th>
+                        <th style="width: 30%">Titre du projet</th>
+                        <th style="width: 40%">Nom du créateur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for projet in projects %}
+                    <tr data-created="{{ projet.created|date:'Y-m-d' }}">
+                        <td class="project-actions">
+                            <input type="checkbox" value="{{ projet.id }}" class="projet-checkbox" id="projet{{ projet.id }}">
+                        </td>
+                        <td class="project-actions text-break">
+                            <a href="#" class="project-actions text-break">{{ projet.nom }}</a>
+                        </td>
+                        <td>
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <img alt="Avatar" class="table-avatar" src="{% static 'img/icon_test.png' %}">
+                                    <p class="list-inline-item">{{ projet.utilisateur.username }}</p>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div id="actionButtons" class="p-3" style="display:none;">
+                <button id="voirSynthese" class="btn btn-primary">Voir la synthèse</button>
+                <div class="btn-group ms-2">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        Télécharger
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><button class="dropdown-item" data-format="pdf">PDF</button></li>
+                        <li><button class="dropdown-item" data-format="word">Word</button></li>
+                        <li><button class="dropdown-item" data-format="excel">Excel</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+
+{% block js %}
+<script>
+    // Gestion des checkboxes et boutons d'action
+    const checkboxes = document.querySelectorAll('.projet-checkbox');
+    const actionButtons = document.getElementById('actionButtons');
+
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const selectedCount = document.querySelectorAll('.projet-checkbox:checked').length;
+            actionButtons.style.display = selectedCount > 0 ? 'block' : 'none';
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialisation des dropdowns Bootstrap
+        var dropdownElementList = document.querySelectorAll('.dropdown-toggle')
+        dropdownElementList.forEach(function(dropdownToggleEl) {
+            new bootstrap.Dropdown(dropdownToggleEl);
+        });
+    
+        // Gestion des clics sur les items du dropdown
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const selectedIds = Array.from(document.querySelectorAll('.projet-checkbox:checked'))
+                    .map(checkbox => checkbox.value)
+                    .join(',');
+           
+                const format = this.getAttribute('data-format');
+                if (selectedIds && format) {
+                    window.location.href = `/telecharger_${format}/?ids=${selectedIds}`;
+                } else {
+                    alert("Veuillez sélectionner au moins un projet.");
+                }
+            });
+        });
+    });
+
+    // Fonction de recherche et filtrage
+    function filterProjects() {
+        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+        const filterValue = document.getElementById('filterSelect').value;
+        const tbody = document.querySelector('tbody');
+        const rows = Array.from(document.querySelectorAll('tbody tr'));
+        
+        // Tri par date si nécessaire
+        if (filterValue === 'recent' || filterValue === 'ancien') {
+            rows.sort((a, b) => {
+                const dateA = new Date(a.dataset.created);
+                const dateB = new Date(b.dataset.created);
+                return filterValue === 'recent' ? dateB - dateA : dateA - dateB;
+            });
+            
+            // Réorganiser les lignes
+            rows.forEach(row => tbody.appendChild(row));
+        }
+
+        // Appliquer les filtres
+        rows.forEach(row => {
+            const titleCell = row.querySelector('td:nth-child(2)');
+            const userCell = row.querySelector('td:nth-child(3)');
+            const title = titleCell.textContent.toLowerCase();
+            const user = userCell.textContent.toLowerCase();
+            let showRow = true;
+
+            // Filtre de recherche
+            if (searchValue) {
+                showRow = title.includes(searchValue) || user.includes(searchValue);
+            }
+
+            // Filtre "Mes projets"
+            if (showRow && filterValue === 'mes_projets') {
+                showRow = user.includes('{{ request.user.username }}'.toLowerCase());
+            }
+
+            row.style.display = showRow ? '' : 'none';
+        });
+    }
+
+    // Écouteurs d'événements pour la recherche et le filtrage
+    document.getElementById('searchInput').addEventListener('input', filterProjects);
+    document.getElementById('filterSelect').addEventListener('change', filterProjects);
+    
+    // Bouton pour effacer la recherche
+    document.getElementById('clearSearch').addEventListener('click', function() {
+        document.getElementById('searchInput').value = '';
+        document.getElementById('filterSelect').value = '';
+        filterProjects();
+    });
+
+    // Animation pour la recherche
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+            row.style.transition = 'opacity 0.3s';
+        });
+    });
+</script>
+
+<style>
+    .input-group {
+        margin-bottom: 1rem;
+    }
+    
+    #searchInput, #filterSelect {
+        max-width: 300px;
+    }
+    
+    #filterSelect {
+        width: auto;
+    }
+    
+    .table-hover tbody tr:hover {
+        background-color: rgba(0,0,0,.075);
+    }
+    
+    tbody tr {
+        transition: opacity 0.3s ease;
+    }
+    
+    tbody tr.hidden {
+        opacity: 0;
+    }
+
+    #clearSearch {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    @media (max-width: 768px) {
+        .input-group {
+            flex-direction: column;
+        }
+        
+        #searchInput, #filterSelect {
+            max-width: 100%;
+            margin-bottom: 0.5rem;
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock js %}

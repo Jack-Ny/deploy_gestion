@@ -1,0 +1,83 @@
+<div class="col-lg-3 col-6">
+  <!-- small box -->
+  <div class="small-box bg-info">
+     <div class="inner">
+        {% if user.is_responsable %}
+        <h3>{{ total_service }}</h3>
+        {% elif user.is_user %}
+        <h3>{{ total_service_user }}</h3>
+        {% else %}
+        <span></span>
+        {% endif %}
+        <p class="text-bold">Nombre de projets</p>
+     </div>
+     <div class="icon">
+        <i class="ion ion-stats-bars"></i>
+     </div>
+     <a href="{% url "projet" %}" class="small-box-footer text-bold">Voir la liste des projets <i class="fas fa-arrow-circle-right"></i></a>
+  </div>
+</div>
+
+<div class="col-lg-3 col-6">
+   <!-- small box -->
+   <div class="small-box bg-secondary">
+      <div class="inner">
+         {% if user.is_responsable %}
+         <h3> {{ total_planifier }} </h3>
+         {% elif user.is_user %}
+         <h3>{{ total_service_user }}</h3>
+         {% else %}
+         <span></span>
+         {% endif %}
+         <p class="text-bold">Projets planifier</p>
+      </div>
+      <div class="icon">
+         <i class="ion ion-load-d"></i>
+      </div>
+      <a href="{% url "projet" %}" class="small-box-footer text-bold"> <i class="fas fa-arrow-circle-right"></i></a>
+   </div>
+ </div>
+
+<div class="col-lg-3 col-6">
+   <!-- small box -->
+   <div class="small-box bg-success">
+      <div class="inner">
+         {% if user.is_responsable %}
+         <h3> {{ total_realisation }} </h3>
+         {% elif user.is_user %}
+         <h3>{{ total_service_user }}</h3>
+         {% else %}
+         <span></span>
+         {% endif %}
+         <p class="text-bold">Projets realise</p>
+      </div>
+      <div class="icon">
+         <i class="ion ion-checkmark-circled"></i>
+      </div>
+      <a href="{% url "projet" %}" class="small-box-footer text-bold"> <i class="fas fa-arrow-circle-right"></i></a>
+   </div>
+ </div>
+
+ 
+
+ <div class="col-lg-3 col-6">
+   <!-- small box -->
+   <div class="small-box bg-blue">
+      <div class="inner">
+         {% if user.is_responsable %}
+         <h3> {{ total_user }} </h3>
+         {% elif user.is_user %}
+         <h3>{{ total_service_user }}</h3>
+         {% else %}
+         <span></span>
+         {% endif %}
+         <p class="text-bold">Utilisateurs</p>
+      </div>
+      <div class="icon">
+         <i class="ion ion-person-add"></i>
+      </div>
+      <a href="{% url "utilisateur" %}" class="small-box-footer text-bold"> <i class="fas fa-arrow-circle-right"></i></a>
+   </div>
+ </div>
+<!-- ./col -->
+</div>

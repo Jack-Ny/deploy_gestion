@@ -1,0 +1,84 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Liste des projets {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <!-- Modal -->
+         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLabel"></h5>
+                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                     </button>
+                  </div>
+                  <div class="modal-body"></div>
+               </div>
+            </div>
+         </div>
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">SYNTHESE DES PROJETS SELECTIONNEES</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">projet</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+
+   <section class="content">
+    <div class="card">
+       <div class="card-header">
+          <h3 class="card-title"><strong>Synthèse des Projets Sélectionnés</strong></h3>
+       </div>
+       <div class="card-body p-0">
+          <table class="table table-bordered projects">
+             <thead>
+                <tr>
+                   <th style="width: 15%">Secteur</th>
+                   <th style="width: 15%">Montant</th>
+                   <th style="width: 20%">Total des bénéfiaires directs</th>
+                   <th style="width: 30%">Bénéfiaires directs  (hommes)</th>
+                   <th style="width: 30%">Bénéfiaires directs  (femmes)</th>
+                </tr>
+             </thead>
+             <tbody>
+                {% for secteur_info in infos_specifiques %}
+                    {% for info in secteur_info.infos %}
+                <tr>
+                   <td class="project-actions text-muted text-bold"> {{ secteur_info.secteur }} </td>
+                   <td class="project-actions text-muted text-bold"> {{ info.montant }} </td>
+                   <td class="project-actions text-muted text-bold"> {{ info.total_benef }} </td>
+                   <td class="project-actions text-muted text-bold"> {{ info.benef_direct_homme }} </td>
+                   <td class="project-actions text-muted text-bold"> {{ info.benef_direct_femme }} </td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+                {% comment %} <tr class="table-primary">
+                    <td class="project-actions"><strong>Total</strong></td>
+                    <td class="project-actions text-break"><strong>{{ info.total_montant }}</strong></td>
+                    <td class="project-actions text-break"><strong>{{ info.total_benef }}</strong></td>
+                    <td class="project-actions text-break"><strong>{{ info.total_benef_homme }}</strong></td>
+                    <td class="project-actions text-break"><strong>{{ info.total_benef_femme }}</strong></td>
+                </tr> {% endcomment %}
+             </tbody>
+          </table>
+       </div>
+    </div>
+    {% endblock mainContent %}
+ </section>
+</div>
+{% block js %}
+{% endblock js %}

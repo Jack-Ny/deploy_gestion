@@ -1,0 +1,98 @@
+{% load static %}
+<div class="wrapper">
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row justify-content-center">
+            <div class="col-12">
+               <div class="card">
+                  <div class="card-header bg-white">
+                     <h5 class="text-center mb-0">
+                        <strong>SYNTHÈSE GLOBALE PLANIFICATION OPÉRATIONNELLE</strong>
+                     </h5>
+                  </div>
+                  <div class="card-body p-0">
+                     <div class="table-responsive">
+                        {% for activite in activites_groupees %}
+                        <div class="row mx-0 border-bottom py-3">
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Projet :</strong>
+                              <p class="text-break">{{ activite.projet }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Activitée :</strong>
+                              <p class="text-break">{{ activite.titre }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Secteur :</strong>
+                              <p class="text-break">{{ activite.secteur }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Domaine :</strong>
+                              <p class="text-break">{{ activite.domaine }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Region :</strong>
+                              <p class="text-break">{{ activite.region }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Province :</strong>
+                              <p class="text-break">{{ activite.province }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Commune :</strong>
+                              <p class="text-break">{{ activite.commune }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-2 mb-2 mb-md-0">
+                              <strong>Paroisse :</strong>
+                              <p class="text-break">{{ activite.paroisse }}</p>
+                           </div>
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Unité physique :</strong>
+                              <p class="text-break">{{ activite.unite_physique }}</p>
+                           </div>
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Quantité prévue :</strong>
+                              <p class="text-break">{{ activite.quantite_prevue }}</p>
+                           </div>
+                           
+                           <div class="col-md-2 col-lg-1 mb-2 mb-md-0">
+                              <strong>Cout de réalisation :  </strong>
+                              <p class="text-break">{{ activite.cout_realisation }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                              <strong>Contribution des bénéficiaires :</strong>
+                              <p class="text-break">{{ activite.contribution_beneficiaire }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                              <strong>Contribution des partenaires :</strong>
+                              <p class="text-break">{{ activite.contribution_partenaire }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                              <strong>Nombre des beneficiaires direct hommes :</strong>
+                              <p class="text-break">{{ activite.nbre_benef_direct_homme }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                              <strong>Nombre des beneficiaires direct femmes :</strong>
+                              <p class="text-break">{{ activite.nbre_benef_direct_femme }}</p>
+                           </div>
+                           <div class="col-md-3 col-lg-1 mb-2 mb-md-0">
+                              <strong>Nombre total des beneficiaires direct :</strong>
+                              <p class="text-break">{{ activite.total_benef_direct }}</p>
+                           </div>
+                           <div class="col-md-6 col-lg-3 mb-2 mb-md-0">
+                              <strong>Partenaire financier principale :</strong>
+                              <ul class="list-unstyled mb-0">
+                                 <li>{{ activite.partenaires }}</li>
+                                 <span>-------------------------------------------------------------------------------</span>
+                              </ul>
+                           </div>
+                        </div>
+                        {% endfor %}
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>

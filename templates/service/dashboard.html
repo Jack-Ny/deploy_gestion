@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Tableau de bord {% endblock title %}
+
+{% block mainContent %}
+<div class="row">
+    <!-- Small boxes (Stat box) -->
+    {% include "partials/_small_box.html" %}
+</div>
+
+<!-- Charts Section -->
+<div class="row mt-4">
+    <!-- Taux de réalisation -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Taux de réalisation des projets</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="projectCompletionChart" style="min-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Budget des projets -->
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Budget des projets</h3>
+            </div>
+            <div class="card-body">
+                <canvas id="projectBudgetChart" style="min-height: 300px;"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock mainContent %}
+
+{% block js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Données pour le graphique de réalisation
+    const projectData = {
+        labels: [{% for projet in projets_data %}"{{ projet.nom|escapejs }}",{% endfor %}],
+        datasets: [{
+            label: 'Taux de réalisation (%)',
+            data: [{% for projet in projets_data %}{{ projet.taux }},{% endfor %}],
+            backgroundColor: 'rgba(54, 162, 235, 0.5)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Données pour le graphique de budget
+    const budgetData = {
+        labels: [{% for budget in budgets_data %}"{{ budget.nom|escapejs }}",{% endfor %}],
+        datasets: [{
+            label: 'Budget prévu (FCFA)',
+            data: [{% for budget in budgets_data %}{{ budget.budget_total }},{% endfor %}],
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Dépenses réalisées (FCFA)',
+            data: [{% for budget in budgets_data %}{{ budget.depenses_total }},{% endfor %}],
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            borderColor: 'rgba(255, 99, 132, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // Configuration commune des graphiques
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return value.toLocaleString() + (this.chart.canvas.id === 'projectCompletionChart' ? '%' : ' FCFA');
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        let label = context.dataset.label || '';
+                        if (label) {
+                            label += ': ';
+                        }
+                        let value = context.parsed.y.toLocaleString();
+                        return label + value + (context.dataset.label.includes('%') ? '%' : ' FCFA');
+                    }
+                }
+            }
+        }
+    };
+
+    // Création des graphiques
+    new Chart(document.getElementById('projectCompletionChart'), {
+        type: 'bar',
+        data: projectData,
+        options: commonOptions
+    });
+
+    new Chart(document.getElementById('projectBudgetChart'), {
+        type: 'bar',
+        data: budgetData,
+        options: commonOptions
+    });
+});
+</script>
+{% endblock %}

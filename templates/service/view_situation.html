@@ -1,0 +1,78 @@
+{% extends "base.html" %}{% load static %}
+{% block title %}  Voir la situation fiscale et sociale {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">SITUATION FISCALE ET SOCIALE : détails</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">situation</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                           <input type="hidden" name="situation_id" value="{{ situation.id }}">
+                           <div class="card-header bg-light">
+                              <h5 class="card-title text-center mb-0"> <strong>SITUATION FISCALE ET SOCIALE</strong> </h5>
+                              <!-- Centrez le titre et ajoutez une marge inférieure -->
+                           </div>
+                           <div class="card-body">
+                              <p class="form-control text-center"><strong>SITUATIONS FISCALES ET SOCIALES DU SED AU 31 DECEMBRE</strong></p>
+                              <p class="form-control"> Impôts et taxes versées : <strong>{{ situation.impot }} FCFA</strong></p>
+                              <p class="form-control">Cotisations Sociales versées : <strong>{{ situation.cotisation }} FCFA</strong> </p>
+                              <p class="form-control">Autres contributions fiscales versées : <strong>{{ situation.autre_contribution }} FCFA</strong> </p>
+                              <p class="form-control">Total : <strong>{{ situation.total }} FCFA</strong> </p>
+                              <p class="form-control text-center"><strong>Derniers Audits comptables réalisés au cours de l'année</strong></p>
+                              <table class="table text-center">
+                                 <!-- Ajoutez la classe mx-auto pour centrer le tableau -->
+                                 <thead>
+                                    <tr>
+                                       <th scope="col">Désignation projets et programmes audités</th>
+                                       <th scope="col">Date de réalisation</th>
+                                       <th scope="col">Nom du cabinet ayant conduit l'audit comptable</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {% for audits in audit %}
+                                    <tr>
+                                       <td class="text-muted"><strong>{{ audits.designation }}</strong></td>
+                                       <td class="text-muted"><strong>{{ audits.date_realisation }}</strong></td>
+                                       <td class="text-muted"><strong>{{ audits.nom_cabinet }}</strong></td>
+                                    </tr>
+                                    {% endfor %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

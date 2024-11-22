@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Création d'utilisateur</title>
+      <!-- Tell the browser to be responsive to screen width -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+      <!-- Ionicons -->
+      <link rel="stylesheet" href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+      <!-- icheck bootstrap -->
+      <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+      <!-- Theme style -->
+      <link rel="stylesheet" href="{% static 'css/adminlte.min.css' %}">
+      <!-- Google Font: Source Sans Pro -->
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+   </head>
+   <body class="hold-transition register-page">
+      <div class="register-box" style="width: 460px;"> <!-- Augmenté la largeur -->
+         {% include "partials/_alert.html" %}
+         <div class="register-logo">
+            <a href=""><b>Outils</b>Gestion</a>
+         </div>
+         <div class="card">
+            <div class="card-body register-card-body">
+               <p class="login-box-msg">Créer un nouvel utilisateur</p>
+               <form method="POST" action="/register/">
+                  {% csrf_token %}
+                  <div class="input-group mb-3">
+                     <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" required>
+                     <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="input-group mb-3">
+                     <input type="email" class="form-control" placeholder="Adresse mail" name="email" required>
+                     <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-envelope"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="input-group mb-3">
+                     <input type="password" class="form-control" placeholder="Mot de passe" name="password1" required>
+                     <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-lock"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="input-group mb-3">
+                     <input type="password" class="form-control" placeholder="Confirmer le mot de passe" name="password2" required>
+                     <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-lock"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Nouveau champ pour le type d'utilisateur -->
+                  <div class="input-group mb-3">
+                     <select name="user_type" class="form-control" required>
+                        <option value="">Sélectionnez le type d'utilisateur</option>
+                        <option value="responsable">Responsable de suivi</option>
+                        <option value="assistant">Assistant</option>
+                        <option value="charger_programme">Chargé de programme</option>
+                        <option value="charger_projet">Chargé de projet</option>
+                        <option value="user">Utilisateur</option>
+                        <option value="gestion">Gestionnaire</option>
+                     </select>
+                     <div class="input-group-append">
+                        <div class="input-group-text">
+                           <span class="fas fa-user-tag"></span>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-12">
+                        <button type="submit" class="btn btn-primary btn-block">Créer l'utilisateur</button>
+                     </div>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+
+      <!-- jQuery -->
+      <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+      <!-- Bootstrap 4 -->
+      <script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <!-- AdminLTE App -->
+      <script src="{% static 'js/adminlte.min.js' %}"></script>
+      <script>
+         $(function() {
+           // Fade out des alertes
+           $(".alert").delay(5000).fadeOut(500);
+         });
+      </script>
+   </body>
+</html>

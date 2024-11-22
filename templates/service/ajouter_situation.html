@@ -1,0 +1,313 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Ajouter situation fiscal et sociale  {% endblock title %}
+<div class="wrapper">
+{% block header %}
+<div class="content-header">
+   <div class="container-fluid">
+      <div class="row mb-2">
+         <div class="col-sm-6">
+            <h4 class="m-0 text-primary text-left text-bold">SITUATION FISCALE ET SOCIALE : ajouter les informations</h4>
+         </div>
+         <!-- /.col -->
+         <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+               <li class="breadcrumb-item active">Acceuil</li>
+               <li class="breadcrumb-item"><a href="#">enregistrement</a></li>
+            </ol>
+         </div>
+         <!-- /.col -->
+      </div>
+      <!-- /.row -->
+   </div>
+   <!-- /.container-fluid -->
+</div>
+{% endblock header %} {% block mainContent %}
+<section class="content">
+   <div class="container-fluid">
+   <div class="row">
+      <div class="card-body p-0">
+         <h5 id="formHelp" class="form-text text-muted text-center">
+            Veuillez remplir tout les champs avant d'enregistrer
+         </h5>
+         <form id="signUpForm" action="{% url "ajouter_situation" projet_id=projet.id %}" method="POST">
+         {% csrf_token %}
+         <!-- start step indicators -->
+         <h4 class="form-text text-muted text-center">FORMULAIRE SITUATION FISCALE ET SOCIALE</h4>
+         <div class="form-header d-flex mb-4">
+            <span class="stepIndicator">1</span> 
+         </div>
+         <!-- end step indicators -->
+         <!-- FORMULAIRE PLANIFICATION OPERATIONNELLE -->
+         <div class="step">
+            <input type="hidden" id="total_hidden" name="total_hidden" value="" />
+            <div class="mb-3">
+               <fieldset class="form-group border p-3">
+                  <legend class="w-auto px-2 text-sm text-center text-bold">SITUATIONS FISCALES ET SOCIALES DU SED AU 31 DECEMBRE</legend>
+                  <div class="form-group">
+                     <label for="impot">Impôts et taxes versées</label>
+                     <input type="number" min="0" class="form-control username" id="impot" placeholder="" name="impot" oninput="validateInput(this, 'cout')" />
+                     <div class="invalid-feedback"></div>
+                  </div>
+                  <div class="form-group">
+                     <label for="cotisation">Cotisations Sociales versées</label>
+                     <input type="number" min="0" class="form-control username" id="cotisation" placeholder="" name="cotisation" oninput="validateInput(this, 'cout')" />
+                     <div class="invalid-feedback"></div>
+                  </div>
+                  <div class="form-group">
+                     <label for="contribution">Autres contributions fiscales versées</label>
+                     <input type="number" min="0" class="form-control username" id="contribution" placeholder="" name="contribution" oninput="validateInput(this, 'cout')" />
+                     <div class="invalid-feedback"></div>
+                  </div>
+               </fieldset>
+               <fieldset class="form-group border p-3">
+               <legend class="w-auto px-2 text-sm text-center"><strong>DERNIERS AUDITS COMPTABLES REALISES AU COURS DE L'ANNEE</strong></legend>
+               <div id="audits-container">
+                  <div class="form-group">
+                     <div id="auditContainer">
+                        <div class="form-group audit">
+                           <label for="designation">Désignation projets et programme audités</label>
+                           <input type="text" id="designation" class="form-control" placeholder="" name="designation[]" oninput="validateInput(this, 'nom_projet')" />
+                           <div class="invalid-feedback"></div>
+                           <label for="date_realisation">Date de réalisation</label>
+                           <input type="date" id="date_realisation" class="form-control" placeholder="" name="date_realisation[]" />
+                           <label for="cabinet">Nom du cabinet ayant conduit l'audit comptable</label>
+                           <input type="text" id="cabinet" class="form-control" placeholder="" name="cabinet[]" oninput="validateInput(this, 'nom_projet')" />
+                           <div class="invalid-feedback"></div>
+                           <div class="input-group-append">
+                              <button class="mt-2 btn btn-primary add-audit-btn" type="button">Ajouter</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- Suivant / Retour -->
+               <div class="form-footer d-flex">
+                  <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+                  Retour
+                  </button>
+                  <button type="button" id="nextBtn" onclick="nextPrev(1)">
+                  Suivant
+                  </button>
+               </div>
+               <!-- Fin de Suivant / Retour -->
+               </form>
+            </div>
+         </div>
+      </div>
+</section>
+{% endblock mainContent %}
+</div>
+{% block js %}
+<script>
+   // Fonction de sauvegarde dans le local localStorage
+   function saveFieldData(inputElements) {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      inputElements.forEach(input=> {
+         formData[input.name] = input.value;
+      });
+      localStorage.setItem('formData', JSON.stringify(formData));
+   }
+
+   // charger les donnees lorsque la page est rechargee
+   function loadFormData() {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      for (const key in formData) {
+         const field = document.querySelector(`[name="${key}"]`);
+         if (field) {
+            field.value = formData[key];
+         }
+      }
+   }
+
+   // Effacer les donnees une fois que le formulaire est soumis
+   function clearFormData() {
+      localStorage.removeItem('formData');
+   }
+
+    // Sauvegarder les données lorsqu'on quitte un champ ou clique sur "Suivant"
+   function saveStepData() {
+      const currentStep = document.querySelector('.step[style*="block"]');
+      const inputs = currentStep.querySelectorAll('input');
+      saveFieldData(inputs);
+   }
+   // Charger les donnees du localStorage lors du chargement de la page
+   document.addEventListener('DOMContentLoaded', loadFormData);
+   // Sauvegarder les données lorsqu'on clique sur "Suivant"
+   document.getElementById('nextBtn').addEventListener('click', saveStepData);
+   // Sauvegarder les données lorsqu'on quitte un champ
+   document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('blur', () => saveStepData());
+   });
+
+   function scrollToTop() {
+     window.scrollTo({
+         top: 0,
+         behavior: 'smooth' // Permet un défilement fluide
+     });
+   }
+   
+   var currentTab = 0; // Current tab is set to be the first tab (0)
+   showTab(currentTab); // Display the current tab
+   
+   function showTab(n) {
+     // This function will display the specified tab of the form...
+     var x = document.getElementsByClassName("step");
+     x[n].style.display = "block";
+     //... and fix the Previous/Next buttons:
+     if (n == 0) {
+       document.getElementById("prevBtn").style.display = "none";
+     } else {
+       document.getElementById("prevBtn").style.display = "inline";
+     }
+     if (n == x.length - 1) {
+       document.getElementById("nextBtn").innerHTML = "Enregistrer";
+     } else {
+       document.getElementById("nextBtn").innerHTML = "Suivant";
+     }
+     //... and run a function that will display the correct step indicator:
+     fixStepIndicator(n);
+   }
+   
+   function nextPrev(n) {
+     // Cette fonction déterminera quelle étape afficher
+     var x = document.getElementsByClassName("step");
+     // Quitte la fonction si un champ du tab actuel est invalide :
+     if (n == 1 && !validateForm()) return false;
+     // Masque l'onglet actuel :
+     x[currentTab].style.display = "none";
+     // Augmente ou diminue l'onglet actuel de 1 :
+     currentTab = currentTab + n;
+     // Si vous avez atteint la fin du formulaire...
+     if (currentTab >= x.length) {
+      localStorage.removeItem('formData');
+         // ... le formulaire est soumis :
+         document.getElementById("signUpForm").submit();
+         return false;
+     }
+     // Sinon, affiche le bon onglet :
+     showTab(currentTab);
+     // Fait défiler la page vers le haut du formulaire :
+     scrollToTop();
+   }
+   
+   function validateForm() {
+     // This function deals with validation of the form fields
+     var x,
+       y,
+       i,
+       valid = true;
+     x = document.getElementsByClassName("step");
+     y = x[currentTab].getElementsByTagName("input");
+     // A loop that checks every input field in the current tab:
+     for (i = 0; i < y.length; i++) {
+         // add an "invalid" class to the field:
+         y[i].classList.remove('invalid');
+         // and set the current valid status to false
+     }
+     // If the valid status is true, mark the step as finished and valid:
+     document.getElementsByClassName("stepIndicator")[currentTab].classList.add("finish");
+     return true; // return the valid status
+   }
+   
+   function fixStepIndicator(n) {
+     // This function removes the "active" class of all steps...
+     var i,
+       x = document.getElementsByClassName("stepIndicator");
+     for (i = 0; i < x.length; i++) {
+       x[i].className = x[i].className.replace(" active", "");
+     }
+     //... and adds the "active" class on the current step:
+     x[n].className += " active";
+   }
+   
+   // Ajouter des Partenariats
+   function addAudit() {
+     var inputGroup = document.createElement('div');
+     inputGroup.className = 'form-group audit';
+     inputGroup.innerHTML = `
+     <label for="designation">Désignation projets et programme audités</label>
+     <input type="text" id="designation" class="form-control" placeholder="" name="designation[]" oninput="validateInput(this, 'nom_projet')" />
+     <div class="invalid-feedback"></div>
+     <label for="date_realisation">Date de réalisation</label>
+     <input type="date" id="date_realisation" class="form-control" placeholder="" name="date_realisation[]" />
+     <label for="cabinet">Nom du cabinet ayant conduit l'audit comptable</label>
+     <input type="text" id="cabinet" class="form-control" placeholder="" name="cabinet[]" oninput="validateInput(this, 'nom_projet')" />
+     <div class="invalid-feedback"></div>
+         <div class="input-group-append">
+             <button class="mt-2 btn btn-danger remove-audit-btn" type="button">Retirer</button>
+         </div>
+     `;
+     document.getElementById("auditContainer").appendChild(inputGroup);
+   }
+   
+   document.addEventListener('click', function(event) {
+     if (event.target && event.target.classList.contains('add-audit-btn')) {
+         addAudit();
+     }
+   });
+   
+   document.addEventListener('click', function(event) {
+     if (event.target && event.target.classList.contains('remove-audit-btn')) {
+         event.target.parentElement.parentElement.remove();
+     }
+   });
+   
+</script>
+<script>
+   var validationRules = {
+      nom_projet: {
+         regex: /^(?=.*[a-zA-Z])[a-zA-Z0-9 '-]{2,}$/,
+         errorMessage: "Le champ renseigner est invalide. Ce champ ne doit pas etre uniquement compose de chiffres ou de caracteres speciaux"
+      },
+      cout: {
+         regex: /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/,
+         errorMessage: "Erreur ! Le champ renseigner est incorrecte"
+      }
+   };
+
+   function validateInput(inputElement, type) {
+      
+      // recuperer la valeur de saisie de l'utilisateur
+      var value = inputElement.value.trim();
+      // recuperer les regles de validation specifique
+      var rules = validationRules[type];
+
+      if (rules.regex.test(value)) {
+         // si valide on passe
+         inputElement.classList.remove('is-invalid');
+         inputElement.nextElementSibling.textContent = '';
+         document.getElementById('nextBtn').disabled = false;
+      } else {
+         // si non valide on envoie un message d'erreur
+         inputElement.classList.add('is-invalid');
+         inputElement.nextElementSibling.textContent = rules.errorMessage;
+         document.getElementById('nextBtn').disabled = true;
+      }
+   }
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', (event) => {
+      const impot = document.getElementById('impot');
+      const cotisation = document.getElementById('cotisation');
+      const autreContribution = document.getElementById('contribution');
+      const totalHidden = document.getElementById('total_hidden'); // Ajout de la variable pour l'input hidden
+  
+      function updateTotal() {
+          const pImpot = parseInt(impot.value) || 0;
+          const pCotisation = parseInt(cotisation.value) || 0;
+          const pAutre = parseInt(autreContribution.value) || 0;
+  
+          totalHidden.value = pImpot + pCotisation + pAutre;
+      }
+  
+      impot.addEventListener('input', updateTotal);
+      cotisation.addEventListener('input', updateTotal);
+      autreContribution.addEventListener('input', updateTotal);
+  });
+</script>
+<script src="{% static 'js/form.js' %}"></script>
+<script scr="{% static 'js/select_form.js' %}"></s>
+   <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+   integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous">
+</script>
+{% endblock js %}

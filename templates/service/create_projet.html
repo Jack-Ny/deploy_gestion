@@ -1,0 +1,57 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Créer un projet {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">CREATION DE PROJET</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">projet</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %}
+   {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <div class="container">
+                  <div class="row justify-content-center">
+                     <div class="col-lg-8 col-md-10">
+                        <div class="card shadow">
+                           <div class="card-body text-center">
+                              <i class="fas fa-cogs fa-5x text-primary"></i>
+                              <h3 class="mt-3">CRÉATION</h3>
+                              <p>Veuillez cliquer sur le bouton pour créer un projet</p>
+                              <form action="{% url "create_projet" %}" method="POST">
+                              {% csrf_token %}
+                              <div class="d-grid gap-2">
+                                 <button type="submit" class="btn btn-primary btn-lg">Créer un projet</button>
+                              </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script></script>
+{% endblock js %}

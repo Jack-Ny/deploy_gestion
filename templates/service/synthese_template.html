@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Synthèse des Projets</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+            font-weight: bold;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Synthèse des Projets</h1>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Secteur</th>
+                <th>Montant</th>
+                <th>Total des bénéficiaires directs</th>
+                <th>Bénéficiaires directs (hommes)</th>
+                <th>Bénéficiaires directs (femmes)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for secteur_info in infos_specifiques %}
+                {% for info in secteur_info.infos %}
+                <tr>
+                    <td>{{ secteur_info.secteur }}</td>
+                    <td>{{ info.montant }}</td>
+                    <td>{{ info.total_benef }}</td>
+                    <td>{{ info.benef_direct_homme }}</td>
+                    <td>{{ info.benef_direct_femme }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

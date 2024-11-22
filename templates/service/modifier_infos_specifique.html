@@ -1,0 +1,430 @@
+{% extends "base.html" %}{% load static %}
+{% block title %} Modifier les informations specifiques par projet {% endblock title %}
+<div class="wrapper">
+   {% block header %}
+   <div class="content-header">
+      <div class="container-fluid">
+         <div class="row mb-2">
+            <div class="col-sm-6">
+               <h4 class="m-0 text-primary text-left text-bold">INFORMATIONS SPECIFIQUES : modification</h4>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+               <ol class="breadcrumb float-sm-right">
+                  <li class="breadcrumb-item active">Acceuil</li>
+                  <li class="breadcrumb-item"><a href="#">modification</a></li>
+               </ol>
+            </div>
+            <!-- /.col -->
+         </div>
+         <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+   </div>
+   {% endblock header %} {% block mainContent %}
+   <section class="content">
+      <div class="container-fluid">
+         <div class="row">
+            <div class="card-body p-0">
+               <h5 id="formHelp" class="form-text text-muted text-center">
+                  Veuillez remplir tout les champs avant d'enregistrer
+               </h5>
+               <form id="signUpForm" action="{% url "modifier_infos_specifique" projet.id specific_infos.id %}" method="POST">
+               {% csrf_token %}
+               <!-- start step indicators -->
+               <h4 class="form-text text-muted text-center">INFORMATIONS SPECIFIQUES PAR PROJET</h4>
+               <div class="form-header d-flex mb-4">
+                  <span class="stepIndicator">1</span>
+                  <span class="stepIndicator">2</span>
+                  <span class="stepIndicator">3</span>
+               </div>
+               <!-- end step indicators -->
+               <div class="step">
+                  <div class="mb-3">
+                     <input type="hidden" id="total_benef_hidden" name="total_benef_hidden" value="" />
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center text-bold">INFORMATIONS SPECIFIQUES</legend>
+                        <div class="form-group">
+                           <label for="projet_name">Intitulé du projet</label>
+                           <input type="text" class="form-control" id="projet_name" placeholder="" name="projet_name" value="{{ specific_infos.nom }}" oninput="validateInput(this, 'nom_projet')" />
+                           <div class="invalid-feedback"></div>
+
+                        </div>
+                        <div class="form-group">
+                           <label for="objectif_principale">Objectif principal du projet</label>
+                           <input type="text" min="0" class="form-control" id="objectif_principale" placeholder="" name="objectif_principale" value="{{ specific_infos.objectifs_principals }}" oninput="validateInput(this, 'objectifs')" />
+                           <div class="invalid-feedback"></div>
+                        </div>
+
+
+                        <div class="form-group">
+                           <label for="objectifs">Objectifs secondaires</label>
+                           <div id="objectifsContainer">
+                               {% for obj in objectifs_test %}
+                               <div class="input-group mb-3">
+                                   <input type="text" id="objectifs" class="form-control" placeholder="" name="objectifs[]" value="{{ obj.objectifs }}" disabled>
+                               </div>
+                               {% endfor %}
+                               <div class="input-group-append mb-2">
+                                 <button class="btn btn-outline-secondary add-objectif-btn" type="button">+</button>
+                             </div>
+                           </div>
+                       </div>
+
+                        <div class="form-group">
+                           <label for="resultats">Résultat attendus</label>
+                           <div id="resultatsContainer">
+                               {% for rez in rez_test %}
+                               <div class="input-group mb-3">
+                                   <input type="text" id="resultats" class="form-control" placeholder="" name="resultats[]" value="{{ rez.resultats }}" disabled>
+                               </div>
+                               {% endfor %}
+                               <div class="input-group-append mb-2">
+                                 <button class="btn btn-outline-secondary add-resultat-btn" type="button">+</button>
+                             </div>
+                           </div>
+                       </div>
+
+
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center text-bold">Date et budget du projet</legend>
+                        <div class="form-group">
+                           <label for="date_debut">Date de debut du projet</label>
+                           <input type="date" class="form-control" id="date_debut" placeholder="" name="date_debut" value="{{ specific_infos.date_debut }}" />
+                        </div>
+                        <div class="form-group">
+                           <label for="date_fin">Date de fin du projet</label>
+                           <input type="date" class="form-control" id="date_fin" placeholder="" name="date_fin" value="{{ specific_infos.date_fin }}" />
+                        </div>
+                        <div class="form-group">
+                           <label for="cout">Budget du projet</label>
+                           <input type="number" min="0" class="form-control" id="cout" placeholder="" name="cout" value="{{ specific_infos.budget }}" oninput="validateInput(this, 'cout')" />
+                           <div class="invalid-feedback"></div>
+                        </div>
+
+                        <div class="form-group">
+                           <label for="globale_depense">Depense globale de l'annee</label>
+                           <input type="number" min="0" class="form-control" id="globale_depense" placeholder="" name="globale_depense" value="{{ specific_infos.depense_globale }}" oninput="validateInput(this, 'cout')" />
+                           <div class="invalid-feedback"></div>
+                        </div>
+                     </fieldset>
+                  </div>
+               </div>
+               <div class="step">
+                  <div class="mb-3">
+                     <fieldset class="form-group border p-3">
+                        <legend class="w-auto px-2 text-sm text-center text-bold">Partenaires financiers et beneficiaire direct</legend>
+                        <div class="form-group">
+                           <label for="nbre_benef_homme">Bénéfiaires directs hommes</label>
+                           <input type="number" min="0" class="form-control" id="nbre_benef_homme" placeholder="" name="nbre_benef_homme" value="{{ specific_infos.benef_direct_homme }}" oninput="validateInput(this, 'nbre_personne')" />
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="nbre_benef_femme">Bénéfiaires directs femmes</label>
+                           <input type="number" min="0" class="form-control" id="nbre_benef_femme" placeholder="" name="nbre_benef_femme" value="{{ specific_infos.benef_direct_femme }}" oninput="validateInput(this, 'nbre_personne')" />
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="total_benef">Total des bénéfiaires directs</label>
+                           <input type="number" min="0" class="form-control" id="total_benef" placeholder="" name="total_benef" value="{{ specific_infos.total_benef_direct }}" oninput="validateInput(this, 'nbre_personne')" disabled />
+                           <div class="invalid-feedback"></div>
+                        </div>
+                        <div class="form-group">
+                           <label for="partners" class="form-label">Partenaires financiers principaux</label><br>
+                           <select id="partners" class="form-control" name="partners" onchange="toggleOtherInput()">
+                              {% for pers in partenaires %}
+                              <option value="{{ pers.nom }}" {% if specific_infos.partenaires == pers.nom %} selected {% endif %} > {{ pers.nom }} </option>
+                              {% endfor %}
+                           </select>
+                        </div>
+
+                        <div class="form-group" id="otherPartnerInput" style="display: none;">
+                           <label for="otherPartner" class="form-label">Veuillez entrer le nom du partenaire</label>
+                           <input type="text" id="otherPartner" class="form-control" name="otherPartner">
+                       </div>
+
+                     </fieldset>
+                  </div>
+               </div>
+
+               <!-- Suivant / Retour -->
+               <div class="form-footer d-flex">
+                  <button type="button" id="prevBtn" onclick="nextPrev(-1)">
+                  Retour
+                  </button>
+                  <button type="button" id="nextBtn" onclick="nextPrev(1)">
+                  Suivant
+                  </button>
+               </div>
+               <!-- Fin de Suivant / Retour -->
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+   {% endblock mainContent %}
+</div>
+{% block js %}
+<script>
+
+   // Fonction de sauvegarde dans le local localStorage
+   function saveFieldData(inputElements) {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      inputElements.forEach(input=> {
+         formData[input.name] = input.value;
+      });
+      localStorage.setItem('formData', JSON.stringify(formData));
+   }
+
+   // charger les donnees lorsque la page est rechargee
+   function loadFormData() {
+      const formData = JSON.parse(localStorage.getItem('formData')) || {};
+      for (const key in formData) {
+         const field = document.querySelector(`[name="${key}"]`);
+         if (field) {
+            field.value = formData[key];
+         }
+      }
+   }
+
+   // Effacer les donnees une fois que le formulaire est soumis
+   function clearFormData() {
+      localStorage.removeItem('formData');
+   }
+
+    // Sauvegarder les données lorsqu'on quitte un champ ou clique sur "Suivant"
+   function saveStepData() {
+      const currentStep = document.querySelector('.step[style*="block"]');
+      const inputs = currentStep.querySelectorAll('input');
+      saveFieldData(inputs);
+   }
+   // Charger les donnees du localStorage lors du chargement de la page
+   document.addEventListener('DOMContentLoaded', loadFormData);
+   // Sauvegarder les données lorsqu'on clique sur "Suivant"
+   document.getElementById('nextBtn').addEventListener('click', saveStepData);
+   // Sauvegarder les données lorsqu'on quitte un champ
+   document.querySelectorAll('input').forEach(input => {
+      input.addEventListener('blur', () => saveStepData());
+   });
+
+   function scrollToTop() {
+     window.scrollTo({
+         top: 0,
+         behavior: 'smooth' // Permet un défilement fluide
+     });
+   }
+   
+   var currentTab = 0; // Current tab is set to be the first tab (0)
+   showTab(currentTab); // Display the current tab
+   
+   function showTab(n) {
+     // This function will display the specified tab of the form...
+     var x = document.getElementsByClassName("step");
+     x[n].style.display = "block";
+     //... and fix the Previous/Next buttons:
+     if (n == 0) {
+       document.getElementById("prevBtn").style.display = "none";
+     } else {
+       document.getElementById("prevBtn").style.display = "inline";
+     }
+     if (n == x.length - 1) {
+       document.getElementById("nextBtn").innerHTML = "Enregistrer";
+     } else {
+       document.getElementById("nextBtn").innerHTML = "Suivant";
+     }
+     //... and run a function that will display the correct step indicator:
+     fixStepIndicator(n);
+   }
+   
+   function nextPrev(n) {
+     // Cette fonction déterminera quelle étape afficher
+     var x = document.getElementsByClassName("step");
+     // Quitte la fonction si un champ du tab actuel est invalide :
+     if (n == 1 && !validateForm()) return false;
+     // Masque l'onglet actuel :
+     x[currentTab].style.display = "none";
+     // Augmente ou diminue l'onglet actuel de 1 :
+     currentTab = currentTab + n;
+     // Si vous avez atteint la fin du formulaire...
+     if (currentTab >= x.length) {
+      localStorage.removeItem('formData');
+         // ... le formulaire est soumis :
+         document.getElementById("signUpForm").submit();
+         return false;
+     }
+     // Sinon, affiche le bon onglet :
+     showTab(currentTab);
+     // Fait défiler la page vers le haut du formulaire :
+     scrollToTop();
+   }
+   
+   function validateForm() {
+     // This function deals with validation of the form fields
+     var x,
+       y,
+       i,
+       valid = true;
+     x = document.getElementsByClassName("step");
+     y = x[currentTab].getElementsByTagName("input");
+     // A loop that checks every input field in the current tab:
+     for (i = 0; i < y.length; i++) {
+         // add an "invalid" class to the field:
+         y[i].classList.remove('invalid');
+         // and set the current valid status to false
+     }
+     // If the valid status is true, mark the step as finished and valid:
+     document.getElementsByClassName("stepIndicator")[currentTab].classList.add("finish");
+     return true; // return the valid status
+   }
+   
+   function fixStepIndicator(n) {
+     // This function removes the "active" class of all steps...
+     var i,
+       x = document.getElementsByClassName("stepIndicator");
+     for (i = 0; i < x.length; i++) {
+       x[i].className = x[i].className.replace(" active", "");
+     }
+     //... and adds the "active" class on the current step:
+     x[n].className += " active";
+   }
+   
+   // Ajouter les objectifs secondaire
+   function addObjectifs() {
+   var inputGroup = document.createElement('div');
+   inputGroup.className = 'input-group mb-3';
+   inputGroup.innerHTML = `
+       <input type="text" class="form-control" placeholder="" name="objectifs[]" oninput="validateInput(this, 'resultats')" >
+       <div class="invalid-feedback"></div>
+       <div class="input-group-append">
+           <button class="btn btn-outline-secondary remove-objectif-btn" type="button">-</button>
+       </div>
+   `;
+   document.getElementById("objectifsContainer").appendChild(inputGroup);
+   }
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('add-objectif-btn')) {
+       addObjectifs();
+   }
+   });
+   
+   document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('remove-objectif-btn')) {
+       event.target.parentElement.parentElement.remove();
+   }
+   });
+   
+   // Ajouter les resultats
+ function addResultats() {
+   var inputGroup = document.createElement('div');
+   inputGroup.className = 'input-group mb-3 resultat';
+   inputGroup.innerHTML = `
+       <input type="text" class="form-control" placeholder="" name="resultats[]">
+       <div class="input-group-append">
+           <button class="btn btn-outline-secondary remove-resultat-btn" type="button">-</button>
+       </div>
+   `;
+   document.getElementById("resultatsContainer").appendChild(inputGroup);
+ }
+ 
+ document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('add-resultat-btn')) {
+       addResultats();
+   }
+ });
+ 
+ document.addEventListener('click', function(event) {
+   if (event.target && event.target.classList.contains('remove-resultat-btn')) {
+       event.target.parentElement.parentElement.remove();
+   }
+ });
+
+ // Ajouter un autre partenaire
+function toggleOtherInput() {
+   const select = document.getElementById('partners');
+   const otherInput = document.getElementById('otherPartnerInput');
+   if (otherInput) {
+      if (select.value === 'Autre') {
+       otherInput.style.display = 'block';
+   } else {
+       otherInput.style.display = 'none';
+   }
+   }
+}
+
+ $(document).ready(function() {
+   $('#partners').select2();
+ });
+   
+</script>
+<script>
+   var validationRules = {
+      nom_projet: {
+         regex: /^(?=.*[a-zA-Z])[a-zA-Z0-9 '-]{2,}$/,
+         errorMessage: "Le champ renseigner est invalide. Le nom du projet ne doit pas etre uniquement compose de chiffres ou de caracteres speciaux"
+      },
+      objectifs: {
+         regex: /^(?=.*[a-zA-Z])[a-zA-Z0-9 '-]{2,}$/,
+         errorMessage: "Erreur ! Veuillez renseigner un objectif clair"
+      },
+      resultats: {
+         regex: /^(?=.*[a-zA-Z])[a-zA-Z0-9 '-]{2,}$/,
+         errorMessage: "Erreur ! Veuillez renseigner un resultat clair"
+      },
+      cout: {
+         regex: /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/,
+         errorMessage: "Erreur ! Le champ renseigner est incorrecte"
+      },
+      nbre_personne: {
+         regex: /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/,
+         errorMessage: "Erreur ! Le champ renseigner est incorrecte"
+      }
+   };
+
+   function validateInput(inputElement, type) {
+      
+      // recuperer la valeur de saisie de l'utilisateur
+      var value = inputElement.value.trim();
+      // recuperer les regles de validation specifique
+      var rules = validationRules[type];
+
+      if (rules.regex.test(value)) {
+         // si valide on passe
+         inputElement.classList.remove('is-invalid');
+         inputElement.nextElementSibling.textContent = '';
+         document.getElementById('nextBtn').disabled = false;
+      } else {
+         // si non valide on envoie un message d'erreur
+         inputElement.classList.add('is-invalid');
+         inputElement.nextElementSibling.textContent = rules.errorMessage;
+         document.getElementById('nextBtn').disabled = true;
+      }
+   }
+
+</script>
+<script>
+   document.addEventListener('DOMContentLoaded', (event) => {
+      const nbreBenHomme = document.getElementById('nbre_benef_homme');
+      const nbreBenFemme = document.getElementById('nbre_benef_femme');
+      const totalBenef = document.getElementById('total_benef');
+      const totalHidden = document.getElementById('total_benef_hidden'); // Ajout de la variable pour l'input hidden
+  
+      function updateTotal() {
+          const homme = parseInt(nbreBenHomme.value) || 0;
+          const femme = parseInt(nbreBenFemme.value) || 0;
+  
+          totalBenef.value = homme + femme;
+          totalHidden.value = totalBenef.value; // Assigner la valeur à l'input hidden
+      }
+  
+      nbreBenHomme.addEventListener('input', updateTotal);
+      nbreBenFemme.addEventListener('input', updateTotal);
+  });
+</script>
+<script src="{% static 'js/form.js' %}"></script>
+{% endblock js %}
