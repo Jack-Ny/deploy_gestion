@@ -13,9 +13,13 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import os
 import dj_database_url
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read.env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -103,9 +107,8 @@ WSGI_APPLICATION = 'projetGestion.wsgi.application'
 # }
 
 # Configuration base de donnees pour le CLOUD
-DATABASE_URL = "postgresql://pschool_user:OniUn7DglXSRlDRW9y0uFsZUDQNyxm8e@dpg-ct0aoqpu0jms73doagkg-a.oregon-postgres.render.com/pschool"
 DATABASES = {
-    "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    "default": dj_database_url.parse(env('DATABASE_URL')) 
 }
 
 
@@ -144,6 +147,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = 'media/'
 # inclure le dossier static dans le projet
 STATICFILES_DIRS = [
