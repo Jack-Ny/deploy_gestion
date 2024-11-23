@@ -19,7 +19,7 @@ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 env = environ.Env()
-environ.Env.read.env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +29,7 @@ environ.Env.read.env()
 SECRET_KEY = 'django-insecure-@c36f7u@vj97x(*zh_y@ru@8wsgidwn3e(yc-n-c@=p@5^gkjm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
 ALLOWED_HOSTS = ["*"]
 
@@ -108,7 +108,7 @@ WSGI_APPLICATION = 'projetGestion.wsgi.application'
 
 # Configuration base de donnees pour le CLOUD
 DATABASES = {
-    "default": dj_database_url.parse(env('DATABASE_URL')) 
+    "default": env.db(),
 }
 
 
