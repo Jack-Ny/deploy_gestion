@@ -12,14 +12,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 import dj_database_url
-import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
-environ.Env.read_env()
+load_dotenv()
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +30,7 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-@c36f7u@vj97x(*zh_y@ru@8wsgidwn3e(yc-n-c@=p@5^gkjm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DEBUG', default=False)
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -108,7 +109,7 @@ WSGI_APPLICATION = 'projetGestion.wsgi.application'
 
 # Configuration base de donnees pour le CLOUD
 DATABASES = {
-    "default": env.db(),
+    "default": dj_database_url.parse(DATABASE_URL),
 }
 
 
@@ -151,7 +152,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = 'media/'
 # inclure le dossier static dans le projet
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static/')
 ]
 
 AUTH_USER_MODEL = 'account.User'
