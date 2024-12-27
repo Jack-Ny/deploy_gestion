@@ -12,15 +12,14 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-from dotenv import load_dotenv
 import dj_database_url
+from decouple import config
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
-
-DATABASE_URL = os.getenv('DATABASE_URL')
 
 
 # Quick-start development settings - unsuitable for production
@@ -109,7 +108,14 @@ WSGI_APPLICATION = 'projetGestion.wsgi.application'
 
 # Configuration base de donnees pour le CLOUD
 DATABASES = {
-    "default": dj_database_url.parse(DATABASE_URL),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'pschool',
+        'USER': 'pschool_l881_user',
+        'PASSWORD': '94f9wEPC4dEwUTJOn45GF1wEdq88U81o',
+        'HOST': 'dpg-ctnc2fdds78s73c35s4g-a',
+        'PORT': '5432',
+    }
 }
 
 
